@@ -1,0 +1,279 @@
+body {
+    background-color: var(--color2dark);
+}
+
+hr {
+    margin: 0 2vw 0 2vw;
+    border: 2px solid var(--color2);
+    border-radius: 10px 10px 10px 10px;
+    background-color: var(--color2);
+}
+
+
+/* #region Links */
+
+a:link {
+    color: var(--color3);
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+a:visited {
+    color: var(--color3);
+    font-weight: bold;
+}
+
+a:focus {
+    color: var(--color3);
+    font-weight: bold;
+}
+
+a:hover {
+    color: var(--color1);
+    font-weight: bold;
+}
+
+a:active {
+    color: var(--color3);
+    font-weight: bold;
+}
+
+
+/* #endregion */
+
+
+/* #region Large Image */
+
+.large-image {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 2vw;
+    font-size: 4em;
+    line-height: 1.75em;
+    /* color: var(--color3); */
+    background-color: rgba(0, 0, 0, 0.7);
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+}
+
+.large-image>h1 {
+    filter: drop-shadow(4px 4px 0 black);
+}
+
+.large-image>img {
+    width: 75vw;
+}
+
+.large-image>h6 {
+    filter: drop-shadow(2px 2px 0 black);
+}
+
+
+/* #endregion */
+
+
+/* #region Gallery */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2vw;
+    margin: 2vw;
+}
+
+.gallery>div {
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    /* justify-content: flex-start; */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10%;
+    cursor: pointer;
+    color: var(--color3);
+    border: 0px solid var(--color1);
+    border-radius: 10px;
+    /* background-color: var(--color2); */
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+    filter: grayscale();
+    transition: all 0.3s ease-in;
+}
+
+.gallery>div:hover {
+    font-size: 140%;
+    border: 10px solid var(--color1);
+    color: var(--color1);
+    filter: grayscale(0%);
+}
+
+.gallery>div>.banner {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    width: 55%;
+    height: 20px;
+    padding: 5px;
+    border-radius: 10px 10px 0 0;
+    background-color: var(--color1);
+    transition: bottom 0.3s ease-in, height 0.3s ease-in, width 0.3s ease-in;
+}
+
+.gallery>div:hover>.banner {
+    bottom: -10px;
+    height: 40px;
+    width: 75%;
+}
+
+.gallery>div>.banner>p {
+    font-size: 70%;
+    white-space: nowrap;
+    color: var(--color3);
+    filter: drop-shadow(2px 2px 0 black);
+}
+
+.gallery>div>a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-decoration: none;
+    /* No underlines on the link */
+    z-index: 10;
+    /* Places the link above everything else in the div */
+    background-color: #FFF;
+    /* Fix to make div clickable in IE */
+    opacity: 0;
+    /* Fix to make div clickable in IE */
+    filter: alpha(opacity=1);
+    /* Fix to make div clickable in IE */
+}
+
+.gallery>div>h1 {
+    filter: drop-shadow(4px 4px 0 black);
+}
+
+.gallery>div>h3 {
+    filter: drop-shadow(2px 2px 0 black);
+}
+
+
+/* #endregion */
+
+.link-list {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: min(5vw, 10px);
+}
+
+.image-link>img {
+    width: 50px;
+    filter: grayscale();
+    transition: all 0.3s ease;
+}
+
+.image-link>img:hover {
+    filter: grayscale(0%);
+    /* width: 60px; */
+}
+
+.button-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--color2dark);
+    border: 0px solid var(--color1);
+    border-radius: 10px;
+    background-color: var(--color2dark);
+    transition: all 0.3s ease;
+}
+
+.button-link:hover {
+    /* font-size: 110%; */
+    /* border: 5px solid var(--color1); */
+    color: var(--color1);
+    background-color: var(--color3);
+    font-weight: bold;
+}
+
+.info-list {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+    margin: 2vw;
+}
+
+.game-info-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-areas: "screenshots screenshots screenshots" "links summary summary" "credits summary summary" "credits thoughts thoughts" "credits thoughts thoughts" "video video video"; */
+    grid-template-areas: "screenshots screenshots screenshots" "credits links links" "credits summary summary" "credits thoughts thoughts" "video video video";
+    gap: 2vw;
+    margin: 2vw;
+}
+
+.info-list>div,
+.game-info-list>div {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2vw;
+    padding: max(2vw, 20px);
+    color: var(--color3);
+    border-radius: 10px;
+    background-color: var(--color2);
+}
+
+.info-list>div>hr,
+.game-info-list>div>hr {
+    width: 50%;
+    border: 2px solid var(--color2dark);
+    border-radius: 10px 10px 10px 10px;
+    background-color: var(--color2dark);
+}
+
+.credits {
+    grid-area: credits;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+
+/* Changes for mobile */
+
+@media screen and (max-width:1200px) {
+    .info-list {
+        /* grid-template-rows: repeat(3, min-content); */
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .game-info-list {
+        grid-template-areas: "screenshots screenshots screenshots" "links links links" "summary summary summary" "thoughts thoughts thoughts" "credits credits credits" "video video video";
+    }
+}
+
+@media screen and (max-width:500px) {
+    .large-image {
+        font-size: 2.5em;
+    }
+}
