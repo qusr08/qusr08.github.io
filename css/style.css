@@ -220,8 +220,8 @@ a:active {
 .game-info-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* grid-template-areas: "screenshots screenshots screenshots" "links summary summary" "credits summary summary" "credits thoughts thoughts" "credits thoughts thoughts" "video video video"; */
-    grid-template-areas: "screenshots screenshots screenshots" "credits links links" "credits summary summary" "credits thoughts thoughts" "video video video";
+    grid-template-areas: "screenshots screenshots screenshots" "links summary summary" "credits summary summary" "credits thoughts thoughts" "credits thoughts thoughts" "video video video";
+    /* grid-template-areas: "screenshots screenshots screenshots" "credits links links" "credits summary summary" "credits thoughts thoughts" "video video video"; */
     gap: 2vw;
     margin: 2vw;
 }
@@ -248,13 +248,6 @@ a:active {
     background-color: var(--color2dark);
 }
 
-.credits {
-    grid-area: credits;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-}
-
 
 /* Changes for mobile */
 
@@ -266,7 +259,7 @@ a:active {
     }
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:900px) {
     .game-info-list {
         grid-template-areas: "screenshots screenshots screenshots" "links links links" "summary summary summary" "thoughts thoughts thoughts" "credits credits credits" "video video video";
     }
