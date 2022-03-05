@@ -49,7 +49,7 @@ a:active {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 95vh;
     text-align: center;
     padding: 2vw;
     font-size: 4em;
@@ -175,7 +175,7 @@ a:active {
 .link-list {
     display: flex;
     flex-flow: row nowrap;
-    gap: min(5vw, 10px);
+    column-gap: min(5vw, 10px);
 }
 
 .image-link>img {
@@ -204,8 +204,8 @@ a:active {
 .button-link:hover {
     /* font-size: 110%; */
     /* border: 5px solid var(--color1); */
-    color: var(--color1);
-    background-color: var(--color3);
+    color: var(--color3);
+    background-color: var(--color1);
     font-weight: bold;
 }
 
@@ -220,7 +220,7 @@ a:active {
 .game-info-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "screenshots screenshots screenshots" "links summary summary" "credits summary summary" "credits thoughts thoughts" "credits thoughts thoughts" "video video video";
+    /* grid-template-areas: "screenshots screenshots screenshots" "links summary summary" "credits summary summary" "credits thoughts thoughts" "credits thoughts thoughts" "music music music" "video video video"; */
     /* grid-template-areas: "screenshots screenshots screenshots" "credits links links" "credits summary summary" "credits thoughts thoughts" "video video video"; */
     gap: 2vw;
     margin: 2vw;
@@ -240,12 +240,16 @@ a:active {
     background-color: var(--color2);
 }
 
+.game-info-list>div>p {
+    text-indent: 40px;
+}
+
 .info-list>div>hr,
 .game-info-list>div>hr {
     width: 50%;
-    border: 2px solid var(--color2dark);
-    border-radius: 10px 10px 10px 10px;
-    background-color: var(--color2dark);
+    border: 2px solid var(--color1);
+    border-radius: 10px;
+    background-color: var(--color1);
 }
 
 
@@ -261,7 +265,9 @@ a:active {
 
 @media screen and (max-width:900px) {
     .game-info-list {
-        grid-template-areas: "screenshots screenshots screenshots" "links links links" "summary summary summary" "thoughts thoughts thoughts" "credits credits credits" "video video video";
+        display: flex;
+        flex-flow: column nowrap;
+        /* grid-template-areas: "screenshots screenshots screenshots" "links links links" "summary summary summary" "thoughts thoughts thoughts" "credits credits credits" "video video video"; */
     }
 }
 

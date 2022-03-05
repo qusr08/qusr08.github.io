@@ -1,0 +1,72 @@
+.screenshots {
+    grid-area: screenshots;
+}
+
+.screenshots>div {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vw;
+}
+
+.screenshots>div>img {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.credits {
+    grid-area: credits;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+}
+
+.links {
+    grid-area: links;
+}
+
+.summary {
+    grid-area: summary;
+}
+
+.summary>p {
+    text-align: left;
+}
+
+.thoughts {
+    grid-area: thoughts;
+}
+
+.thoughts>p {
+    text-align: left;
+}
+
+.music {
+    grid-area: music;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.music>div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2vw;
+    color: var(--color3);
+    border-radius: 40px;
+    background-color: var(--color1);
+    text-indent: 2vw;
+}
+
+@media screen and (max-width:900px) {
+    .screenshots>div {
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+}
+
+.video {
+    grid-area: video;
+}
