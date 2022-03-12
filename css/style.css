@@ -106,7 +106,7 @@ a:active {
     background-position: center;
     background-size: cover;
     filter: grayscale();
-    transition: all 0.3s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 .gallery>div:hover {
@@ -127,7 +127,7 @@ a:active {
     padding: 5px;
     border-radius: 10px 10px 0 0;
     background-color: var(--color1);
-    transition: bottom 0.3s ease-in, height 0.3s ease-in, width 0.3s ease-in;
+    transition: bottom 0.2s ease-in, height 0.2s ease-in, width 0.2s ease-in;
 }
 
 .gallery>div:hover>.banner {
@@ -174,7 +174,8 @@ a:active {
 
 .link-list {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
+    justify-content: center;
     column-gap: min(5vw, 10px);
 }
 
@@ -196,7 +197,7 @@ a:active {
     text-decoration: none;
     color: var(--color2dark);
     border: 0px solid var(--color1);
-    border-radius: 10px;
+    border-radius: 40px;
     background-color: var(--color2dark);
     transition: all 0.3s ease;
 }
@@ -274,5 +275,19 @@ a:active {
 @media screen and (max-width:500px) {
     .large-image {
         font-size: 2.5em;
+    }
+    .image-link>img {
+        filter: grayscale(0%);
+    }
+    .gallery>div {
+        font-size: 140%;
+        border: 10px solid var(--color1);
+        color: var(--color1);
+        filter: grayscale(0%);
+    }
+    .gallery>div>.banner {
+        bottom: -10px;
+        height: 40px;
+        width: 75%;
     }
 }

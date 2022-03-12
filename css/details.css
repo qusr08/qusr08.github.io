@@ -4,13 +4,18 @@
 
 .screenshots>div {
     display: grid;
-    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     gap: 2vw;
 }
 
-.screenshots>div>img {
+.screenshots>div>div {
+    padding-bottom: 10px;
     border-radius: 10px;
+    background-color: var(--color1);
+}
+
+.screenshots img {
+    border-radius: 10px 10px 0 0;
     width: 100%;
 }
 
@@ -29,7 +34,8 @@
     grid-area: summary;
 }
 
-.summary>p {
+.summary>p,
+.summary>ul {
     text-align: left;
 }
 
@@ -37,7 +43,8 @@
     grid-area: thoughts;
 }
 
-.thoughts>p {
+.thoughts>p,
+.summary>ul {
     text-align: left;
 }
 
@@ -60,13 +67,18 @@
     text-indent: 2vw;
 }
 
-@media screen and (max-width:900px) {
-    .screenshots>div {
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-        grid-template-columns: 1fr;
-    }
-}
-
 .video {
     grid-area: video;
+}
+
+.video>video {
+    border-radius: 10px;
+    width: 100%;
+    background-color: var(--color1);
+}
+
+@media screen and (max-width:900px) {
+    .screenshots>div {
+        grid-template-columns: 1fr;
+    }
 }
