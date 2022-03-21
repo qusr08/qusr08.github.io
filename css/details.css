@@ -71,9 +71,10 @@
     grid-area: video;
 }
 
-.video>video {
+.video>iframe {
     border-radius: 10px;
     width: 100%;
+    aspect-ratio: calc(16 / 9);
     background-color: var(--color1);
 }
 
