@@ -10,17 +10,13 @@
     --color2dark: #121212;
     --color3: #DBEDF3;
     --color3dark: #B1C9D1;
-    /* --color1: #F73859;
-    --color1dark: #D32344;
-    --color2: #404B69;
-    --color2dark: #283149;
-    --color3: #DBEDF3;
-    --color3dark: #B1C9D1; */
+    --spacing-vw: 2vw;
+    --spacing-px: 10px;
+    --transition-speed: 0.2s;
 }
 
 ::selection {
     color: var(--color3);
-    /* background: var(--color1dark); */
     background: var(--color1);
 }
 

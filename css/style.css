@@ -3,9 +3,9 @@ body {
 }
 
 hr {
-    margin: 0 2vw 0 2vw;
+    margin: 0 var(--spacing-vw) 0 var(--spacing-vw);
     border: 2px solid var(--color2);
-    border-radius: 10px 10px 10px 10px;
+    border-radius: var(--spacing-px);
     background-color: var(--color2);
 }
 
@@ -15,7 +15,7 @@ hr {
 a:link {
     color: var(--color3);
     font-weight: bold;
-    transition: all 0.2s ease;
+    transition: all var(--transition-speed) ease;
 }
 
 a:visited {
@@ -51,26 +51,22 @@ a:active {
     align-items: center;
     height: 95vh;
     text-align: center;
-    padding: 2vw;
+    padding: var(--spacing-vw);
     font-size: 4em;
     line-height: 1.75em;
-    /* color: var(--color3); */
     background-color: rgba(0, 0, 0, 0.7);
     background-blend-mode: multiply;
     background-position: center;
     background-size: cover;
 }
 
-.large-image>h1 {
-    filter: drop-shadow(4px 4px 0 black);
+.large-image>h1,
+.large-image>h6 {
+    filter: drop-shadow(2px 2px 0 black);
 }
 
 .large-image>img {
     width: 75vw;
-}
-
-.large-image>h6 {
-    filter: drop-shadow(2px 2px 0 black);
 }
 
 
@@ -82,8 +78,8 @@ a:active {
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2vw;
-    margin: 2vw;
+    gap: var(--spacing-vw);
+    margin: var(--spacing-vw);
 }
 
 .gallery>div {
@@ -91,7 +87,6 @@ a:active {
     aspect-ratio: 1;
     display: flex;
     flex-flow: column nowrap;
-    /* justify-content: flex-start; */
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -99,19 +94,18 @@ a:active {
     cursor: pointer;
     color: var(--color3);
     border: 0px solid var(--color1);
-    border-radius: 10px;
-    /* background-color: var(--color2); */
+    border-radius: var(--spacing-px);
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
     background-position: center;
     background-size: cover;
     filter: grayscale();
-    transition: all 0.2s ease-in;
+    transition: all var(--transition-speed) ease-in;
 }
 
 .gallery>div:hover {
     font-size: 140%;
-    border: 10px solid var(--color1);
+    border: var(--spacing-px) solid var(--color1);
     color: var(--color1);
     filter: grayscale(0%);
 }
@@ -123,16 +117,16 @@ a:active {
     align-items: center;
     bottom: 0;
     width: 55%;
-    height: 20px;
-    padding: 5px;
-    border-radius: 10px 10px 0 0;
+    height: calc(var(--spacing-px) * 2);
+    padding: calc(var(--spacing-px) / 2);
+    border-radius: var(--spacing-px) var(--spacing-px) 0 0;
     background-color: var(--color1);
-    transition: bottom 0.2s ease-in, height 0.2s ease-in, width 0.2s ease-in;
+    transition: bottom var(--transition-speed) ease-in, height var(--transition-speed) ease-in, width var(--transition-speed) ease-in;
 }
 
 .gallery>div:hover>.banner {
-    bottom: -10px;
-    height: 40px;
+    bottom: -var(--spacing-px);
+    height: calc(var(--spacing-px) * 4);
     width: 75%;
 }
 
@@ -150,21 +144,13 @@ a:active {
     top: 0;
     left: 0;
     text-decoration: none;
-    /* No underlines on the link */
     z-index: 10;
-    /* Places the link above everything else in the div */
     background-color: #FFF;
-    /* Fix to make div clickable in IE */
     opacity: 0;
-    /* Fix to make div clickable in IE */
     filter: alpha(opacity=1);
-    /* Fix to make div clickable in IE */
 }
 
-.gallery>div>h1 {
-    filter: drop-shadow(4px 4px 0 black);
-}
-
+.gallery>div>h1,
 .gallery>div>h3 {
     filter: drop-shadow(2px 2px 0 black);
 }
@@ -176,35 +162,32 @@ a:active {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    column-gap: min(5vw, 10px);
+    column-gap: min(5vw, var(--spacing-px));
 }
 
 .image-link>img {
     width: 50px;
     filter: grayscale();
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
 }
 
 .image-link>img:hover {
     filter: grayscale(0%);
-    /* width: 60px; */
 }
 
 .button-link {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: var(--spacing-px);
     text-decoration: none;
     color: var(--color2dark);
     border: 0px solid var(--color1);
-    border-radius: 40px;
+    border-radius: calc(var(--spacing-px) * 4);
     background-color: var(--color2dark);
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
 }
 
 .button-link:hover {
-    /* font-size: 110%; */
-    /* border: 5px solid var(--color1); */
     color: var(--color3);
     background-color: var(--color1);
     font-weight: bold;
@@ -214,17 +197,15 @@ a:active {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2vw;
-    margin: 2vw;
+    gap: var(--spacing-vw);
+    margin: var(--spacing-vw);
 }
 
 .game-info-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* grid-template-areas: "screenshots screenshots screenshots" "links summary summary" "credits summary summary" "credits thoughts thoughts" "credits thoughts thoughts" "music music music" "video video video"; */
-    /* grid-template-areas: "screenshots screenshots screenshots" "credits links links" "credits summary summary" "credits thoughts thoughts" "video video video"; */
-    gap: 2vw;
-    margin: 2vw;
+    gap: var(--spacing-vw);
+    margin: var(--spacing-vw);
 }
 
 .info-list>div,
@@ -234,22 +215,21 @@ a:active {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 2vw;
-    padding: max(2vw, 20px);
+    gap: var(--spacing-vw);
+    padding: max(var(--spacing-vw), calc(var(--spacing-px) * 2));
     color: var(--color3);
-    border-radius: 10px;
+    border-radius: var(--spacing-px);
     background-color: var(--color2);
 }
 
 .game-info-list>div>p {
-    text-indent: 40px;
+    text-indent: calc(var(--spacing-vw));
 }
 
-.info-list>div>hr,
-.game-info-list>div>hr {
-    width: 50%;
+.info-list>div hr,
+.game-info-list>div hr {
+    width: 100%;
     border: 2px solid var(--color1);
-    border-radius: 10px;
     background-color: var(--color1);
 }
 
@@ -258,7 +238,6 @@ a:active {
 
 @media screen and (max-width:1200px) {
     .info-list {
-        /* grid-template-rows: repeat(3, min-content); */
         grid-template-rows: repeat(3, 1fr);
         grid-template-columns: 1fr;
     }
@@ -268,7 +247,6 @@ a:active {
     .game-info-list {
         display: flex;
         flex-flow: column nowrap;
-        /* grid-template-areas: "screenshots screenshots screenshots" "links links links" "summary summary summary" "thoughts thoughts thoughts" "credits credits credits" "video video video"; */
     }
 }
 
@@ -276,18 +254,8 @@ a:active {
     .large-image {
         font-size: 2.5em;
     }
-    .image-link>img {
-        filter: grayscale(0%);
-    }
+    .image-link>img,
     .gallery>div {
-        font-size: 140%;
-        border: 10px solid var(--color1);
-        color: var(--color1);
         filter: grayscale(0%);
-    }
-    .gallery>div>.banner {
-        bottom: -10px;
-        height: 40px;
-        width: 75%;
     }
 }

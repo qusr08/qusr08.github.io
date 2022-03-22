@@ -5,25 +5,31 @@
 .screenshots>div {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2vw;
+    gap: var(--spacing-vw);
 }
 
 .screenshots>div>div {
-    padding-bottom: 10px;
-    border-radius: 10px;
+    padding-bottom: var(--spacing-px);
+    border-radius: var(--spacing-px);
     background-color: var(--color1);
 }
 
 .screenshots img {
-    border-radius: 10px 10px 0 0;
+    border-radius: var(--spacing-px) var(--spacing-px) 0 0;
     width: 100%;
 }
 
 .credits {
     grid-area: credits;
+}
+
+.credits>div {
+    height: 100%;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-around;
+    gap: var(--spacing-vw);
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .links {
@@ -60,11 +66,11 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 2vw;
+    gap: var(--spacing-vw);
     color: var(--color3);
     border-radius: 40px;
     background-color: var(--color1);
-    text-indent: 2vw;
+    text-indent: var(--spacing-vw);
 }
 
 .video {
@@ -72,7 +78,7 @@
 }
 
 .video>iframe {
-    border-radius: 10px;
+    border-radius: var(--spacing-px);
     width: 100%;
     aspect-ratio: calc(16 / 9);
     background-color: var(--color1);
