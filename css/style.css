@@ -228,7 +228,7 @@ a:active {
 
 .info-list>div hr,
 .game-info-list>div hr {
-    width: 100%;
+    width: 50%;
     border: 2px solid var(--color1);
     background-color: var(--color1);
 }
