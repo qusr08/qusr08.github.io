@@ -49,7 +49,7 @@ a:active {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    height: 95vh;
+    height: 100vh;
     text-align: center;
     padding: var(--spacing-vw);
     font-size: 4em;
