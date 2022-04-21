@@ -4,9 +4,9 @@ body {
 
 hr {
     margin: 0 var(--spacing-vw) 0 var(--spacing-vw);
-    border: 2px solid var(--color2);
+    border: 2px solid var(--color1);
     border-radius: var(--spacing-px);
-    background-color: var(--color2);
+    background-color: var(--color1);
 }
 
 
@@ -197,8 +197,8 @@ a:active {
 
 .info-list {
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
     gap: var(--spacing-vw);
     margin: var(--spacing-vw);
 }
@@ -240,8 +240,8 @@ a:active {
 
 @media screen and (max-width:1200px) {
     .info-list {
-        grid-template-rows: repeat(3, 1fr);
-        grid-template-columns: 1fr;
+        grid-auto-flow: row;
+        grid-auto-rows: 1fr;
     }
 }
 
