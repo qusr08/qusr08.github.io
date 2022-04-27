@@ -9,6 +9,11 @@ hr {
     background-color: var(--color1);
 }
 
+.section-title {
+    margin: var(--spacing-vw);
+    text-align: center;
+}
+
 
 /* #region a */
 
@@ -181,6 +186,30 @@ a:active {
 /* #endregion */
 
 
+/* #region expanded-gallery */
+
+.expanded-gallery {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--spacing-vw);
+    margin: var(--spacing-vw);
+}
+
+.expanded-gallery-item {
+    /* alignment */
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--spacing-vw);
+    padding: var(--spacing-vw);
+    /* appearance */
+    background-color: var(--color2);
+    border-radius: var(--spacing-px);
+}
+
+
+/* #endregion */
+
+
 /* #region link-list */
 
 .link-list {
@@ -325,7 +354,7 @@ a:active {
 .summary {
     grid-area: summary;
     text-align: left;
-    text-indent: calc(var(--spacing-px) * 2);
+    /* text-indent: calc(var(--spacing-px) * 2); */
 }
 
 
@@ -337,7 +366,7 @@ a:active {
 .thoughts {
     grid-area: thoughts;
     text-align: left;
-    text-indent: calc(var(--spacing-px) * 2);
+    /* text-indent: calc(var(--spacing-px) * 2); */
 }
 
 
@@ -361,7 +390,7 @@ a:active {
     justify-content: space-between;
     gap: var(--spacing-vw);
     /* text */
-    text-indent: var(--spacing-vw);
+    text-indent: calc(var(--spacing-px) * 2);
     /* appearance */
     color: var(--color3);
     border-radius: 40px;
