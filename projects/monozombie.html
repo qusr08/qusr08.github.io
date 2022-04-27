@@ -6,31 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/details.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/style.css">
+
 
     <title>Monozombie - Frank Alfano</title>
 </head>
 
 <body>
-    <div class="large-image" style="background-image: url('monozombie/monozombie-title-background.png');">
-        <img class="logo" style="position: absolute; top: 2vw; right: 2vw; width: 160px;" src="../media/faiii.png">
-        <img src="monozombie/monozombie-title-art.png">
-        <img style="position: absolute; bottom: 2vw; width: 60px;" src="../media/arrow.png">
+    <div class="image-header" style="background-image: url('/projects/monozombie/monozombie-title-background.png');">
+        <img style="position: absolute; top: 2vw; right: 2vw; width: 150px;" src="/media/faiii.png">
+        <img style="position: absolute; bottom: 2vw; width: 50px;" src="/media/arrow.png">
+        <img src="/projects/monozombie/monozombie-title-art.png">
     </div>
-    <a class="button-link" href="../index.html" style="position: absolute; left: 2vw; top: 2vw;">
+    <a class="text-link" href="/index.html" style="position: absolute; left: 2vw; top: 2vw;">
         <p>Back To Home</p>
     </a>
-    <div class="game-info-list" style="grid-template-areas: 'links summary summary' 'credits summary summary' 'credits thoughts thoughts' 'screenshots screenshots screenshots';">
-        <div class="links">
+    <div class="info-list game-info-list" style="grid-template-areas: 'links summary summary' 'credits summary summary' 'credits thoughts thoughts' 'screenshots screenshots screenshots';">
+        <div class="info-item links">
             <h2>Links</h2>
             <div class="link-list">
-                <a class="image-link" href="https://github.com/NarraAtor/MonoZombie" target="_blank"><img src="../media/logos/github-logo.png" alt=""></a>
-                <a class="image-link" href="https://fontstruct.com/fontstructions/show/1918389/5pixel-2" target="_blank"><img src="../media/logos/fontstruct-logo.png" alt=""></a>
+                <a class="image-link" href="https://github.com/NarraAtor/MonoZombie" target="_blank"><img src="/media/logos/github-logo.png" alt=""></a>
+                <a class="image-link" href="https://fontstruct.com/fontstructions/show/1918389/5pixel-2" target="_blank"><img src="/media/logos/fontstruct-logo.png" alt=""></a>
             </div>
         </div>
-        <div class="summary">
+        <div class="info-item summary">
             <h2>Game Summary</h2>
             <p>
                 Monozombie is a free-roam tower defense game where the enemies don't follow a set path, but rather rush toward you as fast as they can. As the round number increases, zombies gain more health and speed along with more of them spawning. Luckily, when you
@@ -48,7 +48,7 @@
                 very beneficial to the project.
             </p>
         </div>
-        <div class="thoughts">
+        <div class="info-item thoughts">
             <h2>Thoughts</h2>
             <p>
                 This game was very difficult to develop because of how little Monogame aids you with the development process. Going into the project, I was used to Unity and the development process using that game engine, so switching to Monogame was slightly frustrating
@@ -57,55 +57,50 @@
                 and now that there is no obligation to continue it, I will not be furthering its development.
             </p>
         </div>
-        <div class="credits">
+        <div class="info-item credits">
             <div>
-                <div>
-                    <h2>Game Idea</h2>
-                    <p>Ken Adachi-Bartholomay, Frank Alfano, Eric Fotang, Yevhenii Shyshko Konstantinovich, Matthew Sorrentino</p>
-                </div>
-                <hr>
-                <div>
-                    <h2>Art</h2>
-                    <p>Frank Alfano</p>
-                    <p><em>Using <a href="https://www.getpaint.net/index.html">paint.NET</a></em></p>
-                    <p><em>Using <a href="https://fontstruct.com/">Fontstruct</a></em></p>
-                </div>
-                <hr>
-                <div>
-                    <h2>Programming</h2>
-                    <p>Ken Adachi-Bartholomay, Frank Alfano, Eric Fotang</p>
-                    <p><em>Using <a href="https://www.monogame.net/">Monogame</a> and C#</em></p>
-                </div>
-                <hr>
-                <div>
-                    <h2>World Design</h2>
-                    <p>Ken Adachi-Bartholomay, Frank Alfano</p>
-                </div>
+                <h2>Game Idea</h2>
+                <p>Ken Adachi-Bartholomay, Frank Alfano, Eric Fotang, Yevhenii Shyshko Konstantinovich, Matthew Sorrentino</p>
+            </div>
+            <hr>
+            <div>
+                <h2>Art</h2>
+                <p>Frank Alfano</p>
+                <p><em>Using <a href="https://www.getpaint.net/index.html">paint.NET</a>, <a href="https://fontstruct.com/">Fontstruct</a></em></p>
+            </div>
+            <hr>
+            <div>
+                <h2>Programming</h2>
+                <p>Ken Adachi-Bartholomay, Frank Alfano, Eric Fotang</p>
+                <p><em>Using <a href="https://www.monogame.net/">Monogame</a> and C#</em></p>
+            </div>
+            <hr>
+            <div>
+                <h2>World Design</h2>
+                <p>Ken Adachi-Bartholomay, Frank Alfano</p>
             </div>
         </div>
-        <div class="screenshots">
+        <div class="info-item screenshots">
             <h2>Gameplay Screenshots</h2>
             <div>
-                <div>
-                    <img src="monozombie/screenshots/monozombie-screenshot-1.png">
-                    <p>Title Screen</p>
-                </div>
-                <div>
-                    <img src="monozombie/screenshots/monozombie-screenshot-2.png">
-                    <p>Killing zombies for money in early rounds of the game</p>
-                </div>
-                <div>
-                    <img src="monozombie/screenshots/monozombie-screenshot-3.png">
-                    <p>Turrets helping defend against incoming zombies</p>
-                </div>
-                <div>
-                    <img src="monozombie/screenshots/monozombie-screenshot-5.png">
-                    <p>Later round with more turrets and attacking zombies</p>
-                </div>
-                <div>
-                    <img src="monozombie/screenshots/monozombie-screenshot-4.png">
-                    <p>Shop Menu</p>
-                </div>
+                <img src="/projects/monozombie/screenshots/monozombie-screenshot-1.png">
+                <p>Title Screen</p>
+            </div>
+            <div>
+                <img src="/projects/monozombie/screenshots/monozombie-screenshot-2.png">
+                <p>Killing zombies for money in early rounds of the game</p>
+            </div>
+            <div>
+                <img src="/projects/monozombie/screenshots/monozombie-screenshot-3.png">
+                <p>Turrets helping defend against incoming zombies</p>
+            </div>
+            <div>
+                <img src="/projects/monozombie/screenshots/monozombie-screenshot-5.png">
+                <p>Later round with more turrets and attacking zombies</p>
+            </div>
+            <div>
+                <img src="/projects/monozombie/screenshots/monozombie-screenshot-4.png">
+                <p>Shop Menu</p>
             </div>
         </div>
     </div>

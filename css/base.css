@@ -10,7 +10,7 @@
     --color3dark: #B1C9D1;
     --spacing-vw: 2vw;
     --spacing-px: 10px;
-    --transition-speed: 0.2s;
+    --transition-speed: 0.15s;
 }
 
 ::selection {
@@ -25,4 +25,20 @@
 
 p {
     font-size: 1.1em;
+    color: var(--color3);
+}
+
+ul {
+    font-size: 1.1em;
+    color: var(--color3);
+    text-indent: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color3);
 }

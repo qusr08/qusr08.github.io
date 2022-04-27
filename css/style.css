@@ -4,13 +4,13 @@ body {
 
 hr {
     margin: 0 var(--spacing-vw) 0 var(--spacing-vw);
-    border: 2px solid var(--color1);
+    border: calc(var(--spacing-px) / 5) solid var(--color1);
     border-radius: var(--spacing-px);
     background-color: var(--color1);
 }
 
 
-/* #region Links */
+/* #region a */
 
 a:link {
     color: var(--color3);
@@ -20,53 +20,56 @@ a:link {
 
 a:visited {
     color: var(--color3);
-    font-weight: bold;
 }
 
 a:focus {
-    color: var(--color3);
-    font-weight: bold;
+    color: var(--color1);
 }
 
 a:hover {
     color: var(--color1);
-    font-weight: bold;
 }
 
 a:active {
-    color: var(--color3);
-    font-weight: bold;
+    color: var(--color1);
 }
 
 
 /* #endregion */
 
 
-/* #region Large Image */
+/* #region image-header */
 
-.large-image {
+.image-header {
+    height: 100vh;
+    /* alignment */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* text */
     text-align: center;
-    padding: var(--spacing-vw);
     font-size: 4em;
     line-height: 1.75em;
-    background-color: rgba(0, 0, 0, 0.7);
+    /* background image */
+    background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
     background-position: center;
     background-size: cover;
 }
 
-.large-image>h1,
-.large-image>h6,
-.logo {
-    filter: drop-shadow(4px 4px 0 black);
+.image-header>* {
+    filter: drop-shadow(calc(var(--spacing-px) / 2) calc(var(--spacing-px) / 2) 0 black);
 }
 
-.large-image>img {
+.image-header h1,
+.image-header h2,
+.image-header h3,
+.image-header h4,
+.image-header h5,
+.image-header h6,
+.image-header img {
+    color: var(--color1);
     width: 75vw;
 }
 
@@ -74,7 +77,7 @@ a:active {
 /* #endregion */
 
 
-/* #region Gallery */
+/* #region gallery */
 
 .gallery {
     display: grid;
@@ -83,119 +86,148 @@ a:active {
     margin: var(--spacing-vw);
 }
 
-.gallery>div {
-    position: relative;
+.gallery-item {
+    cursor: pointer;
     aspect-ratio: 1;
+    /* alignment */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    padding: var(--spacing-vw);
+    /* text */
     text-align: center;
-    padding: 10%;
-    cursor: pointer;
-    color: var(--color3);
-    border: 0px solid var(--color1);
-    border-radius: var(--spacing-px);
+    /* background image */
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
     background-position: center;
     background-size: cover;
+    /* appearance */
     filter: grayscale();
+    color: var(--color3);
+    border: 0px solid var(--color1);
+    border-radius: var(--spacing-px);
     transition: all var(--transition-speed) ease-in;
 }
 
-.gallery>div:hover {
-    font-size: 140%;
-    border: var(--spacing-px) solid var(--color1);
+.gallery-item:hover {
+    /* text */
+    font-size: 125%;
+    /* appearance */
     color: var(--color1);
+    border: var(--spacing-px) solid var(--color1);
     filter: grayscale(0%);
 }
 
-.gallery>div>.banner {
+.gallery-item h1,
+.gallery-item h2,
+.gallery-item h3,
+.gallery-item h4,
+.gallery-item h5,
+.gallery-item h6 {
+    filter: drop-shadow(calc(var(--spacing-px) / 3) calc(var(--spacing-px) / 3) 0 black);
+    transition: color var(--transition-speed) ease-in;
+}
+
+.gallery-item:hover>h1,
+.gallery-item:hover>h2,
+.gallery-item:hover>h3,
+.gallery-item:hover>h4,
+.gallery-item:hover>h5,
+.gallery-item:hover>h6 {
+    color: var(--color1);
+}
+
+.gallery-item>.banner {
+    width: 55%;
+    height: calc(var(--spacing-px) * 3);
+    /* alignment */
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     bottom: 0;
-    width: 55%;
-    height: calc(var(--spacing-px) * 2);
     padding: calc(var(--spacing-px) / 2);
-    border-radius: var(--spacing-px) var(--spacing-px) 0 0;
+    /* appearance */
     background-color: var(--color1);
+    border-radius: var(--spacing-px) var(--spacing-px) 0 0;
     transition: bottom var(--transition-speed) ease-in, height var(--transition-speed) ease-in, width var(--transition-speed) ease-in;
 }
 
-.gallery>div:hover>.banner {
-    bottom: -var(--spacing-px);
-    height: calc(var(--spacing-px) * 4);
+.gallery-item:hover>.banner {
     width: 75%;
+    height: calc(var(--spacing-px) * 4);
+    /* alignment */
+    bottom: calc(var(--spacing-px) * -1);
 }
 
-.gallery>div>.banner>p {
-    font-size: 70%;
-    white-space: nowrap;
-    color: var(--color3);
-    filter: drop-shadow(2px 2px 0 black);
-}
-
-.gallery>div>a {
-    position: absolute;
+.gallery-item>a {
     width: 100%;
     height: 100%;
+    /* alignment */
+    position: absolute;
+    z-index: 10;
     top: 0;
     left: 0;
+    /* text */
     text-decoration: none;
-    z-index: 10;
-    background-color: #FFF;
+    /* appearance */
+    background-color: white;
     opacity: 0;
     filter: alpha(opacity=1);
-}
-
-.gallery>div>h1,
-.gallery>div>h3 {
-    filter: drop-shadow(3px 3px 0 black);
 }
 
 
 /* #endregion */
 
+
+/* #region link-list */
+
 .link-list {
     width: 75%;
+    /* alignment */
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    column-gap: min(5vw, var(--spacing-px));
+    gap: var(--spacing-px);
 }
 
-.image-link>img {
+.image-link img {
     width: 50px;
     filter: grayscale();
     transition: all var(--transition-speed) ease;
 }
 
-.image-link>img:hover {
+.image-link img:hover {
     filter: grayscale(0%);
 }
 
-.button-link {
+.text-link {
+    /* alignment */
     display: flex;
     align-items: center;
     padding: var(--spacing-px);
+    /* text */
     text-decoration: none;
-    color: var(--color2dark);
-    border: 0px solid var(--color1);
+    /* appearance */
     border-radius: calc(var(--spacing-px) * 4);
     background-color: var(--color2dark);
     transition: all var(--transition-speed) ease;
 }
 
-.button-link:hover {
+.text-link:hover {
     color: var(--color3);
     background-color: var(--color1);
-    font-weight: bold;
 }
 
+
+/* #endregion */
+
+
+/* #region info-list */
+
 .info-list {
+    /* alignment */
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
@@ -204,71 +236,203 @@ a:active {
 }
 
 .game-info-list {
-    display: grid;
+    grid-auto-flow: unset;
+    grid-auto-columns: unset;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-vw);
-    margin: var(--spacing-vw);
 }
 
-.info-list>div,
-.game-info-list>div {
+.info-item {
+    /* alignment */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    text-align: center;
     gap: var(--spacing-vw);
     padding: max(var(--spacing-vw), calc(var(--spacing-px) * 2));
-    color: var(--color3);
-    border-radius: var(--spacing-px);
+    /* text */
+    text-align: center;
+    /* appearance */
     background-color: var(--color2);
+    border-radius: var(--spacing-px);
 }
 
-.game-info-list>div>p {
-    text-indent: calc(var(--spacing-vw));
-}
-
-.info-list>div hr,
-.game-info-list>div hr {
+.info-item hr {
     width: 50%;
     border: 2px solid var(--color1);
     background-color: var(--color1);
 }
 
 
-/* Changes for mobile */
+/* #region game info types */
+
+
+/* #region screenshots */
+
+.screenshots {
+    grid-area: screenshots;
+    /* alignment */
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--spacing-vw);
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.screenshots>div {
+    width: 75%;
+    padding-bottom: var(--spacing-px);
+    border-radius: var(--spacing-px);
+    background-color: var(--color1);
+}
+
+.screenshots img {
+    border-radius: var(--spacing-px) var(--spacing-px) 0 0;
+    width: 100%;
+}
+
+
+/* #endregion */
+
+
+/* #region credits */
+
+.credits {
+    grid-area: credits;
+    /* alignment */
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--spacing-vw);
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+/* #endregion */
+
+
+/* #region links */
+
+.links {
+    grid-area: links;
+}
+
+
+/* #endregion */
+
+
+/* #region summary */
+
+.summary {
+    grid-area: summary;
+    text-align: left;
+    text-indent: calc(var(--spacing-px) * 2);
+}
+
+
+/* #endregion */
+
+
+/* #region thoughts */
+
+.thoughts {
+    grid-area: thoughts;
+    text-align: left;
+    text-indent: calc(var(--spacing-px) * 2);
+}
+
+
+/* #endregion */
+
+
+/* #region music */
+
+.music {
+    grid-area: music;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.music>div {
+    width: 100%;
+    /* alignment */
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-vw);
+    /* text */
+    text-indent: var(--spacing-vw);
+    /* appearance */
+    color: var(--color3);
+    border-radius: 40px;
+    background-color: var(--color1);
+}
+
+
+/* #endregion */
+
+
+/* #region video */
+
+.video {
+    grid-area: video;
+}
+
+.video>iframe {
+    width: 75%;
+    border-radius: var(--spacing-px);
+    border-width: 0;
+    aspect-ratio: calc(16 / 9);
+    background-color: var(--color1);
+}
+
+
+/* #endregion */
+
+
+/* #endregion */
+
+
+/* #endregion */
 
 @media screen and (max-width:1200px) {
     .info-list {
         grid-auto-flow: row;
         grid-auto-rows: 1fr;
     }
-}
-
-@media screen and (max-width:900px) {
     .game-info-list {
-        display: flex;
-        flex-flow: column nowrap;
+        grid-auto-flow: unset;
+        grid-auto-rows: unset;
     }
 }
 
-@media screen and (max-width:500px) {
-    .large-image {
+@media screen and (max-width:762px) {
+    .image-header {
         font-size: 2.5em;
     }
-    .image-link>img {
-        filter: grayscale(0%);
-    }
-    .gallery>div {
+    .gallery-item {
         aspect-ratio: unset;
         filter: unset;
         transition: unset;
     }
-    .gallery>div:hover {
+    .gallery-item:hover {
         font-size: 100%;
         border: unset;
     }
-    .gallery>div>.banner {
+    .gallery-item>.banner {
         display: none;
+    }
+    .image-link>img {
+        filter: grayscale(0%);
+    }
+    .game-info-list {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+    .screenshots>div {
+        width: 100%;
+    }
+    .video>iframe {
+        width: 100%;
     }
 }
