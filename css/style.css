@@ -102,6 +102,7 @@ a:active {
     padding: var(--spacing-vw);
     /* text */
     text-align: center;
+    text-decoration: none;
     /* background image */
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
@@ -115,15 +116,6 @@ a:active {
     transition: all var(--transition-speed) ease-in;
 }
 
-.gallery-item:hover {
-    /* text */
-    font-size: 125%;
-    /* appearance */
-    color: var(--color1);
-    border: var(--spacing-px) solid var(--color1);
-    filter: grayscale(0%);
-}
-
 .gallery-item h1,
 .gallery-item h2,
 .gallery-item h3,
@@ -132,6 +124,15 @@ a:active {
 .gallery-item h6 {
     filter: drop-shadow(calc(var(--spacing-px) / 3) calc(var(--spacing-px) / 3) 0 black);
     transition: color var(--transition-speed) ease-in;
+}
+
+.gallery-item:hover {
+    /* text */
+    font-size: 125%;
+    /* appearance */
+    color: var(--color1);
+    border: var(--spacing-px) solid var(--color1);
+    filter: grayscale(0%);
 }
 
 .gallery-item:hover>h1,
@@ -166,22 +167,6 @@ a:active {
     bottom: calc(var(--spacing-px) * -1);
 }
 
-.gallery-item>a {
-    width: 100%;
-    height: 100%;
-    /* alignment */
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    /* text */
-    text-decoration: none;
-    /* appearance */
-    background-color: white;
-    opacity: 0;
-    filter: alpha(opacity=1);
-}
-
 
 /* #endregion */
 
@@ -200,7 +185,7 @@ a:active {
     display: flex;
     flex-flow: column nowrap;
     gap: var(--spacing-vw);
-    padding: var(--spacing-vw);
+    padding: max(var(--spacing-vw), calc(var(--spacing-px) * 2));
     /* appearance */
     background-color: var(--color2);
     border-radius: var(--spacing-px);
