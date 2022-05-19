@@ -9,7 +9,7 @@ window.customElements.define('custom-menu', class extends HTMLElement {
                 <div id="info">
                     <a href="../media/Resume.pdf">Resume</a>
                     <a href="">About</a>
-                    <a href="/index.html"><img src="../media/logo.png"></a>
+                    <a href="../index.html"><img src="../media/logo.png"></a>
                     <a href="mailto:falfanoiii@gmail.com">Email</a>
                     <a href="https://discordapp.com/users/368904010322673665/">Discord</a>
                 </div>
@@ -35,37 +35,37 @@ window.customElements.define('custom-gallery', class extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = `
-            <a class="gallery-item" href="/projects/gcmdesigns.html" style="background-image: url('/projects/gcmdesigns/gcmdesigns-thumbnail.png');">
+            <a class="gallery-item" href="../projects/gcmdesigns.html" style="background-image: url('../projects/gcmdesigns/gcmdesigns-thumbnail.png');">
                 <h1>gcmdesigns</h1>
                 <h4>Mar 2022 - Present</h4>
                 <div class="gallery-item-banner">
                     <p><strong>New Addition!</strong></p>
                 </div>
             </a>
-            <a class="gallery-item" href="/projects/prichi.html" style="background-image: url('/projects/prichi/prichi-thumbnail.png');">
+            <a class="gallery-item" href="../projects/prichi.html" style="background-image: url('../projects/prichi/prichi-thumbnail.png');">
                 <h1>Prichi</h1>
                 <h4>Oct 2021 - Dec 2021</h4>
             </a>
-            <a class="gallery-item" href="/projects/into-orbit.html" style="background-image: url('/projects/into-orbit/into-orbit-thumbnail.png');">
+            <a class="gallery-item" href="../projects/into-orbit.html" style="background-image: url('../projects/into-orbit/into-orbit-thumbnail.png');">
                 <h1>Into Orbit</h1>
                 <h4>Aug 2021 - Oct 2021</h4>
             </a>
-            <a class="gallery-item" href="/projects/blockchain.html" style="background-image: url('/projects/blockchain/blockchain-thumbnail.png');">
+            <a class="gallery-item" href="../projects/blockchain.html" style="background-image: url('../projects/blockchain/blockchain-thumbnail.png');">
                 <h1>Blockchain</h1>
                 <h4>Jun 2021 - Jul 2021</h4>
                 <div class="gallery-item-banner">
                     <p><strong>Top 10%</strong> GMTK Game Jam 2021</p>
                 </div>
             </a>
-            <a class="gallery-item" href="/projects/monozombie.html" style="background-image: url('/projects/monozombie/monozombie-thumbnail.png');">
+            <a class="gallery-item" href="../projects/monozombie.html" style="background-image: url('../projects/monozombie/monozombie-thumbnail.png');">
                 <h1>Monozombie</h1>
                 <h4>Feb 2021 - May 2021</h4>
             </a>
-            <a class="gallery-item" href="/projects/collab.html" style="background-image: url('/projects/collab/collab-thumbnail.png');">
+            <a class="gallery-item" href="../projects/collab.html" style="background-image: url('../projects/collab/collab-thumbnail.png');">
                 <h1>Collab</h1>
                 <h4>Oct 2019 - Dec 2019</h4>
             </a>
-            <a class="gallery-item" href="/projects/wumpus.html" style="background-image: url('/projects/wumpus/wumpus-thumbnail.png');">
+            <a class="gallery-item" href="../projects/wumpus.html" style="background-image: url('../projects/wumpus/wumpus-thumbnail.png');">
                 <h1>Wumpus</h1>
                 <h4>Apr 2019 - Jun 2019</h4>
             </a>
