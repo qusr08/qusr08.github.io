@@ -1,0 +1,261 @@
+body {
+    background-color: var(--color3);
+    color: var(--color4);
+}
+
+hr {
+    background-color: var(--color1);
+    border: calc(var(--border) / 2) solid var(--color1);
+    border-radius: calc(var(--border) / 2);
+}
+
+main {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    border-top: var(--border) solid var(--color1);
+    border-bottom: var(--border) solid var(--color1);
+    overflow: hidden;
+    position: relative;
+}
+
+main>h1 {
+    text-align: center;
+}
+
+header {
+    background-image: url('../media/title-background.png');
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+footer {
+    background: url('../media/space-background.png');
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: var(--spacing);
+}
+
+custom-menu {}
+
+custom-menu>div {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    gap: var(--spacing);
+}
+
+#info {
+    display: grid;
+    grid-template-columns: 5vw 5vw 10vw 5vw 5vw;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    padding-top: var(--spacing);
+    gap: var(--spacing);
+}
+
+#info>a {
+    text-decoration: none;
+}
+
+#info>a:hover {
+    transform: scale(var(--scale-size), var(--scale-size));
+    /* transform: translateY(calc(var(--spacing) / -6)); */
+    /* filter: drop-shadow(0 calc(var(--spacing) / 6) 0 rgba(0, 0, 0, 0.8)); */
+}
+
+.socials {
+    /* display: grid; */
+    /* grid-template-columns: repeat(8, max(1vw, var(--spacing))); */
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    padding-bottom: var(--spacing);
+    /* padding-left: var(--spacing); */
+    /* padding-right: var(--spacing); */
+    gap: var(--spacing);
+}
+
+.social {
+    text-decoration: none;
+}
+
+.social img {
+    height: calc(var(--header-size) / 2);
+    /* width: 100%; */
+    /* border-width: 0; */
+    /* border-color: var(--color4); */
+    /* border-style: solid; */
+    /* border-radius: 100%; */
+    /* transition: var(--transition); */
+}
+
+.social p {
+    background-color: var(--color4);
+    color: var(--color3);
+    padding: calc(var(--spacing) / 3);
+    border-radius: var(--rounded);
+    font-weight: bolder;
+}
+
+.social:hover {
+    transform: scale(var(--scale-size), var(--scale-size));
+    /* border-width: var(--border); */
+}
+
+header img,
+footer img {
+    height: var(--header-size);
+}
+
+custom-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--gallery-size), 1fr));
+    gap: var(--spacing);
+}
+
+.gallery-item {
+    aspect-ratio: 1;
+    display: flex;
+    position: relative;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--rounded);
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0);
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+    border-width: 0;
+    border-color: var(--color1);
+    border-style: solid;
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0.8));
+    /* transition: var(--transition); */
+    font-size: calc(var(--scale-size) * 1em);
+    padding: var(--spacing);
+}
+
+.gallery-item>* {
+    color: var(--color1);
+    display: none;
+    filter: drop-shadow(0 calc(var(--border) / 1.5) 0 rgba(0, 0, 0, 0.8));
+    /* transition: var(--transition); */
+}
+
+.gallery-item:hover {
+    transform: translateY(calc(var(--spacing) * -1));
+    filter: drop-shadow(0 calc(var(--spacing)) 0 rgba(0, 0, 0, 0.8));
+    background-color: rgba(0, 0, 0, 0.2);
+    /* border-width: var(--border); */
+}
+
+.gallery-item:hover>h1,
+.gallery-item:hover>h4 {
+    display: unset;
+}
+
+.gallery-item-banner {
+    display: unset;
+    color: var(--color4);
+    position: absolute;
+    /* top: calc((var(--spacing) / -3) + ((var(--scale-size) * 1em) / -2)); */
+    top: calc(var(--spacing) * -1);
+    right: calc(var(--spacing) * -1);
+    background-color: var(--color1);
+    padding: calc(var(--spacing) / 3);
+    border-radius: var(--rounded);
+}
+
+.expanded-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(var(--gallery-size) * 2), 1fr));
+    gap: var(--spacing);
+}
+
+.expanded-gallery-item {
+    background-color: var(--color2);
+    padding: var(--spacing);
+    border-radius: var(--rounded);
+}
+
+.expanded-gallery-item>p {
+    padding-top: calc(var(--spacing) / 2);
+}
+
+mobile-warning {
+    display: none;
+    background-color: var(--color1);
+    padding: var(--spacing);
+    border-radius: var(--rounded);
+}
+
+
+/*********** Responsive ***********/
+
+@media screen and (max-width:1175px) {
+    header {
+        height: 50vh;
+    }
+    #info {
+        justify-content: space-evenly;
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns: unset;
+    }
+    #info>:nth-child(3) {
+        order: -1;
+    }
+    mobile-warning {
+        display: unset;
+    }
+}
+
+@media screen and (max-width:840px) {
+    .expanded-gallery {
+        display: flex;
+        flex-flow: column nowrap;
+        grid-template-columns: unset;
+    }
+    custom-gallery {
+        display: flex;
+        flex-flow: column nowrap;
+        grid-template-columns: unset;
+    }
+    .gallery-item {
+        aspect-ratio: unset;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    .gallery-item>* {
+        display: unset;
+        /* color: var(--color4); */
+        /* text-decoration-color: var(--color4); */
+    }
+    .gallery-item:hover {
+        border-width: 0;
+    }
+    #info>:nth-child(3) {
+        order: 1;
+        flex-basis: 100%;
+        text-align: center;
+    }
+    .social img {
+        height: calc(var(--header-size) / 3);
+    }
+}
+
+@media screen and (max-width:500px) {
+    header {
+        background-position-x: 0px;
+    }
+}

@@ -6,117 +6,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="../media/faiii-favicon.png">
+    <link rel="icon" href="/media/faiii-favicon.png">
 
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/style-main.css">
+    <link rel="stylesheet" href="/css/style-game.css">
 
+    <script src="/js/custom-elements.js"></script>
+    <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="/js/function.js"></script>
 
     <title>Wumpus - Frank Alfano</title>
 </head>
 
 <body>
-    <div class="image-header" style="background-image: url('wumpus/wumpus-title-background.png');">
-        <img style="position: absolute; top: 2vw; right: 2vw; width: 150px;" src="../media/faiii.png">
-        <img style="position: absolute; bottom: 2vw; width: 50px;" src="../media/arrow.png">
+    <header style="background-image: url('wumpus/wumpus-title-background.png');">
         <img src="wumpus/wumpus-title-art.png">
-    </div>
-    <a class="text-link" href="../index.html" style="position: absolute; left: 2vw; top: 2vw;">
-        <p>Back To Home</p>
-    </a>
-    <div class="info-list game-info-list" style="grid-template-areas: 'links summary summary' 'credits summary summary' 'credits thoughts thoughts' 'credits music music' 'screenshots screenshots screenshots';">
-        <div class="info-item links">
-            <h2>Links</h2>
-            <div class="link-list">
-                <a class="image-link" href="https://github.com/qusr08/Wumpus" target="_blank"><img src="../media/logos/github-logo.png" alt=""></a>
-                <a class="image-link" href="https://www.dafont.com/pixelated.font" target="_blank"><img src="../media/logos/dafont-logo.png" alt=""></a>
-            </div>
+        <div class="socials header-socials">
+            <a class="social" href="https://github.com/qusr08/Wumpus"><img src="../media/logos/github-logo.png"></a>
+            <a class="social" href="https://www.dafont.com/pixelated.font"><img src="../media/logos/dafont-logo.png"></a>
         </div>
-        <div class="info-item summary">
-            <h2>Game Summary</h2>
-            <p>
-                <strong>Wumpus</strong> is a game about navigating your way around an unknown dungeon in search of a creature called the Wumpus. You must find a weapon like a sword, bow, or trap in order to kill the Wumpus where it stands. There are torches
-                and flashlights around the map too to help you discover your way, but there are also various pits that can cut your adventure short. You can only see what is on the tiles directly around you, with all other tiles shrouded by darkness.
-                The Wumpus is lurking and moves around the map to try and sneak attack you. The goal of the game is to kill the Wumpus!
-            </p>
-            <p>
-                This project was created for a computer science class offered at Mount Olive High School. The prompt for this project was only to make a console-based program in Java that had the basic mechanic of trying to search for and kill the Wumpus. I wanted to
-                make it more challenging for myself and really put my programming skills to the test with this project. I not only made it graphical but also added more objects and items onto the map making the game more interesting. I was the only person
-                in my class to do this and my teacher decided to keep the program to show future students as an example and to help explain the project.
-            </p>
-        </div>
-        <div class="info-item thoughts">
-            <h2>Thoughts</h2>
-            <p>
-                I am very happy with the final product and think it looks polished and presentable. The pixel art I did for this game is definitely some of the best I have been able to achieve, and I believe it pulls the game together nicely. I will not be developing
-                this game further because it was made from scratch in Java and it was for a class. The project as it stands is a good display of my early game development mindset, and I want to keep it as a past game that I can look back on.
-            </p>
-        </div>
-        <div class="info-item credits">
-            <div>
-                <h2>Game Idea</h2>
-                <p>Frank Alfano</p>
+        <game-menu></game-menu>
+    </header>
+    <main>
+        <mobile-warning></mobile-warning>
+        <div class="game-info-list" style="grid-template-areas: 'credits game-summary game-summary game-summary' 'credits thoughts thoughts music' 'screenshots screenshots screenshots screenshots';">
+            <div id="game-summary">
+                <h1>Game Summary</h1>
+                <p>
+                    <strong>Wumpus</strong> is a game about navigating your way around an unknown dungeon in search of a creature called the Wumpus. You must find a weapon like a sword, bow, or trap in order to kill the Wumpus where it stands. There are
+                    torches and flashlights around the map too to help you discover your way, but there are also various pits that can cut your adventure short. You can only see what is on the tiles directly around you, with all other tiles shrouded by
+                    darkness. The Wumpus is lurking and moves around the map to try and sneak attack you. The goal of the game is to kill the Wumpus!
+                </p>
+                <p>
+                    This project was created for a computer science class offered at Mount Olive High School. The prompt for this project was only to make a console-based program in Java that had the basic mechanic of trying to search for and kill the Wumpus. I wanted to
+                    make it more challenging for myself and really put my programming skills to the test with this project. I not only made it graphical but also added more objects and items onto the map making the game more interesting. I was the only
+                    person in my class to do this and my teacher decided to keep the program to show future students as an example and to help explain the project.
+                </p>
             </div>
-            <hr>
-            <div>
-                <h2>Art</h2>
-                <p>Frank Alfano</p>
-                <p><em>Using <a href="https://www.getpaint.net../index.html">paint.NET</a></em></p>
+            <div id="thoughts">
+                <h1>Thoughts</h1>
+                <p>
+                    I am very happy with the final product and think it looks polished and presentable. The pixel art I did for this game is definitely some of the best I have been able to achieve, and I believe it pulls the game together nicely. I will not be developing
+                    this game further because it was made from scratch in Java and it was for a class. The project as it stands is a good display of my early game development mindset, and I want to keep it as a past game that I can look back on.
+                </p>
             </div>
-            <hr>
-            <div>
-                <h2>Programming</h2>
-                <p>Frank Alfano</p>
-                <p><em>Using <a href="https://www.eclipse.org/ide/">Eclipse</a> and Java</em></p>
+            <div id="credits">
+                <h1>Credits</h1>
+                <div>
+                    <game-credit category="Game Idea" people="Frank Alfano"></game-credit>
+                    <game-credit category="Art" people="Frank Alfano" tools="<a href='https://www.getpaint.net/index.html'>paint.NET</a>"></game-credit>
+                    <game-credit category="Programming" people="Frank Alfano" tools="<a href'https://www.eclipse.org/ide/'>Eclipse</a> and Java"></game-credit>
+                    <game-credit category="Music" people="Frank Alfano" tools="<a href='https://boscaceoil.net/'>Bosca Ceoil</a>"></game-credit>
+                    <game-credit category="Sound Effects" people="Frank Alfano" tools="<a href='https://www.drpetter.se/project_sfxr.html'>sfxr</a>"></game-credit>
+                </div>
             </div>
-            <hr>
-            <div>
-                <h2>Music</h2>
-                <p>Frank Alfano</p>
-                <p><em>Using <a href="https://boscaceoil.net/">Bosca Ceoil</a></em></p>
-            </div>
-            <hr>
-            <div>
-                <h2>Sound Effects</h2>
-                <p>Frank Alfano</p>
-                <p><em>Using <a href="https://www.drpetter.se/project_sfxr.html">sfxr</a></em></p>
-            </div>
-        </div>
-        <div class="info-item music">
-            <h2>Music</h2>
-            <div>
-                <h3>Puzzle</h3>
-                <audio controls src="wumpus/music/Puzzle.wav"></audio>
-            </div>
-        </div>
-        <div class="info-item screenshots">
-            <h2>Gameplay Screenshots</h2>
-            <div>
+            <div id="screenshots">
                 <img src="wumpus/screenshots/wumpus-screenshot-1.png">
-                <p>Title Screen</p>
-            </div>
-            <div>
                 <img src="wumpus/screenshots/wumpus-screenshot-2.png">
-                <p>Player has discovered where the Wumpus is</p>
-            </div>
-            <div>
                 <img src="wumpus/screenshots/wumpus-screenshot-3.png">
-                <p>Player searching for the Wumpus and a weapon</p>
-            </div>
-            <div>
                 <img src="wumpus/screenshots/wumpus-screenshot-4.png">
-                <p>Most of the map explored with the Wumpus still out of sight</p>
-            </div>
-            <div>
                 <img src="wumpus/screenshots/wumpus-screenshot-5.png">
-                <p>Game Over - The player walked onto into a pit</p>
-            </div>
-            <div>
                 <img src="wumpus/screenshots/wumpus-screenshot-6.png">
-                <p>Win - The player ran into the Wumpus and by chance won the game</p>
+            </div>
+            <!-- <div id="assets">
+                <h1>Assets</h1>
+                <div>
+
+                </div>
+            </div> -->
+            <div id="music">
+                <h1>Music</h1>
+                <div>
+                    <game-music src="wumpus/music/Puzzle.wav" name="Puzzle"></game-music>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+    <custom-footer></custom-footer>
 </body>
 
 </html>

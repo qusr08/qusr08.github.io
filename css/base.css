@@ -5,40 +5,71 @@
 :root {
     --color1: #D32344;
     --color2: #444444;
-    --color2dark: #121212;
-    --color3: #DBEDF3;
-    --color3dark: #B1C9D1;
-    --spacing-vw: 2vw;
-    --spacing-px: 10px;
-    --transition-speed: 0.15s;
+    --color3: #121212;
+    --color4: white;
+    --gallery-size: 400px;
+    --header-size: 85px;
+    --scale-size: 1.2;
+    --border: 5px;
+    --rounded: 20px;
+    --spacing: max(1vw, 10px);
+    --transition: 0.15s;
 }
 
 ::selection {
-    color: var(--color3);
+    color: var(--color4);
     background: var(--color1);
 }
 
 * {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-}
-
-p {
-    font-size: 1.1em;
-    color: var(--color3);
-}
-
-ul {
-    font-size: 1.1em;
-    color: var(--color3);
-    /* text-indent: 0; */
+    transition: var(--transition);
 }
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--color3);
+h3 {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-color: var(--color1);
+    text-decoration-thickness: var(--border);
+}
+
+a:link {
+    color: var(--color4);
+}
+
+a:visited {
+    color: var(--color4);
+}
+
+a:focus {
+    color: var(--color1);
+}
+
+a:hover {
+    color: var(--color1);
+}
+
+a:active {
+    color: var(--color1);
+}
+
+::-webkit-scrollbar {
+    width: calc(var(--border) * 2);
+}
+
+::-webkit-scrollbar-track {
+    border-radius: var(--border);
+    background: var(--color4);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: var(--border);
+    background: var(--color2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color1);
 }

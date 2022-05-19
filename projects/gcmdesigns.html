@@ -6,74 +6,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="../media/faiii-favicon.png">
+    <link rel="icon" href="/media/faiii-favicon.png">
 
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/style-main.css">
+    <link rel="stylesheet" href="/css/style-game.css">
+
+    <script src="/js/custom-elements.js"></script>
+    <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="/js/function.js"></script>
 
     <title>gcmdesigns - Frank Alfano</title>
 </head>
 
 <body>
-    <div class="image-header" style="background-image: url('gcmdesigns/gcmdesigns-title-background.png');">
-        <img style="position: absolute; top: 2vw; right: 2vw; width: 150px;" src="../media/faiii.png">
-        <img style="position: absolute; bottom: 2vw; width: 50px;" src="../media/arrow.png">
+    <header style="background-image: url('gcmdesigns/gcmdesigns-title-background.png');">
         <img src="gcmdesigns/gcmdesigns-title-art.png">
-    </div>
-    <a class="text-link" href="../index.html" style="position: absolute; left: 2vw; top: 2vw;">
-        <p>Back To Home</p>
-    </a>
-    <div class="info-list game-info-list" style="grid-template-areas: 'links summary summary' 'credits summary summary' 'credits thoughts thoughts';">
-        <div class="info-item links">
-            <h2>Links</h2>
-            <div class="link-list">
-                <a class="image-link" href="https://github.com/qusr08/gcmdesigns" target="_blank"><img src="../media/logos/github-logo.png" alt=""></a>
+        <div class="socials header-socials">
+            <a class="social" href="https://github.com/qusr08/gcmdesigns"><img src="../media/logos/github-logo.png"></a>
+            <a class="social" href="https://www.gcmdesigns.com/">
+                <p>www.gcmdesigns.com</p>
+            </a>
+        </div>
+        <game-menu></game-menu>
+    </header>
+    <main>
+        <mobile-warning></mobile-warning>
+        <div class="game-info-list" style="grid-template-areas: 'credits game-summary game-summary game-summary' 'credits thoughts thoughts thoughts';">
+            <div id="game-summary">
+                <h1>Summary</h1>
+                <p>
+                    This website was created for Gabriela Colón-Meléndez to display her work and projects. She is a 2nd year Industrial Design major at the <a href="https://vt.edu/">Virginia Polytechnic Institute and State University</a>. She has created
+                    many different types of projects over the course of her studies thus far, and her goal was to have a place that she could show to businesses and companies as an all-encompassing portfolio.
+                </p>
+                <p>
+                    The layout of the website is similar to mine, where there are square buttons previewing each of the projects added to the website in a list. Clicking on one will bring you to a page that displays various images showing the design process and final images
+                    for that project. Gabriela wanted a minimalistic design so we chose to go with pastel/muted colors with not much variation in the look of the elements. We worked side-by-side throughout the duration of the project, bouncing ideas off
+                    each other. Since I was making the website for Gabriela, I made sure to take her ideas into consideration and give suggestions along the way that I felt would be helpful. I did all of the HTML and CSS development along with some user
+                    interface assets, and Gabriela provided all of the project pictures and her logo.
+                </p>
             </div>
-            <div class="link-list">
-                <a class="text-link" href="https://www.gcmdesigns.com../index.html" target="_blank">
-                    <p>www.gcmdesigns.com</p>
-                </a>
+            <div id="thoughts">
+                <h1>Thoughts</h1>
+                <p>
+                    This project made me realize how much I enjoy website design, and how much fun I find it to be as I am able to help someone out in the process. Website development vastly differs from game development, but I find great satisfaction when I’m capable of
+                    working through how to create an aesthetic and functional design. I love being creative and I am always looking to improve my art skills, making website development right up my alley. This project will be in development as long as
+                    Gabriela keeps adding projects to it. In the future, I definitely want to develop other websites, whether it’s for someone I know personally like Gabriela, or freelance clients that I may acquire.
+                </p>
+            </div>
+            <div id="credits">
+                <h1>Credits</h1>
+                <div>
+                    <game-credit category="Created For" people="Gabriela Colón-Meléndez"></game-credit>
+                    <game-credit category="Website Content" people="Gabriela Colón-Meléndez"></game-credit>
+                    <game-credit category="Website Development" people="Frank Alfano, Gabriela Colón-Meléndez" tools="<a href='https://www.getpaint.net/index.html'>paint.NET</a>, <a href='https://www.adobe.com/products/illustrator.html'>Adobe Illustrator</a>, <a href='https://www.adobe.com/products/photoshop.html'>Adobe Photoshop</a>, HTML and CSS"></game-credit>
+                </div>
             </div>
         </div>
-        <div class="info-item summary">
-            <h2>Summary</h2>
-            <p>
-                This website was created for Gabriela Colón-Meléndez to display her work and projects. She is a 2nd year Industrial Design major at the <a href="https://vt.edu/">Virginia Polytechnic Institute and State University</a>. She has created
-                many different types of projects over the course of her studies thus far, and her goal was to have a place that she could show to businesses and companies as an all-encompassing portfolio.
-            </p>
-            <p>
-                The layout of the website is similar to mine, where there are square buttons previewing each of the projects added to the website in a list. Clicking on one will bring you to a page that displays various images showing the design process and final images
-                for that project. Gabriela wanted a minimalistic design so we chose to go with pastel/muted colors with not much variation in the look of the elements. We worked side-by-side throughout the duration of the project, bouncing ideas off each
-                other. Since I was making the website for Gabriela, I made sure to take her ideas into consideration and give suggestions along the way that I felt would be helpful. I did all of the HTML and CSS development along with some user interface
-                assets, and Gabriela provided all of the project pictures and her logo.
-            </p>
-        </div>
-        <div class="info-item thoughts">
-            <h2>Thoughts</h2>
-            <p>
-                This project made me realize how much I enjoy website design, and how much fun I find it to be as I am able to help someone out in the process. Website development vastly differs from game development, but I find great satisfaction when I’m capable of
-                working through how to create an aesthetic and functional design. I love being creative and I am always looking to improve my art skills, making website development right up my alley. This project will be in development as long as Gabriela
-                keeps adding projects to it. In the future, I definitely want to develop other websites, whether it’s for someone I know personally like Gabriela, or freelance clients that I may acquire.
-            </p>
-        </div>
-        <div class="info-item credits">
-            <div>
-                <h2>Created For</h2>
-                <p>Gabriela Colón-Meléndez</p>
-            </div>
-            <hr>
-            <div>
-                <h2>Website Content</h2>
-                <p>Gabriela Colón-Meléndez</p>
-            </div>
-            <hr>
-            <div>
-                <h2>Website Development</h2>
-                <p>Frank Alfano, Gabriela Colón-Meléndez</p>
-                <p><em>Using <a href="https://www.getpaint.net../index.html">paint.NET</a>, <a href="https://www.adobe.com/products/illustrator.html">Adobe Illustrator</a>, <a href="https://www.adobe.com/products/photoshop.html">Adobe Photoshop</a>, HTML and CSS</em></p>
-            </div>
-        </div>
-    </div>
+    </main>
+    <custom-footer></custom-footer>
 </body>
 
 </html>

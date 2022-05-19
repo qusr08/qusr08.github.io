@@ -15,138 +15,57 @@
 
     <link rel="icon" href="media/faiii-favicon.png">
 
+    <script src="js/custom-elements.js"></script>
+
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-main.css">
 
     <title>Frank Alfano</title>
 </head>
 
 <body>
-    <div class="image-header" style="background-image: url('media/title-background.png');">
-        <img style="position: absolute; top: 2vw; right: 2vw; width: 150px;" src="media/faiii.png">
-        <img style="position: absolute; bottom: 2vw; width: 50px;" src="media/arrow.png">
-        <h1>Frank Alfano</h1>
-        <h6><em>Game Developer</em></h6>
-    </div>
-    <div class="info-list">
-        <div class="info-item">
-            <h2>Contacts</h2>
-            <div class="link-list">
-                <a class="text-link" href="mailto:falfanoiii@gmail.com">falfanoiii@gmail.com</a><br>
-                <a class="text-link" href="tel:201-687-7160">+1 (201) 687-7160</a><br>
-                <a class="text-link" href="https://discordapp.com/users/368904010322673665/">qusr#2169</a>
-            </div>
-        </div>
-        <div class="info-item">
-            <p>
-                Hi! My name is <strong>Frank Alfano</strong>, and I am a game developer currently studying Game Design and Development at the Rochester Institute of Technology in New York. This website displays all the projects that I have created or
-                have been a part of developing.
-            </p>
-            <div class="link-list">
-                <a class="text-link" href="">About</a>
-                <a class="text-link" href="media/Resume.pdf" target="_blank">Resume</a>
-            </div>
-        </div>
-        <div class="info-item">
-            <h2>Socials</h2>
-            <div class="link-list">
-                <a class="image-link" href="https://twitter.com/__qusr"><img src="media/logos/twitter-logo.png"></a>
-                <a class="image-link" href="https://www.instagram.com/frankalfanoiii/"><img src="media/logos/instagram-logo.png"></a>
-                <a class="image-link" href="https://discordapp.com/users/368904010322673665/"><img src="media/logos/discord-logo.png"></a>
-                <a class="image-link" href="https://github.com/qusr08"><img src="media/logos/github-logo.png"></a>
-                <a class="image-link" href="https://qusr.itch.io/"><img src="media/logos/itchio-logo.png"></a>
-                <a class="image-link" href="www.linkedin.com/in/frankalfanoiii/"><img src="media/logos/linkedin-logo.png"></a>
-                <a class="image-link" href="https://fontstruct.com/fontstructors/1616822/quasar-1"><img src="media/logos/fontstruct-logo.png"></a>
-                <a class="image-link" href="https://steamcommunity.com/id/qusr/"><img src="media/logos/steam-logo.png"></a>
-            </div>
-        </div>
-    </div>
-    <hr>
-    <h1 class="section-title">Projects</h1>
-    <div class="gallery">
-        <a class="gallery-item" href="projects/gcmdesigns.html" style="background-image: url('projects/gcmdesigns/gcmdesigns-thumbnail.png');">
-            <h1>gcmdesigns</h1>
-            <h3>Mar 2022 - Present</h3>
-        </a>
-        <a class="gallery-item" href="projects/prichi.html" style="background-image: url('projects/prichi/prichi-thumbnail.png');">
-            <h1>Prichi</h1>
-            <h3>Oct 2021 - Dec 2021</h3>
-        </a>
-        <a class="gallery-item" href="projects/into-orbit.html" style="background-image: url('projects/into-orbit/into-orbit-thumbnail.png');">
-            <h1>Into Orbit</h1>
-            <h3>Aug 2021 - Oct 2021</h3>
-        </a>
-        <a class="gallery-item" href="projects/blockchain.html" style="background-image: url('projects/blockchain/blockchain-thumbnail.png');">
-            <h1>Blockchain</h1>
-            <h3>Jun 2021 - Jul 2021</h3>
-            <div class="banner">
-                <h6><em><strong>Top 10%</strong> GMTK Game Jam 2021</em></h6>
-            </div>
-        </a>
-        <a class="gallery-item" href="projects/monozombie.html" style="background-image: url('projects/monozombie/monozombie-thumbnail.png');">
-            <h1>Monozombie</h1>
-            <h3>Feb 2021 - May 2021</h3>
-        </a>
-        <a class="gallery-item" href="projects/collab.html" style="background-image: url('projects/collab/collab-thumbnail.png');">
-            <h1>Collab</h1>
-            <h3>Oct 2019 - Dec 2019</h3>
-        </a>
-        <a class="gallery-item" href="projects/wumpus.html" style="background-image: url('projects/wumpus/wumpus-thumbnail.png');">
-            <h1>Wumpus</h1>
-            <h3>Apr 2019 - Jun 2019</h3>
-        </a>
-    </div>
-    <hr>
-    <h1 class="section-title">Upcoming Projects</h1>
-    <div class="expanded-gallery">
-        <div class="expanded-gallery-item">
-            <div>
+    <div id="swup" class="transition-fill"></div>
+    <header>
+        <custom-menu></custom-menu>
+    </header>
+    <main>
+        <mobile-warning></mobile-warning>
+        <h1>Projects</h1>
+        <custom-gallery></custom-gallery>
+        <h1>Upcoming Projects</h1>
+        <div class="expanded-gallery">
+            <div class="expanded-gallery-item">
                 <h1>Breakthrough</h1>
-                <h3><em>Planning idea</em></h3>
+                <h4><em>Planning idea</em></h4>
+                <p>
+                    <strong>Breakthrough</strong> is an upcoming game that I will be developing with Gabriela Colón-Meléndez. The premise of the game is to take the gameplay from
+                    <a href="https://en.wikipedia.org/wiki/Tetris">Tetris</a> and add more to it. The player will control a tetris-like piece at the top of their screen, having to move it horizontally and rotate it in order to match a hole that comes
+                    up from the bottom of the screen. This concept is also similar to something like <a href="https://en.wikipedia.org/wiki/Hole_in_the_Wall_(American_game_show)">Hole In The Wall</a>, where you need to match the hole in order to keep
+                    playing.
+                </p>
             </div>
-            <p>
-                <strong>Breakthrough</strong> is an upcoming game that I will be developing with Gabriela Colón-Meléndez. The premise of the game is to take the gameplay from
-                <a href="https://en.wikipedia.org/wiki/Tetris">Tetris</a> and add more to it. The player will control a tetris-like piece at the top of their screen, having to move it horizontally and rotate it in order to match a hole that comes up from
-                the bottom of the screen. This concept is also similar to something like <a href="https://en.wikipedia.org/wiki/Hole_in_the_Wall_(American_game_show)">Hole In The Wall</a>, where you need to match the hole in order to keep playing.
-            </p>
-        </div>
-        <div class="expanded-gallery-item">
-            <div>
+            <div class="expanded-gallery-item">
                 <h1>Shifty Dungeon</h1>
-                <h3>January 2022 - Present</h3>
-                <h3><em>Developing final prototype</em></h3>
+                <h4>January 2022 - Present</h4>
+                <h4><em>Developing final prototype</em></h4>
+                <p>
+                    <strong>Shifty Dungeon</strong> is a board game I created for a class at the Rochester Insititue of Technology. The premise of the game is to try and find a way to mimic the random generation of roguelike games as an analog board game.
+                    The game board is divided into 10 different pieces that are all placed randomly to create a different dungeon structure each time. Players take control of monsters that they can use to battle other players, or battle the dungeon boss
+                    and take his crown. The player who escapes with the dungeon boss's crown wins!
+                </p>
             </div>
-            <p>
-                <strong>Shifty Dungeon</strong> is a board game I created for a class at the Rochester Insititue of Technology. The premise of the game is to try and find a way to mimic the random generation of roguelike games as an analog board game.
-                The game board is divided into 10 different pieces that are all placed randomly to create a different dungeon structure each time. Players take control of monsters that they can use to battle other players, or battle the dungeon boss and
-                take his crown. The player who escapes with the dungeon boss's crown wins!
-            </p>
-        </div>
-        <div class="expanded-gallery-item">
-            <div>
+            <div class="expanded-gallery-item">
                 <h1>Cubi</h1>
-                <h3><em>Planning idea</em></h3>
-            </div>
-            <p>
-                <strong>Cubi</strong> is a 3D puzzle game that takes the same mechanics as in my game <strong>Blockchain</strong> and makes them more complex. The player will be able to shift the camera from an orthographic view (like <strong>Blockchain</strong>)
-                to a perspective view to discover new perspectives of the puzzle. Of course, there will be more complexity in the mechanics, with different worlds that have different themes. For example, I want there to be a lava world that has blocks
-                that burn away, so you only have a certain amount of turns to utilize them.
-            </p>
-        </div>
-    </div>
-    <hr>
-    <div class="info-list">
-        <div class="info-item">
-            <h2>Website Github</h2>
-            <div class="link-list">
-                <a class="image-link" href="https://github.com/qusr08/frankalfano"><img src="media/logos/github-logo.png"></a>
+                <h4><em>Planning idea</em></h4>
+                <p>
+                    <strong>Cubi</strong> is a 3D puzzle game that takes the same mechanics as in my game <strong>Blockchain</strong> and makes them more complex. The player will be able to shift the camera from an orthographic view (like <strong>Blockchain</strong>)
+                    to a perspective view to discover new perspectives of the puzzle. Of course, there will be more complexity in the mechanics, with different worlds that have different themes. For example, I want there to be a lava world that has blocks
+                    that burn away, so you only have a certain amount of turns to utilize them.
+                </p>
             </div>
         </div>
-        <div class="info-item">
-            <h2>Last Updated On</h2>
-            <p><strong>May 4th, 2022</strong></p>
-        </div>
-    </div>
+    </main>
+    <custom-footer></custom-footer>
 </body>
 
 </html>
