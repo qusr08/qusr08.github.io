@@ -7,21 +7,21 @@ window.customElements.define('custom-menu', class extends HTMLElement {
         this.innerHTML = `
             <div>
                 <div id="info">
-                    <a href="/media/Resume.pdf">Resume</a>
+                    <a href="/frankalfano/media/Resume.pdf">Resume</a>
                     <a href="">About</a>
-                    <a href="/index.html"><img src="/media/logo.png"></a>
+                    <a href="/frankalfano/index.html"><img src="/frankalfano/media/logo.png"></a>
                     <a href="mailto:falfanoiii@gmail.com">Email</a>
                     <a href="https://discordapp.com/users/368904010322673665/">Discord</a>
                 </div>
                 <div class="socials">
-                    <a class="social" href="https://www.instagram.com/frankalfanoiii/"><img src="/media/logos/instagram-logo.png"></a>
-                    <a class="social" href="https://discordapp.com/users/368904010322673665/"><img src="/media/logos/discord-logo.png"></a>
-                    <a class="social" href="https://steamcommunity.com/id/qusr/"><img src="/media/logos/steam-logo.png"></a>
-                    <a class="social" href="https://twitter.com/__qusr"><img src="/media/logos/twitter-logo.png"></a>
-                    <a class="social" href="https://qusr.itch.io/"><img src="/media/logos/itchio-logo.png"></a>
-                    <a class="social" href="https://fontstruct.com/fontstructors/1616822/quasar-1"><img src="/media/logos/fontstruct-logo.png"></a>
-                    <a class="social" href="https://github.com/qusr08"><img src="/media/logos/github-logo.png"></a>
-                    <a class="social" href="https://www.linkedin.com/in/frankalfanoiii/"><img src="/media/logos/linkedin-logo.png"></a>
+                    <a class="social" href="https://www.instagram.com/frankalfanoiii/"><img src="/frankalfano/media/logos/instagram-logo.png"></a>
+                    <a class="social" href="https://discordapp.com/users/368904010322673665/"><img src="/frankalfano/media/logos/discord-logo.png"></a>
+                    <a class="social" href="https://steamcommunity.com/id/qusr/"><img src="/frankalfano/media/logos/steam-logo.png"></a>
+                    <a class="social" href="https://twitter.com/__qusr"><img src="/frankalfano/media/logos/twitter-logo.png"></a>
+                    <a class="social" href="https://qusr.itch.io/"><img src="/frankalfano/media/logos/itchio-logo.png"></a>
+                    <a class="social" href="https://fontstruct.com/fontstructors/1616822/quasar-1"><img src="/frankalfano/media/logos/fontstruct-logo.png"></a>
+                    <a class="social" href="https://github.com/qusr08"><img src="/frankalfano/media/logos/github-logo.png"></a>
+                    <a class="social" href="https://www.linkedin.com/in/frankalfanoiii/"><img src="/frankalfano/media/logos/linkedin-logo.png"></a>
                 </div>
             </div>
         `;
@@ -35,37 +35,37 @@ window.customElements.define('custom-gallery', class extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = `
-            <a class="gallery-item" href="/projects/gcmdesigns.html" style="background-image: url('/projects/gcmdesigns/gcmdesigns-thumbnail.png');">
+            <a class="gallery-item" href="/frankalfano/projects/gcmdesigns.html" style="background-image: url('/frankalfano/projects/gcmdesigns/gcmdesigns-thumbnail.png');">
                 <h1>gcmdesigns</h1>
                 <h4>Mar 2022 - Present</h4>
                 <div class="gallery-item-banner">
                     <p><strong>New Addition!</strong></p>
                 </div>
             </a>
-            <a class="gallery-item" href="/projects/prichi.html" style="background-image: url('/projects/prichi/prichi-thumbnail.png');">
+            <a class="gallery-item" href="/frankalfano/projects/prichi.html" style="background-image: url('/frankalfano/projects/prichi/prichi-thumbnail.png');">
                 <h1>Prichi</h1>
                 <h4>Oct 2021 - Dec 2021</h4>
             </a>
-            <a class="gallery-item" href="/projects/into-orbit.html" style="background-image: url('/projects/into-orbit/into-orbit-thumbnail.png');">
+            <a class="gallery-item" href="/frankalfano/projects/into-orbit.html" style="background-image: url('/frankalfano/projects/into-orbit/into-orbit-thumbnail.png');">
                 <h1>Into Orbit</h1>
                 <h4>Aug 2021 - Oct 2021</h4>
             </a>
-            <a class="gallery-item" href="/projects/blockchain.html" style="background-image: url('/projects/blockchain/blockchain-thumbnail.png');">
+            <a class="gallery-item" href="/frankalfano/projects/blockchain.html" style="background-image: url('/frankalfano/projects/blockchain/blockchain-thumbnail.png');">
                 <h1>Blockchain</h1>
                 <h4>Jun 2021 - Jul 2021</h4>
                 <div class="gallery-item-banner">
                     <p><strong>Top 10%</strong> GMTK Game Jam 2021</p>
                 </div>
             </a>
-            <a class="gallery-item" href="/projects/monozombie.html" style="background-image: url('/projects/monozombie/monozombie-thumbnail.png');">
+            <a class="gallery-item" href="/frankalfano/projects/monozombie.html" style="background-image: url('/frankalfano/projects/monozombie/monozombie-thumbnail.png');">
                 <h1>Monozombie</h1>
                 <h4>Feb 2021 - May 2021</h4>
             </a>
-            <a class="gallery-item" href="/projects/collab.html" style="background-image: url('/projects/collab/collab-thumbnail.png');">
+            <a class="gallery-item" href="/frankalfano/projects/collab.html" style="background-image: url('/frankalfano/projects/collab/collab-thumbnail.png');">
                 <h1>Collab</h1>
                 <h4>Oct 2019 - Dec 2019</h4>
             </a>
-            <a class="gallery-item" href="/projects/wumpus.html" style="background-image: url('/projects/wumpus/wumpus-thumbnail.png');">
+            <a class="gallery-item" href="/frankalfano/projects/wumpus.html" style="background-image: url('/frankalfano/projects/wumpus/wumpus-thumbnail.png');">
                 <h1>Wumpus</h1>
                 <h4>Apr 2019 - Jun 2019</h4>
             </a>
@@ -112,7 +112,7 @@ window.customElements.define('game-menu', class extends HTMLElement {
         this.innerHTML = `
             <div class="game-menu">
                 <button onClick="toggleMenu()">≡</button>
-                <a href="/index.html"><img src="/media/logo.png"></a>
+                <a href="/index.html"><img src="/frankalfano/media/logo.png"></a>
                 <custom-gallery></custom-gallery>
             </div>
         `;
