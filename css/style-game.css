@@ -150,7 +150,7 @@ iframe {
 #credits>div {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 100%;
 }
 

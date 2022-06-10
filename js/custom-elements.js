@@ -84,7 +84,7 @@ window.customElements.define('custom-footer', class extends HTMLElement {
         this.innerHTML = `
             <footer>
                 <custom-menu></custom-menu>
-                <p>Last updated on May 15th, 2022</p>
+                <p>Last updated on June 10th, 2022</p>
                 <a href="https://github.com/qusr08${PROJECT_ROOT}">Website Github Repository</a>
             </footer>
         `;
