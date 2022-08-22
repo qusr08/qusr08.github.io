@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); */
+
+:root {
+    --color1: #121212;
+    --color2: #444444;
+    --color3: #D32344;
+    --color4: white;
+    --spacing: max(1vw, 1vh);
+    --border: 5px;
+    --transition-time: 0.2s;
+    --gallery-size: 400px;
+}
+
+* {
+    /* font-family: 'Roboto Mono', monospace; */
+    font-family: 'Barlow', sans-serif;
+    color: var(--color4);
+    margin: 0px;
+}
+
+::selection {
+    color: var(--color1);
+    background: var(--color4);
+}
+
+a:link {
+    color: var(--color4);
+}
+
+a:visited {
+    color: var(--color4);
+}
+
+a:focus {
+    color: var(--color3);
+}
+
+a:hover {
+    color: var(--color3);
+}
+
+a:active {
+    color: var(--color3);
+}
+
+::-webkit-scrollbar {
+    width: var(--border);
+}
+
+::-webkit-scrollbar-track {
+    /* border-radius: var(--border); */
+    background: var(--color1);
+}
+
+::-webkit-scrollbar-thumb {
+    /* border-radius: var(--border); */
+    background: var(--color3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color4);
+}
