@@ -31,7 +31,7 @@ window.customElements.define('fa-gallery-item', class extends HTMLElement {
                     <h3>${dates}</h3>
                     <p>${desc}</p>
                 </div>
-                <div class="hori-list">${tagsHTML}</div>
+                <div class="hori-list" style="flex-wrap: wrap;">${tagsHTML}</div>
                 ${infoHTML}
             </a>
         `;

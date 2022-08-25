@@ -12,9 +12,13 @@ const REF_SHP_VEL = 0.01;
 const REF_SHP_ANG_VEL = 0.05;
 
 const WRAPPER = document.getElementById("wrapper");
-const SHP_SPWN_RATE = 100;//1500;
-const S_SHP_ROT_SPD = 0.1;
-const MAX_SHPS = 50;
+const SHP_SPWN_RATE = 450;
+const S_SHP_ROT_SPD = 0.005;
+const MAX_SHPS = 70;
+
+const TYPE_CIRCLE = 0;
+const TYPE_SQUARE = 1;
+const TYPE_TRIANGLE = 2;
 
 let wrapperWidth, wrapperHeight;
 let widthRatio, heightRatio, ratio;
@@ -34,6 +38,8 @@ let runner;
 /************************************************* METHODS *******************************************************/
 
 window.onresize = function (event) {
+console.log("AWD");
+
     // Shift all gravity objects
     updateGameObjects();
 
@@ -111,6 +117,10 @@ window.onload = function (event) {
                 gameObjects.splice(i, 1);
             }
         }
+
+        // staticObjects.forEach(element => {
+        //     Matter.Body.setAngularVelocity(element[0], element[1]);
+        // });
     });
 
     // Create a new shape after a set interval
@@ -119,6 +129,9 @@ window.onload = function (event) {
             createGameObject();
         }
     }, SHP_SPWN_RATE);
+
+    // Create static objects
+    // createStaticObject(480, 340, 200);
 
     createObjectsFromHTML();
 };
@@ -135,11 +148,32 @@ function updateGameObjects() {
         Matter.Body.setPosition(element, { x: refX, y: refY });
         Matter.Body.scale(element, refScale, refScale);
     });
+
+    // staticObjects.forEach(element => {
+    //     // Convert the previous dimensions of the coordinates to the new dimensions
+    //     let refX = map(element[0].position.x, 0, wrapperWidth, 0, WRAPPER.offsetWidth);
+    //     let refY = map(element[0].position.y, 0, wrapperHeight, 0, WRAPPER.offsetHeight);
+    //     let refScale = 1 + newWidthRatio - widthRatio;
+
+    //     Matter.Body.setPosition(element[0], { x: refX, y: refY });
+    //     Matter.Body.scale(element[0], refScale, refScale);
+
+    //     // // Convert the previous dimensions of the coordinates to the new dimensions
+    //     // let refX = map(element.position.x, 0, wrapperWidth, 0, WRAPPER.offsetWidth);
+    //     // let refY = map(element.position.y, 0, wrapperHeight, 0, WRAPPER.offsetHeight);
+    //     // let refScale = 1 + newWidthRatio - widthRatio;
+
+    //     // Matter.Body.setPosition(element, { x: refX, y: refY });
+    //     // Matter.Body.scale(element, refScale, refScale);
+    // });
 }
 
 function createObjectsFromHTML() {
     HTMLObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
     HTMLObjects = [];
+
+    // staticObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
+    // staticObjects = [];
 
     Array.from(document.getElementsByClassName("matter-html")).forEach(element => {
         let width = element.offsetWidth;
@@ -154,37 +188,56 @@ function createObjectsFromHTML() {
         if (element.hasAttribute("matter-slant")) {
             let mInfo = element.getAttribute("matter-slant").trim().split(/\s+/);
 
-            // check 0: 0, 3, 6, etc.
-            for (let i = 0; i < mInfo.length; i++) {
-                
-            }
+            for (let i = 0; i < mInfo.length; i += 3) {
+                // 0: vertex to move
+                // 1: x to move vertex
+                // 2: y to move vertex
 
-            if (mInfo[1] == "x") {
                 let xChange = 0;
-
-                if (mInfo[2].includes("deg")) {
-                    xChange = height * Math.tan(parseInt(mInfo[2]) * DEG_TO_RAD);
-                } else {
-                    xChange = parseInt(mInfo[2]);
-                }
-
-                vertices[parseInt(mInfo[0])].x += xChange;
-            } else if (mInfo[1] == "y") {
                 let yChange = 0;
 
-                if (mInfo[2].includes("deg")) {
-                    yChange = width * Math.tan(parseInt(mInfo[2]) * DEG_TO_RAD);
+                if (mInfo[i + 1].includes("deg")) {
+                    xChange = height * Math.tan(parseInt(mInfo[i + 1]) * DEG_TO_RAD);
                 } else {
-                    yChange = parseInt(mInfo[2]);
+                    xChange = parseInt(mInfo[i + 1]);
                 }
 
-                vertices[parseInt(mInfo[0])].y -= yChange;
+                if (mInfo[i + 2].includes("deg")) {
+                    yChange = width * Math.tan(parseInt(mInfo[i + 2]) * DEG_TO_RAD);
+                } else {
+                    yChange = parseInt(mInfo[i + 2]);
+                }
+
+                vertices[parseInt(mInfo[i])].x += xChange;
+                vertices[parseInt(mInfo[i])].y -= yChange;
             }
         }
 
-        if (element.hasAttribute("matter-static")) {
-            let mInfo = element.getAttribute("matter-static").trim().split(/\s+/);
-        }
+        // if (element.hasAttribute("matter-static")) {
+        //     let mInfo = element.getAttribute("matter-static").trim().split(/\s+/);
+
+        //     for (let i = 0; i < mInfo.length; i += 4) {
+        //         // 0: the vertex to attach the object to
+        //         // 1: the x offset of the object
+        //         // 2: the y offset of the object
+        //         // 3: the size of the object
+
+        //         let vertex = vertices[parseInt(mInfo[i])];
+        //         let xOffset = parseInt(mInfo[i + 1]);
+        //         let yOffset = parseInt(mInfo[i + 2]);
+        //         let size = parseInt(mInfo[i + 3]);
+
+        //         let s = createRandomBody(x + vertex.x + xOffset, y + vertex.y + yOffset, size, {
+        //             isStatic: true,
+        //             render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color2') }
+        //         });
+
+        //         Matter.Body.setAngle(s, getRandomNumber(0, 360));
+
+        //         Matter.Composite.add(engine.world, s);
+        //         staticObjects.push(s);
+        //     }
+        // }
 
         // Get the center of the new vertices so the center of the object can be offset
         let offsetPosition = getVerticesCenter(vertices);
@@ -211,20 +264,29 @@ function createRandomBody(x, y, size, options) {
     }
 }
 
-function createStaticObjectsFromHTML(x, y, size) {
-    staticObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
-    staticObjects = [];
+// function createStaticObject(x, y, size) {
+//     let s = createRandomBody(x, y, size, { render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color2') } });
+//     Matter.Body.setAngle(s, getRandomNumber(0, 360));
 
-    // Array.from(document.querySelectorAll('[attrname="matter-static"]')).forEach(element => {
-    // let options = {
-    //     isStatic: true,
-    //     render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color2') }
-    // };
-    // let o = createRandomBody(x, y, size, options);
+//     let so = Matter.Bodies.circle(x, y, 1, {
+//         render: { visible: false },
+//         collisionFilter: {
+//             'group': -1,
+//             'category': 2,
+//             'mask': 0,
+//         },
+//         isStatic: true
+//     });
 
-    // Matter.Composite.add(engine.world, o);
-    // staticObjects.push(o);
-}
+//     Matter.Composite.add(engine.world, [s, so, Matter.Constraint.create({
+//         bodyA: so,
+//         bodyB: s,
+//         stiffness: 1,
+//         length: 0,
+//         render: { visible: false }
+//     })]);
+//     staticObjects.push([s, getRandomNumber(-S_SHP_ROT_SPD, S_SHP_ROT_SPD)]);
+// }
 
 function createGameObject() {
     let x = Math.random() * wrapperWidth;
