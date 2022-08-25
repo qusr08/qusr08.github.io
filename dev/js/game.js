@@ -26,10 +26,11 @@ let shapeSize, shapeVelocity, shapeAngleVelocity;
 let mousePosition = { x: 0, y: 0 };
 
 let gameObjects = [];
-let staticObjects = [];
 let HTMLObjects = [];
+let pegObjects = [];
+let perlinNoise;
+let mouseConstraint;
 let mouseObject;
-let mouseInteractObject;
 
 let engine;
 let render;
@@ -38,8 +39,6 @@ let runner;
 /************************************************* METHODS *******************************************************/
 
 window.onresize = function (event) {
-console.log("AWD");
-
     // Shift all gravity objects
     updateGameObjects();
 
@@ -54,14 +53,15 @@ console.log("AWD");
     render.canvas.width = wrapperWidth;
     render.canvas.height = wrapperHeight;
 
-    // Recreate static objects from HTML elements
+    // Recreate static objects
+    createPegObjects();
     createObjectsFromHTML();
 };
 
 window.onmousemove = function (event) {
     mousePosition = { x: event.clientX + window.scrollX, y: event.clientY + window.scrollY };
 
-    Matter.Body.setPosition(mouseObject, mousePosition);
+    Matter.Body.setPosition(mouseConstraint, mousePosition);
 };
 
 window.onload = function (event) {
@@ -88,7 +88,8 @@ window.onload = function (event) {
     runner = Matter.Runner.create();
     Matter.Runner.run(runner, engine);
 
-    mouseObject = Matter.Bodies.circle(mousePosition.x, mousePosition.y, 1, {
+    // Create mouse interaction object
+    mouseConstraint = Matter.Bodies.circle(mousePosition.x, mousePosition.y, 1, {
         render: { visible: false },
         collisionFilter: {
             'group': -1,
@@ -97,13 +98,13 @@ window.onload = function (event) {
         },
         isStatic: true
     });
-    mouseInteractObject = Matter.Bodies.circle(mousePosition.x, mousePosition.y, 15, {
+    mouseObject = Matter.Bodies.circle(mousePosition.x, mousePosition.y, 15, {
         render: { visible: false },
         isStatic: false
     });
-    Matter.Composite.add(engine.world, [mouseObject, mouseInteractObject, Matter.Constraint.create({
-        bodyA: mouseObject,
-        bodyB: mouseInteractObject,
+    Matter.Composite.add(engine.world, [mouseConstraint, mouseObject, Matter.Constraint.create({
+        bodyA: mouseConstraint,
+        bodyB: mouseObject,
         stiffness: 0.1,
         length: 0,
         render: { visible: false }
@@ -117,10 +118,6 @@ window.onload = function (event) {
                 gameObjects.splice(i, 1);
             }
         }
-
-        // staticObjects.forEach(element => {
-        //     Matter.Body.setAngularVelocity(element[0], element[1]);
-        // });
     });
 
     // Create a new shape after a set interval
@@ -130,9 +127,7 @@ window.onload = function (event) {
         }
     }, SHP_SPWN_RATE);
 
-    // Create static objects
-    // createStaticObject(480, 340, 200);
-
+    createPegObjects();
     createObjectsFromHTML();
 };
 
@@ -148,34 +143,14 @@ function updateGameObjects() {
         Matter.Body.setPosition(element, { x: refX, y: refY });
         Matter.Body.scale(element, refScale, refScale);
     });
-
-    // staticObjects.forEach(element => {
-    //     // Convert the previous dimensions of the coordinates to the new dimensions
-    //     let refX = map(element[0].position.x, 0, wrapperWidth, 0, WRAPPER.offsetWidth);
-    //     let refY = map(element[0].position.y, 0, wrapperHeight, 0, WRAPPER.offsetHeight);
-    //     let refScale = 1 + newWidthRatio - widthRatio;
-
-    //     Matter.Body.setPosition(element[0], { x: refX, y: refY });
-    //     Matter.Body.scale(element[0], refScale, refScale);
-
-    //     // // Convert the previous dimensions of the coordinates to the new dimensions
-    //     // let refX = map(element.position.x, 0, wrapperWidth, 0, WRAPPER.offsetWidth);
-    //     // let refY = map(element.position.y, 0, wrapperHeight, 0, WRAPPER.offsetHeight);
-    //     // let refScale = 1 + newWidthRatio - widthRatio;
-
-    //     // Matter.Body.setPosition(element, { x: refX, y: refY });
-    //     // Matter.Body.scale(element, refScale, refScale);
-    // });
 }
 
 function createObjectsFromHTML() {
     HTMLObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
     HTMLObjects = [];
 
-    // staticObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
-    // staticObjects = [];
-
     Array.from(document.getElementsByClassName("matter-html")).forEach(element => {
+        // Calculate dimensions of HTML element
         let width = element.offsetWidth;
         let height = element.offsetHeight;
         let x = element.offsetLeft + (width / 2);
@@ -213,32 +188,6 @@ function createObjectsFromHTML() {
             }
         }
 
-        // if (element.hasAttribute("matter-static")) {
-        //     let mInfo = element.getAttribute("matter-static").trim().split(/\s+/);
-
-        //     for (let i = 0; i < mInfo.length; i += 4) {
-        //         // 0: the vertex to attach the object to
-        //         // 1: the x offset of the object
-        //         // 2: the y offset of the object
-        //         // 3: the size of the object
-
-        //         let vertex = vertices[parseInt(mInfo[i])];
-        //         let xOffset = parseInt(mInfo[i + 1]);
-        //         let yOffset = parseInt(mInfo[i + 2]);
-        //         let size = parseInt(mInfo[i + 3]);
-
-        //         let s = createRandomBody(x + vertex.x + xOffset, y + vertex.y + yOffset, size, {
-        //             isStatic: true,
-        //             render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color2') }
-        //         });
-
-        //         Matter.Body.setAngle(s, getRandomNumber(0, 360));
-
-        //         Matter.Composite.add(engine.world, s);
-        //         staticObjects.push(s);
-        //     }
-        // }
-
         // Get the center of the new vertices so the center of the object can be offset
         let offsetPosition = getVerticesCenter(vertices);
 
@@ -264,29 +213,32 @@ function createRandomBody(x, y, size, options) {
     }
 }
 
-// function createStaticObject(x, y, size) {
-//     let s = createRandomBody(x, y, size, { render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color2') } });
-//     Matter.Body.setAngle(s, getRandomNumber(0, 360));
+function createPegObjects() {
+    pegObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
+    pegObjects = [];
 
-//     let so = Matter.Bodies.circle(x, y, 1, {
-//         render: { visible: false },
-//         collisionFilter: {
-//             'group': -1,
-//             'category': 2,
-//             'mask': 0,
-//         },
-//         isStatic: true
-//     });
+    perlinNoise = new SimplexNoise();
 
-//     Matter.Composite.add(engine.world, [s, so, Matter.Constraint.create({
-//         bodyA: so,
-//         bodyB: s,
-//         stiffness: 1,
-//         length: 0,
-//         render: { visible: false }
-//     })]);
-//     staticObjects.push([s, getRandomNumber(-S_SHP_ROT_SPD, S_SHP_ROT_SPD)]);
-// }
+    let gap = shapeSize * 2.5;
+    let size = shapeSize / 4;
+    let row = 0;
+
+    for (let y = gap / 2; y < wrapperHeight; y += gap, row++) {
+        for (let x = (gap / 4) + (row % 2 == 0 ? gap / 2 : 0); x < wrapperWidth; x += gap) {
+            if (perlinNoise.noise(x, y, 0) <= 0) {
+                continue;
+            }
+
+            let o = Matter.Bodies.circle(x, y, size, {
+                render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color2') },
+                isStatic: true
+            });
+
+            Matter.Composite.add(engine.world, o);
+            pegObjects.push(o);
+        }
+    }
+}
 
 function createGameObject() {
     let x = Math.random() * wrapperWidth;
