@@ -14,11 +14,9 @@ const REF_SHP_ANG_VEL = 0.05;
 const WRAPPER = document.getElementById("wrapper");
 const SHP_SPWN_RATE = 450;
 const S_SHP_ROT_SPD = 0.005;
-const MAX_SHPS = 70;
+const MAX_SHPS = 150;
 
-const TYPE_CIRCLE = 0;
-const TYPE_SQUARE = 1;
-const TYPE_TRIANGLE = 2;
+const PEG_DEN = 0.25;
 
 let wrapperWidth, wrapperHeight;
 let widthRatio, heightRatio, ratio;
@@ -38,7 +36,7 @@ let runner;
 
 /************************************************* METHODS *******************************************************/
 
-window.onresize = function (event) {
+window.onresize = function(event) {
     // Shift all gravity objects
     updateGameObjects();
 
@@ -58,13 +56,13 @@ window.onresize = function (event) {
     createObjectsFromHTML();
 };
 
-window.onmousemove = function (event) {
+window.onmousemove = function(event) {
     mousePosition = { x: event.clientX + window.scrollX, y: event.clientY + window.scrollY };
 
     Matter.Body.setPosition(mouseConstraint, mousePosition);
 };
 
-window.onload = function (event) {
+window.onload = function(event) {
     updateVariables();
 
     // Create an engine
@@ -110,7 +108,7 @@ window.onload = function (event) {
         render: { visible: false }
     })]);
 
-    Matter.Events.on(engine, 'afterUpdate', function (event) {
+    Matter.Events.on(engine, 'afterUpdate', function(event) {
         // If one of the gravity shapes has reached the bottom of the website, destroy it
         for (let i = gameObjects.length - 1; i >= 0; i--) {
             if (gameObjects[i].position.y > wrapperHeight + shapeSize) {
@@ -121,11 +119,13 @@ window.onload = function (event) {
     });
 
     // Create a new shape after a set interval
-    setInterval(function () {
+    setInterval(function() {
         if (document.hasFocus() && gameObjects.length <= MAX_SHPS) {
             createGameObject();
         }
     }, SHP_SPWN_RATE);
+
+    console.log(wrapperWidth + ", " + wrapperHeight);
 
     createPegObjects();
     createObjectsFromHTML();
@@ -223,14 +223,14 @@ function createPegObjects() {
     let size = shapeSize / 4;
     let row = 0;
 
-    for (let y = gap / 2; y < wrapperHeight; y += gap, row++) {
+    for (let y = (gap / 4); y < wrapperHeight; y += gap, row++) {
         for (let x = (gap / 4) + (row % 2 == 0 ? gap / 2 : 0); x < wrapperWidth; x += gap) {
-            if (perlinNoise.noise(x, y, 0) <= 0) {
+            if (perlinNoise.noise(x, y, 0) <= PEG_DEN) {
                 continue;
             }
 
             let o = Matter.Bodies.circle(x, y, size, {
-                render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color2') },
+                render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color5') },
                 isStatic: true
             });
 
@@ -282,10 +282,12 @@ function map(number, inMin, inMax, outMin, outMax) {
 function getVerticesCenter(vertices) {
     // https://stackoverflow.com/questions/9692448/how-can-you-find-the-centroid-of-a-concave-irregular-polygon-in-javascript
 
-    let first = vertices[0], last = vertices[vertices.length - 1];
+    let first = vertices[0],
+        last = vertices[vertices.length - 1];
     let addedValue = false;
     let twicearea = 0,
-        x = 0, y = 0,
+        x = 0,
+        y = 0,
         nPts = vertices.length,
         p1, p2, f;
 
@@ -295,7 +297,8 @@ function getVerticesCenter(vertices) {
     }
 
     for (let i = 0, j = nPts - 1; i < nPts; j = i++) {
-        p1 = vertices[i]; p2 = vertices[j];
+        p1 = vertices[i];
+        p2 = vertices[j];
         f = p1.x * p2.y - p2.x * p1.y;
         twicearea += f;
         x += (p1.x + p2.x) * f;
