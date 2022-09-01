@@ -46,16 +46,26 @@ header {
     padding: var(--spacing);
 }
 
+.panel {
+    background-color: var(--color2);
+    padding: var(--spacing);
+}
+
 .button {
     cursor: pointer;
-    transition: all var(--transition-time) ease;
+    letter-spacing: unset;
+    font-weight: 100;
+    background-color: var(--color2);
+    transition: letter-spacing var(--transition-time) ease, font-weight var(--transition-time) ease, background-color var(--transition-time) ease;
 }
 
 .button:hover {
     letter-spacing: 0.1em;
+    font-weight: unset;
+    background-color: var(--color3);
 }
 
-#gallery {
+.gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--gallery-size), 1fr));
     gap: var(--spacing);

@@ -21,8 +21,6 @@
     margin: 0px;
 }
 
-
-
 ::selection {
     color: var(--color1);
     background: var(--color4);
