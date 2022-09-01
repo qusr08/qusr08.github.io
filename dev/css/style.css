@@ -41,9 +41,18 @@ header {
     align-items: center;
 }
 
-.matter-box {
+.box {
     background-color: var(--color3);
     padding: var(--spacing);
+}
+
+.button {
+    cursor: pointer;
+    transition: all var(--transition-time) ease;
+}
+
+.button:hover {
+    letter-spacing: 0.1em;
 }
 
 #gallery {

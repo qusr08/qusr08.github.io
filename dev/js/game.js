@@ -53,6 +53,8 @@ window.onresize = function (event) {
     render.canvas.width = wrapperWidth;
     render.canvas.height = wrapperHeight;
 
+    console.log(wrapperWidth + ", " + wrapperHeight);
+
     // Recreate static objects
     createPegObjects();
     createObjectsFromHTML();
@@ -86,6 +88,7 @@ window.onload = function (event) {
         element: document.getElementById("matter"),
         engine: engine
     });
+    render.canvas.style.imageRendering = 'pixelated';
     Matter.Render.run(render);
 
     // Create a runner
