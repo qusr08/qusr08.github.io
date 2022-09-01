@@ -16,7 +16,7 @@ const SHP_SPWN_RATE = 450;
 const S_SHP_ROT_SPD = 0.005;
 const MAX_SHPS = 150;
 
-const PEG_DEN = 0.25;
+const PEG_DEN = 0;
 
 let wrapperWidth, wrapperHeight;
 let widthRatio, heightRatio, ratio;
@@ -25,8 +25,8 @@ let mousePosition = { x: 0, y: 0 };
 
 let gameObjects = [];
 let HTMLObjects = [];
+let pegVoids = [];
 let pegObjects = [];
-let perlinNoise;
 let mouseConstraint;
 let mouseObject;
 
@@ -36,18 +36,20 @@ let runner;
 
 /************************************************* METHODS *******************************************************/
 
-window.onresize = function(event) {
+window.onresize = function (event) {
     // Shift all gravity objects
-    updateGameObjects();
+    // updateGameObjects();
+    gameObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
+    gameObjects = [];
 
     // Update variables to scale with window size
     updateVariables();
 
     // Resize window and renderer
-    render.bounds.max.x = wrapperWidth;
-    render.bounds.max.y = wrapperHeight;
-    render.options.width = wrapperWidth;
-    render.options.height = wrapperHeight;
+    // render.bounds.max.x = wrapperWidth;
+    // render.bounds.max.y = wrapperHeight;
+    // render.options.width = wrapperWidth;
+    // render.options.height = wrapperHeight;
     render.canvas.width = wrapperWidth;
     render.canvas.height = wrapperHeight;
 
@@ -56,13 +58,17 @@ window.onresize = function(event) {
     createObjectsFromHTML();
 };
 
-window.onmousemove = function(event) {
+window.onmousemove = function (event) {
     mousePosition = { x: event.clientX + window.scrollX, y: event.clientY + window.scrollY };
+
+    if (mouseConstraint == undefined) {
+        return;
+    }
 
     Matter.Body.setPosition(mouseConstraint, mousePosition);
 };
 
-window.onload = function(event) {
+window.onload = function (event) {
     updateVariables();
 
     // Create an engine
@@ -96,7 +102,7 @@ window.onload = function(event) {
         },
         isStatic: true
     });
-    mouseObject = Matter.Bodies.circle(mousePosition.x, mousePosition.y, 15, {
+    mouseObject = Matter.Bodies.circle(mousePosition.x, mousePosition.y, 25, {
         render: { visible: false },
         isStatic: false
     });
@@ -108,7 +114,7 @@ window.onload = function(event) {
         render: { visible: false }
     })]);
 
-    Matter.Events.on(engine, 'afterUpdate', function(event) {
+    Matter.Events.on(engine, 'afterUpdate', function (event) {
         // If one of the gravity shapes has reached the bottom of the website, destroy it
         for (let i = gameObjects.length - 1; i >= 0; i--) {
             if (gameObjects[i].position.y > wrapperHeight + shapeSize) {
@@ -119,16 +125,14 @@ window.onload = function(event) {
     });
 
     // Create a new shape after a set interval
-    setInterval(function() {
+    setInterval(function () {
         if (document.hasFocus() && gameObjects.length <= MAX_SHPS) {
             createGameObject();
         }
     }, SHP_SPWN_RATE);
 
-    console.log(wrapperWidth + ", " + wrapperHeight);
-
-    createPegObjects();
     createObjectsFromHTML();
+    createPegObjects();
 };
 
 function updateGameObjects() {
@@ -148,6 +152,7 @@ function updateGameObjects() {
 function createObjectsFromHTML() {
     HTMLObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
     HTMLObjects = [];
+    pegVoids = [];
 
     Array.from(document.getElementsByClassName("matter-html")).forEach(element => {
         // Calculate dimensions of HTML element
@@ -193,12 +198,14 @@ function createObjectsFromHTML() {
 
         // Create a static object
         let o = Matter.Bodies.fromVertices(x + offsetPosition.x, y + offsetPosition.y, vertices, {
-            render: { fillStyle: getComputedStyle(element).backgroundColor },
+            // render: { fillStyle: getComputedStyle(element).backgroundColor },
+            render: { fillStyle: '#00000000' },
             isStatic: true
         });
 
         Matter.Composite.add(engine.world, o);
         HTMLObjects.push(o);
+        pegVoids.push([{ x: x, y: y }, (Math.max(width, height) / 2) + (shapeSize * 2)]);
     });
 }
 
@@ -217,7 +224,7 @@ function createPegObjects() {
     pegObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
     pegObjects = [];
 
-    perlinNoise = new SimplexNoise();
+    let perlinNoise = new SimplexNoise();
 
     let gap = shapeSize * 2.5;
     let size = shapeSize / 4;
@@ -226,6 +233,10 @@ function createPegObjects() {
     for (let y = (gap / 4); y < wrapperHeight; y += gap, row++) {
         for (let x = (gap / 4) + (row % 2 == 0 ? gap / 2 : 0); x < wrapperWidth; x += gap) {
             if (perlinNoise.noise(x, y, 0) <= PEG_DEN) {
+                continue;
+            }
+
+            if (IsPegPositionInVoid(x, y)) {
                 continue;
             }
 
@@ -238,6 +249,18 @@ function createPegObjects() {
             pegObjects.push(o);
         }
     }
+}
+
+function IsPegPositionInVoid(x, y) {
+    let isInVoid = false;
+
+    pegVoids.forEach(element => {
+        if (Math.hypot(x - element[0].x, y - element[0].y) <= element[1]) {
+            isInVoid = true;
+        }
+    });
+
+    return isInVoid;
 }
 
 function createGameObject() {
