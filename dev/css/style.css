@@ -65,7 +65,7 @@ header {
     background-color: var(--color3);
 }
 
-.gallery {
+#gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--gallery-size), 1fr));
     gap: var(--spacing);
@@ -81,11 +81,11 @@ header {
     background-size: cover;
     background-blend-mode: multiply;
     border: 0px solid var(--color3);
-    transition: all var(--transition-time) ease;
     padding: var(--spacing);
     justify-content: space-between;
     cursor: pointer;
     text-decoration: none;
+    transition: background-color var(--transition-time) ease, border-width var(--transition-time) ease;
 }
 
 .gallery-item>* {
@@ -93,13 +93,22 @@ header {
 }
 
 .gallery-item-info {
-    display: unset;
+    display: flex;
     position: absolute;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    gap: var(--border);
     top: calc(var(--spacing) * -0.5);
     right: calc(var(--spacing) * -0.5);
+    transition: top var(--transition-time) ease, right var(--transition-time) ease;
+}
+
+.gallery-item-info>p {
     background-color: var(--color2);
     padding: var(--border);
-    transition: all var(--transition-time) ease;
+    width: fit-content;
+    align-self: right;
+    transition: background-color var(--transition-time) ease;
 }
 
 .gallery-item:hover {
@@ -114,6 +123,9 @@ header {
 .gallery-item:hover .gallery-item-info {
     top: calc(var(--spacing) * -0.75);
     right: calc(var(--spacing) * -0.75);
+}
+
+.gallery-item:hover .gallery-item-info>p {
     background-color: var(--color3);
 }
 
