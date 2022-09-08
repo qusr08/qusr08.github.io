@@ -27,7 +27,7 @@
             <div class="vert-list">
                 <h1 class="box matter-html" style="font-size: 10em;">Frank Alfano</h1>
                 <h2 class="box matter-html" style="font-size: 3em;"><em>Game/Web Developer</em></h2>
-                <h1 class="box button matter-html" style="justify-self: center;" onclick="document.getElementById('featured').scrollIntoView({ behavior: 'smooth' });">Jump To Projects</h1>
+                <h1 class="box button matter-html" style="justify-self: center;" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">Jump To Projects</h1>
             </div>
         </header>
         <div class="section">
@@ -45,8 +45,8 @@
         <div style="background-image: linear-gradient(transparent, var(--color1)); height: 50vh;"></div>
     </div>
     <div class="content">
-        <h1 id="featured" class="box">Featured Projects</h1>
-        <div id="gallery">
+        <h1 id="projects" class="box">My Projects</h1>
+        <div class="gallery featured">
             <fa-gallery-item name="DOS" dates="July 2022 - August 2022" link="" image="media/dos/dos-thumbnail.png" info="Top 5% GMTK Game Jam 2022, Featured" tags="GMTK Game Jam 2022, Unity/C#, Puzzle, 3D Isometric" desc="DOS (two in Spanish) is a single-player puzzle game where the objective is to strategically roll the die to get the two face on top! Use the various tiles that make up each level which can move or rotate the die to achieve the goal."></fa-gallery-item>
             <fa-gallery-item name="gcmdesigns" dates="March 2022 - May 2022" link="" image="media/gcmdesigns/gcmdesigns-thumbnail.png" info="Featured" tags="HTML/CSS, Portfolio Website" desc="A portfolio website made for Gabriela Colon-Melendez, an Industrual Design major at Virginia Polytechnic Institute and State University. It displays some of her school projects that she has completed thus far, complete with images, design documents, CAD renderings, and sketches."></fa-gallery-item>
             <fa-gallery-item name="Prichi" dates="October 2021 - December 2021" link="" image="media/prichi/prichi-thumbnail.png" info="Featured" tags="PixiJS/Javascript, Turn-Based Strategy, Dungeon Crawler, 2D" desc="Prichi is an infinite 'dungeon crawler'-esque game where you play as a queen chess piece and try to eliminate all opposing black chess pieces. Each level is randomly generated and goal is to get as far as possible without blundering your queen!"></fa-gallery-item>
@@ -57,24 +57,14 @@
             <fa-gallery-item name="Collab" dates="October 2019 - December 2019" link="" image="media/collab/collab-thumbnail.png" info="Featured" tags="Unity/C#, 2-Player, Puzzle, Platformer, 2D" desc="Collab is a 2-player puzzle platforming game where you need to work together to solve various puzzles. Each player can switch between four unique character abilities to aid their navigation through each level. Have each player reach the goal to beat each level!"></fa-gallery-item>
             <fa-gallery-item name="Wumpus" dates="April 2019 - June 2019" link="" image="media/wumpus/wumpus-thumbnail.png" tags="Java, Turn-Based Strategy, Dungeon Crawler, 2D" desc="Wumpus is a dungeon crawler where you are tasked with killing the guardian of the dungeon, the Wumpus. Use various weapons and tools to locate the Wumpus while avoiding hazards and slay the beast!"></fa-gallery-item>
         </div>
-        <h1 id="toggle" class="box button" onclick="toggleFeaturedGalleryItems();">View All Projects</h1>
-        <!-- <h1 class="box">Projects In Development</h1>
-        <div class="gallery" style="grid-template-columns: repeat(2, 1fr);">
-            <div class="panel">
-                <h1>Shifty Dungeons</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A commodi voluptatibus sed voluptas dolor quas facilis quaerat impedit, provident, eius fugiat minima iste minus repudiandae pariatur quae! Sint id nulla iure amet minima minus harum
-                    at laboriosam assumenda. Eum, nemo. Dicta, deserunt! Cumque ea beatae in eos ratione. Fuga quas architecto atque optio at! Omnis perspiciatis illum natus minus dolore dicta consequatur autem tempora, totam provident assumenda, quod
-                    est, itaque sint cumque incidunt laboriosam commodi! Mollitia, iste soluta quia quod, sed explicabo architecto voluptatibus quam enim suscipit quasi perspiciatis, perferendis quo debitis? Maxime atque temporibus sit laudantium? Saepe,
-                    tempore modi!</p>
-            </div>
-            <div class="panel">
-                <h1>Breakthrough</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis dolorum non fugit quas quis natus impedit ratione aliquam laborum vel distinctio ipsam, delectus earum. Voluptatum fugiat dignissimos ipsum? Natus quae voluptas consequuntur
-                    minus libero atque neque sapiente sed eos? Ex modi nobis, dicta similique facere debitis quidem officia inventore beatae quod odit, aliquid dolorem rerum iusto, voluptates doloremque. Incidunt qui ullam, doloremque dolore deleniti
-                    rem aperiam mollitia atque corrupti asperiores id sequi delectus, adipisci officiis maiores numquam animi sed quasi repudiandae. Animi asperiores odio cupiditate at aperiam sed laudantium a exercitationem, doloribus quaerat? Soluta,
-                    neque? Consectetur eveniet explicabo et ex.</p>
-            </div>
-        </div> -->
+        <h1 class="box button" onclick="toggleFeaturedGalleryItems(this);">View All Projects</h1>
+        <h1 class="box" style="margin-top: calc(var(--spacing) * 4);">Projects In Development</h1>
+        <div class="text-gallery">
+            <fa-text-gallery-item name="Shifty Dungeons*" dates="February 2022 - Present" status="Developing Final Prototype" desc="Shifty Dungeon is a board game where the premise is to try and find a way to mimic the random generation of roguelike games as an analog board game. The game board is divided into 10 different pieces that are all placed randomly to create a different dungeon structure each time the game starts. Players take control of monsters that they aquire in the dungeon and can use to battle other players, or battle the dungeon boss and take his crown. The player who escapes with the dungeon boss's crown wins!"
+                tags="Board Game, Competitive, Dungeon Crawler, Deck Builder, Roguelike"></fa-text-gallery-item>
+            <fa-text-gallery-item name="Breakthrough" dates="May 2022 - Present" status="Planning/Developing First Prototype" desc="Breakthrough is a Tetris-like arcade game where instead of clearing lines, the player must use bombs that are attached to each Tetris piece to blow up other tiles. The goal is to get a piece under player control all the way to the bottom of the game board, or 'breaking through' the level. The game is endless and each level gets progressively harder to clear."
+                tags="Unity/C#, Arcade, Strategy, 2D"></fa-text-gallery-item>
+        </div>
     </div>
 </body>
 

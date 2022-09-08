@@ -46,11 +46,6 @@ header {
     padding: var(--spacing);
 }
 
-.panel {
-    background-color: var(--color2);
-    padding: var(--spacing);
-}
-
 .button {
     cursor: pointer;
     letter-spacing: unset;
@@ -65,7 +60,7 @@ header {
     background-color: var(--color3);
 }
 
-#gallery {
+.gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--gallery-size), 1fr));
     gap: var(--spacing);
@@ -140,4 +135,21 @@ header {
     flex-flow: column;
     gap: var(--spacing);
     align-items: start;
+}
+
+.text-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--gallery-size), 1fr));
+    gap: var(--spacing);
+    width: 100%;
+}
+
+.text-gallery>* {
+    display: flex;
+}
+
+.text-gallery-item {
+    justify-content: space-between;
+    background-color: var(--color2);
+    padding: var(--spacing);
 }
