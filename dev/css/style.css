@@ -137,14 +137,7 @@ header {
     align-items: start;
 }
 
-.text-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--gallery-size), 1fr));
-    gap: var(--spacing);
-    width: 100%;
-}
-
-.text-gallery>* {
+fa-text-gallery-item {
     display: flex;
 }
 
@@ -153,3 +146,11 @@ header {
     background-color: var(--color2);
     padding: var(--spacing);
 }
+
+#logo {
+    aspect-ratio: 1;
+    background-color: var(--color2);
+    padding: var(--spacing);
+}
+
+@media screen and (max-width:850px) {}

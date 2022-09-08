@@ -22,12 +22,12 @@
 <body>
     <div id="matter"></div>
     <div id="wrapper">
-        <header id="header">
-            <!-- <img src="media/logo.png" style="z-index: 100; cursor: pointer; position: fixed; top: var(--spacing); right: var(--spacing); width: 8vw;" onclick="document.getElementById('header').scrollIntoView({behavior: 'smooth'});"> -->
+        <header>
             <div class="vert-list">
-                <h1 class="box matter-html" style="font-size: 10em;">Frank Alfano</h1>
-                <h2 class="box matter-html" style="font-size: 3em;"><em>Game/Web Developer</em></h2>
-                <h1 class="box button matter-html" style="justify-self: center;" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">Jump To Projects</h1>
+                <img class="" style="width: 15vw; align-self: center;" src="media/logo.png">
+                <h1 class="box matter-html" style="font-size: max(7vw, 3em);">Frank Alfano</h1>
+                <h2 class="box matter-html" style="font-size: max(3vw, 1.5em);"><em>Game/Web Developer</em></h2>
+                <h1 id="jump-button" class="box button matter-html" style="font-size: max(2vw, 1em);" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">Jump To Projects</h1>
             </div>
         </header>
         <div class="section">
@@ -59,7 +59,7 @@
         </div>
         <h1 class="box button" onclick="toggleFeaturedGalleryItems(this);">View All Projects</h1>
         <h1 class="box" style="margin-top: calc(var(--spacing) * 4);">Projects In Development</h1>
-        <div class="text-gallery">
+        <div class="gallery">
             <fa-text-gallery-item name="Shifty Dungeons*" dates="February 2022 - Present" status="Developing Final Prototype" desc="Shifty Dungeon is a board game where the premise is to try and find a way to mimic the random generation of roguelike games as an analog board game. The game board is divided into 10 different pieces that are all placed randomly to create a different dungeon structure each time the game starts. Players take control of monsters that they aquire in the dungeon and can use to battle other players, or battle the dungeon boss and take his crown. The player who escapes with the dungeon boss's crown wins!"
                 tags="Board Game, Competitive, Dungeon Crawler, Deck Builder, Roguelike"></fa-text-gallery-item>
             <fa-text-gallery-item name="Breakthrough" dates="May 2022 - Present" status="Planning/Developing First Prototype" desc="Breakthrough is a Tetris-like arcade game where instead of clearing lines, the player must use bombs that are attached to each Tetris piece to blow up other tiles. The goal is to get a piece under player control all the way to the bottom of the game board, or 'breaking through' the level. The game is endless and each level gets progressively harder to clear."
