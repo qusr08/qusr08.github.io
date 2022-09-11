@@ -12,7 +12,7 @@ const REF_SHP_VEL = 0.01;
 const REF_SHP_ANG_VEL = 0.05;
 
 const WRAPPER = document.getElementById("wrapper");
-const SHP_SPWN_RATE = 450;
+const SHP_SPWN_RATE = 500;
 const S_SHP_ROT_SPD = 0.005;
 const MAX_SHPS = 150;
 

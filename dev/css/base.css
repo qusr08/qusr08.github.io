@@ -11,7 +11,7 @@
     --spacing: max(1vw, 1vh);
     --border: 5px;
     --transition-time: 0.2s;
-    --gallery-size: 400px;
+    --gallery-size: 375px;
 }
 
 * {

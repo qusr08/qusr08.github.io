@@ -29,7 +29,7 @@ body {
 
 .section {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: calc(var(--spacing) * 6);
     padding: calc(var(--spacing) * 6);
 }
@@ -41,8 +41,13 @@ header {
     align-items: center;
 }
 
-.box {
+.box-em {
     background-color: var(--color3);
+    padding: var(--spacing);
+}
+
+.box-reg {
+    background-color: var(--color2);
     padding: var(--spacing);
 }
 
@@ -75,7 +80,7 @@ header {
     background-position: center;
     background-size: cover;
     background-blend-mode: multiply;
-    border: 0px solid var(--color3);
+    border: 0px solid var(--color2);
     padding: var(--spacing);
     justify-content: space-between;
     cursor: pointer;
@@ -93,8 +98,8 @@ header {
     flex-flow: column nowrap;
     align-items: flex-end;
     gap: var(--border);
-    top: calc(var(--spacing) * -0.5);
-    right: calc(var(--spacing) * -0.5);
+    top: calc(var(--border) * -1);
+    right: calc(var(--border) * -1);
     transition: top var(--transition-time) ease, right var(--transition-time) ease;
 }
 
@@ -116,8 +121,8 @@ header {
 }
 
 .gallery-item:hover .gallery-item-info {
-    top: calc(var(--spacing) * -0.75);
-    right: calc(var(--spacing) * -0.75);
+    top: calc(var(--border) * -2);
+    right: calc(var(--border) * -2);
 }
 
 .gallery-item:hover .gallery-item-info>p {
@@ -129,7 +134,7 @@ header {
     padding: var(--border);
 }
 
-.content {
+main {
     padding: var(--spacing);
     display: flex;
     flex-flow: column;
@@ -141,16 +146,58 @@ fa-text-gallery-item {
     display: flex;
 }
 
+.screen-warning {
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+    background-color: var(--color4);
+    color: var(--color3);
+    align-self: center;
+    visibility: hidden;
+    margin: var(--spacing);
+    text-align: center;
+}
+
 .text-gallery-item {
     justify-content: space-between;
     background-color: var(--color2);
     padding: var(--spacing);
 }
 
-#logo {
-    aspect-ratio: 1;
-    background-color: var(--color2);
+footer {
+    height: 10vh;
+    display: flex;
     padding: var(--spacing);
+    flex-flow: column nowrap;
+    justify-content: center;
 }
 
-@media screen and (max-width:850px) {}
+@media screen and (max-width: 780px) {
+    .gallery-item {
+        aspect-ratio: unset;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    .gallery-item>* {
+        display: flex;
+    }
+    .gallery-item .gallery-item-info>p {
+        background-color: var(--color3);
+    }
+    .gallery-item:hover {
+        border-width: 0px;
+    }
+    .gallery-item:hover .gallery-item-info {
+        top: calc(var(--border) * -1);
+        right: calc(var(--border) * -1);
+    }
+    .screen-warning {
+        visibility: visible;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .section {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+}

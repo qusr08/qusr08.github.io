@@ -25,27 +25,42 @@
         <header>
             <div class="vert-list">
                 <img class="" style="width: 15vw; align-self: center;" src="media/logo.png">
-                <h1 class="box matter-html" style="font-size: max(7vw, 3em);">Frank Alfano</h1>
-                <h2 class="box matter-html" style="font-size: max(3vw, 1.5em);"><em>Game/Web Developer</em></h2>
-                <h1 id="jump-button" class="box button matter-html" style="font-size: max(2vw, 1em);" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">Jump To Projects</h1>
+                <h1 class="box-em matter-html" style="font-size: max(7vw, 3em);">Frank Alfano</h1>
+                <h2 class="box-em matter-html" style="font-size: max(3vw, 1.5em);"><em>Game/Web Developer</em></h2>
+                <h1 id="jump-button" class="box-em button matter-html" style="font-size: max(2vw, 1em);" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">Jump To Projects</h1>
+                <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
             </div>
         </header>
         <div class="section">
-            <div class="box matter-html" style="grid-column: 3 / span 2;">
-                <h1>About Me</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et fugit eveniet blanditiis, modi fugiat eius ducimus porro! Maxime provident cum sunt neque nesciunt ipsa quibusdam maiores ipsum atque perspiciatis voluptate sed, dicta itaque
-                    quasi quis? Temporibus, incidunt! Asperiores esse facere nesciunt iste illo, perferendis quasi delectus sed, rerum nemo veritatis!</p>
+            <div class="vert-list" style="grid-column: 2 / span 1; align-items: end;">
+                <h1 class="box-em matter-html">About Me</h1>
+                <p class="box-reg matter-html">Hello! I'm Frankie and I love to make games! I have been programming since middle school and have been fascinated with video games ever since I could hold a controller. I have been heavily involved in robotics as well and have competed
+                    on multiple teams throughout middle school and high school. I have programmed in many languages like C#, C, C++, Python, Java, and Javascript, but I think my favorite language is C#. I use Unity a lot to develop my games and am fairly
+                    familiar with the engine. Over the few years I have been at college, I have also grown a liking for web development and UI design.</p>
+                <p class="box-reg matter-html">Currently I am a third-year student at the Rochester Institute of Technology studying Game Design and Development. I am using my time here to develop my game designing skills, meet like-minded friends in classes, and to connect with the
+                    resources the school offers for game designers.</p>
+                <p class="box-reg matter-html">I like to think of myself as very empathic and hard-working. I have had plenty of experience being a part of a team as well as leading a team and communication is definitely something that is needed for any project. I always get my side
+                    of the project done in time in order for the team to move forward and stay on track.</p>
+                <h1 id="jump-button" class="box-em button matter-html">Resume</h1>
             </div>
-            <div class="box matter-html" style="grid-column: 1 / span 2;">
-                <h1>My Interests</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id laudantium cupiditate autem rerum magni dolor assumenda animi vel eum alias nobis, fugiat eaque quae labore necessitatibus aliquid modi perspiciatis aspernatur corporis? Recusandae
-                    quis inventore similique eum nihil, magni magnam hic ad architecto. Tempore laboriosam totam, animi earum et fuga harum!</p>
+            <div class="vert-list" style="grid-column: 1 / span 1;">
+                <h1 class="box-em matter-html">My Interests</h1>
+                <p class="box-reg matter-html">My favorite types of games are puzzle games. I have always loved solving puzzles and really thinking about problems to solve them. A lot of the game ideas I come up with have puzzle elements in them as I also find puzzles fun to design
+                    and come up with. Some of my favorite puzzle games are Baba Is You, FEZ, Mini Motorways, Portal 2, and Into The Breach.</p>
+                <p class="box-reg matter-html">I also am very interested in randomness and procedural generation in games, whether that means making random worlds for the player to walk around in or loot tables for chest drops. I feel that randomness is a way to infinitely expand upon
+                    any game idea and make each gameplay experience unique from the last. With the same amount of assets you can get entirely new gameplay each time you start up the game. A lot of my game ideas incorporate randomness as well.</p>
+                <p class="box-reg matter-html">My favorite aspects of game development are definitely gameplay programming and level design. I love getting in and creating good mechanics and controls for the player as well as making the levels around them as they play. My dream job
+                    would be to open my own indie game studio with a small team of people, but honestly any job where I get to develop games for a living is a win in my book.</p>
+                <p class="box-reg matter-html">Outside of technology, I find space super interesting. I always like to just look up at the sky at night and relax. I also like to take walks or ride my bike around when I can to stay active. I also collect rubix cubes :)</p>
+            </div>
+            <div class="vert-list" style="grid-row: 3; grid-column: 2 / span 1; align-items: end;">
+                <h1 class="box-em matter-html">Contacts</h1>
             </div>
         </div>
         <div style="background-image: linear-gradient(transparent, var(--color1)); height: 50vh;"></div>
     </div>
-    <div class="content">
-        <h1 id="projects" class="box">My Projects</h1>
+    <main>
+        <h1 id="projects" class="box-em">My Projects</h1>
         <div class="gallery featured">
             <fa-gallery-item name="DOS" dates="July 2022 - August 2022" link="" image="media/dos/dos-thumbnail.png" info="Top 5% GMTK Game Jam 2022, Featured" tags="GMTK Game Jam 2022, Unity/C#, Puzzle, 3D Isometric" desc="DOS (two in Spanish) is a single-player puzzle game where the objective is to strategically roll the die to get the two face on top! Use the various tiles that make up each level which can move or rotate the die to achieve the goal."></fa-gallery-item>
             <fa-gallery-item name="gcmdesigns" dates="March 2022 - May 2022" link="" image="media/gcmdesigns/gcmdesigns-thumbnail.png" info="Featured" tags="HTML/CSS, Portfolio Website" desc="A portfolio website made for Gabriela Colon-Melendez, an Industrual Design major at Virginia Polytechnic Institute and State University. It displays some of her school projects that she has completed thus far, complete with images, design documents, CAD renderings, and sketches."></fa-gallery-item>
@@ -57,15 +72,20 @@
             <fa-gallery-item name="Collab" dates="October 2019 - December 2019" link="" image="media/collab/collab-thumbnail.png" info="Featured" tags="Unity/C#, 2-Player, Puzzle, Platformer, 2D" desc="Collab is a 2-player puzzle platforming game where you need to work together to solve various puzzles. Each player can switch between four unique character abilities to aid their navigation through each level. Have each player reach the goal to beat each level!"></fa-gallery-item>
             <fa-gallery-item name="Wumpus" dates="April 2019 - June 2019" link="" image="media/wumpus/wumpus-thumbnail.png" tags="Java, Turn-Based Strategy, Dungeon Crawler, 2D" desc="Wumpus is a dungeon crawler where you are tasked with killing the guardian of the dungeon, the Wumpus. Use various weapons and tools to locate the Wumpus while avoiding hazards and slay the beast!"></fa-gallery-item>
         </div>
-        <h1 class="box button" onclick="toggleFeaturedGalleryItems(this);">View All Projects</h1>
-        <h1 class="box" style="margin-top: calc(var(--spacing) * 4);">Projects In Development</h1>
+        <h1 class="box-em button" style="align-self: end;" onclick="toggleFeaturedGalleryItems(this);">View All Projects</h1>
+        <h1 class="box-em" style="margin-top: calc(var(--spacing) * 4);">Projects In Development</h1>
         <div class="gallery">
             <fa-text-gallery-item name="Shifty Dungeons*" dates="February 2022 - Present" status="Developing Final Prototype" desc="Shifty Dungeon is a board game where the premise is to try and find a way to mimic the random generation of roguelike games as an analog board game. The game board is divided into 10 different pieces that are all placed randomly to create a different dungeon structure each time the game starts. Players take control of monsters that they aquire in the dungeon and can use to battle other players, or battle the dungeon boss and take his crown. The player who escapes with the dungeon boss's crown wins!"
                 tags="Board Game, Competitive, Dungeon Crawler, Deck Builder, Roguelike"></fa-text-gallery-item>
             <fa-text-gallery-item name="Breakthrough" dates="May 2022 - Present" status="Planning/Developing First Prototype" desc="Breakthrough is a Tetris-like arcade game where instead of clearing lines, the player must use bombs that are attached to each Tetris piece to blow up other tiles. The goal is to get a piece under player control all the way to the bottom of the game board, or 'breaking through' the level. The game is endless and each level gets progressively harder to clear."
                 tags="Unity/C#, Arcade, Strategy, 2D"></fa-text-gallery-item>
         </div>
-    </div>
+    </main>
+    <footer>
+        <p>Last updated on: <strong>9/11/2022</strong> <em>Version 3.0.0</em></p>
+        <a href="https://github.com/qusr08/frankalfano" target="_blank">Website Github Repository</a>
+        <p>Created by Frank Alfano</p>
+    </footer>
 </body>
 
 </html>
