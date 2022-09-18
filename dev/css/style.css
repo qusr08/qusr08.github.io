@@ -32,6 +32,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: calc(var(--spacing) * 6);
     padding: calc(var(--spacing) * 6);
+    align-items: start;
 }
 
 header {
@@ -56,6 +57,7 @@ header {
     letter-spacing: unset;
     font-weight: 100;
     background-color: var(--color2);
+    color: var(--color4);
     transition: letter-spacing var(--transition-time) ease, font-weight var(--transition-time) ease, background-color var(--transition-time) ease;
 }
 
@@ -63,6 +65,19 @@ header {
     letter-spacing: 0.1em;
     font-weight: unset;
     background-color: var(--color3);
+    color:var(--color4);
+}
+
+.image-button {
+    display: flex;
+    font-size: 2em;
+    align-items: center;
+    gap: var(--spacing);
+    text-decoration: none;
+}
+
+.image-button>img {
+    width: 1.5em;
 }
 
 .gallery {
@@ -170,6 +185,7 @@ footer {
     padding: var(--spacing);
     flex-flow: column nowrap;
     justify-content: center;
+    align-items: end;
 }
 
 @media screen and (max-width: 780px) {
@@ -199,5 +215,6 @@ footer {
     .section {
         display: flex;
         flex-flow: column nowrap;
+        align-items: stretch;
     }
 }

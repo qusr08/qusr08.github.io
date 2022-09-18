@@ -14,7 +14,7 @@ const REF_SHP_ANG_VEL = 0.05;
 const WRAPPER = document.getElementById("wrapper");
 const SHP_SPWN_RATE = 500;
 const S_SHP_ROT_SPD = 0.005;
-const MAX_SHPS = 150;
+const MAX_SHPS = 200;
 
 const PEG_DEN = 0;
 
@@ -36,7 +36,7 @@ let runner;
 
 /************************************************* METHODS *******************************************************/
 
-window.onresize = function(event) {
+window.onresize = function (event) {
     // Shift all gravity objects
     // updateGameObjects();
     gameObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
@@ -58,7 +58,7 @@ window.onresize = function(event) {
     createObjectsFromHTML();
 };
 
-window.onmousemove = function(event) {
+window.onmousemove = function (event) {
     mousePosition = { x: event.clientX + window.scrollX, y: event.clientY + window.scrollY };
 
     if (mouseConstraint == undefined) {
@@ -68,7 +68,7 @@ window.onmousemove = function(event) {
     Matter.Body.setPosition(mouseConstraint, mousePosition);
 };
 
-window.onload = function(event) {
+window.onload = function (event) {
     updateVariables();
 
     // Create an engine
@@ -115,7 +115,7 @@ window.onload = function(event) {
         render: { visible: false }
     })]);
 
-    Matter.Events.on(engine, 'afterUpdate', function(event) {
+    Matter.Events.on(engine, 'afterUpdate', function (event) {
         // If one of the gravity shapes has reached the bottom of the website, destroy it
         for (let i = gameObjects.length - 1; i >= 0; i--) {
             if (gameObjects[i].position.y > wrapperHeight + shapeSize) {
@@ -126,7 +126,7 @@ window.onload = function(event) {
     });
 
     // Create a new shape after a set interval
-    setInterval(function() {
+    setInterval(function () {
         if (document.hasFocus() && gameObjects.length <= MAX_SHPS) {
             createGameObject();
         }
@@ -135,20 +135,6 @@ window.onload = function(event) {
     createObjectsFromHTML();
     createPegObjects();
 };
-
-function updateGameObjects() {
-    let newWidthRatio = window.innerWidth / REF_WINDOW_WIDTH;
-
-    gameObjects.forEach(element => {
-        // Convert the previous dimensions of the coordinates to the new dimensions
-        let refX = map(element.position.x, 0, wrapperWidth, 0, WRAPPER.offsetWidth);
-        let refY = map(element.position.y, 0, wrapperHeight, 0, WRAPPER.offsetHeight);
-        let refScale = 1 + newWidthRatio - widthRatio;
-
-        Matter.Body.setPosition(element, { x: refX, y: refY });
-        Matter.Body.scale(element, refScale, refScale);
-    });
-}
 
 function createObjectsFromHTML() {
     HTMLObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
@@ -165,41 +151,47 @@ function createObjectsFromHTML() {
         // Rectangle vertices
         let vertices = [{ x: -(width / 2), y: -(height / 2) }, { x: (width / 2), y: -(height / 2) }, { x: (width / 2), y: (height / 2) }, { x: -(width / 2), y: (height / 2) }];
 
-        // Check for alterations in the vertices from html
-        if (element.hasAttribute("matter-slant")) {
-            let mInfo = element.getAttribute("matter-slant").trim().split(/\s+/);
+        // // Check for alterations in the vertices from html
+        // if (element.hasAttribute("matter-slant")) {
+        //     let mInfo = element.getAttribute("matter-slant").trim().split(/\s+/);
 
-            for (let i = 0; i < mInfo.length; i += 3) {
-                // 0: vertex to move
-                // 1: x to move vertex
-                // 2: y to move vertex
+        //     for (let i = 0; i < mInfo.length; i += 3) {
+        //         // 0: vertex to move
+        //         // 1: x to move vertex
+        //         // 2: y to move vertex
 
-                let xChange = 0;
-                let yChange = 0;
+        //         let xChange = 0;
+        //         let yChange = 0;
 
-                if (mInfo[i + 1].includes("deg")) {
-                    xChange = height * Math.tan(parseInt(mInfo[i + 1]) * DEG_TO_RAD);
-                } else {
-                    xChange = parseInt(mInfo[i + 1]);
-                }
+        //         if (mInfo[i + 1].includes("deg")) {
+        //             xChange = height * Math.tan(parseInt(mInfo[i + 1]) * DEG_TO_RAD);
+        //         } else {
+        //             xChange = parseInt(mInfo[i + 1]);
+        //         }
 
-                if (mInfo[i + 2].includes("deg")) {
-                    yChange = width * Math.tan(parseInt(mInfo[i + 2]) * DEG_TO_RAD);
-                } else {
-                    yChange = parseInt(mInfo[i + 2]);
-                }
+        //         if (mInfo[i + 2].includes("deg")) {
+        //             yChange = width * Math.tan(parseInt(mInfo[i + 2]) * DEG_TO_RAD);
+        //         } else {
+        //             yChange = parseInt(mInfo[i + 2]);
+        //         }
 
-                vertices[parseInt(mInfo[i])].x += xChange;
-                vertices[parseInt(mInfo[i])].y -= yChange;
-            }
-        }
+        //         vertices[parseInt(mInfo[i])].x += xChange;
+        //         vertices[parseInt(mInfo[i])].y -= yChange;
+        //     }
+        // }
 
-        // Get the center of the new vertices so the center of the object can be offset
-        let offsetPosition = getVerticesCenter(vertices);
+        // // Get the center of the new vertices so the center of the object can be offset
+        // let offsetPosition = getVerticesCenter(vertices);
+
+        // // Create a static object
+        // let o = Matter.Bodies.fromVertices(x + offsetPosition.x, y + offsetPosition.y, vertices, {
+        //     // render: { fillStyle: getComputedStyle(element).backgroundColor },
+        //     render: { fillStyle: '#00000000' },
+        //     isStatic: true
+        // });
 
         // Create a static object
-        let o = Matter.Bodies.fromVertices(x + offsetPosition.x, y + offsetPosition.y, vertices, {
-            // render: { fillStyle: getComputedStyle(element).backgroundColor },
+        let o = Matter.Bodies.fromVertices(x, y, vertices, {
             render: { fillStyle: '#00000000' },
             isStatic: true
         });
@@ -289,51 +281,65 @@ function updateVariables() {
     shapeAngleVelocity = widthRatio * REF_SHP_ANG_VEL;
 }
 
+// function updateGameObjects() {
+//     let newWidthRatio = window.innerWidth / REF_WINDOW_WIDTH;
+
+//     gameObjects.forEach(element => {
+//         // Convert the previous dimensions of the coordinates to the new dimensions
+//         let refX = map(element.position.x, 0, wrapperWidth, 0, WRAPPER.offsetWidth);
+//         let refY = map(element.position.y, 0, wrapperHeight, 0, WRAPPER.offsetHeight);
+//         let refScale = 1 + newWidthRatio - widthRatio;
+
+//         Matter.Body.setPosition(element, { x: refX, y: refY });
+//         Matter.Body.scale(element, refScale, refScale);
+//     });
+// }
+
 function getRandomNumber(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-function getRandomArrayValue(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
+// function getRandomArrayValue(array) {
+//     return array[Math.floor(Math.random() * array.length)];
+// }
 
-function map(number, inMin, inMax, outMin, outMax) {
-    // https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+// function map(number, inMin, inMax, outMin, outMax) {
+//     // https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
 
-    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-}
+//     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+// }
 
-function getVerticesCenter(vertices) {
-    // https://stackoverflow.com/questions/9692448/how-can-you-find-the-centroid-of-a-concave-irregular-polygon-in-javascript
+// function getVerticesCenter(vertices) {
+//     // https://stackoverflow.com/questions/9692448/how-can-you-find-the-centroid-of-a-concave-irregular-polygon-in-javascript
 
-    let first = vertices[0],
-        last = vertices[vertices.length - 1];
-    let addedValue = false;
-    let twicearea = 0,
-        x = 0,
-        y = 0,
-        nPts = vertices.length,
-        p1, p2, f;
+//     let first = vertices[0],
+//         last = vertices[vertices.length - 1];
+//     let addedValue = false;
+//     let twicearea = 0,
+//         x = 0,
+//         y = 0,
+//         nPts = vertices.length,
+//         p1, p2, f;
 
-    if (first.x != last.x || first.y != last.y) {
-        vertices.push(first);
-        addedValue = true;
-    }
+//     if (first.x != last.x || first.y != last.y) {
+//         vertices.push(first);
+//         addedValue = true;
+//     }
 
-    for (let i = 0, j = nPts - 1; i < nPts; j = i++) {
-        p1 = vertices[i];
-        p2 = vertices[j];
-        f = p1.x * p2.y - p2.x * p1.y;
-        twicearea += f;
-        x += (p1.x + p2.x) * f;
-        y += (p1.y + p2.y) * f;
-    }
+//     for (let i = 0, j = nPts - 1; i < nPts; j = i++) {
+//         p1 = vertices[i];
+//         p2 = vertices[j];
+//         f = p1.x * p2.y - p2.x * p1.y;
+//         twicearea += f;
+//         x += (p1.x + p2.x) * f;
+//         y += (p1.y + p2.y) * f;
+//     }
 
-    f = twicearea * 3;
+//     f = twicearea * 3;
 
-    if (addedValue) {
-        vertices.pop();
-    }
+//     if (addedValue) {
+//         vertices.pop();
+//     }
 
-    return { x: x / f, y: y / f };
-}
+//     return { x: x / f, y: y / f };
+// }
