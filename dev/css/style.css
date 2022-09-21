@@ -35,11 +35,15 @@ body {
     align-items: start;
 }
 
-header {
+fa-header {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+fa-game-header>div {
+    max-height: 1080px;
 }
 
 .box-em {
@@ -53,6 +57,11 @@ header {
 }
 
 .button {
+    display: flex;
+    font-size: 2em;
+    align-items: center;
+    gap: var(--spacing);
+    text-decoration: none;
     cursor: pointer;
     letter-spacing: unset;
     font-weight: 100;
@@ -61,23 +70,15 @@ header {
     transition: letter-spacing var(--transition-time) ease, font-weight var(--transition-time) ease, background-color var(--transition-time) ease;
 }
 
+.button>img {
+    width: 1.5em;
+}
+
 .button:hover {
     letter-spacing: 0.1em;
     font-weight: unset;
     background-color: var(--color3);
-    color:var(--color4);
-}
-
-.image-button {
-    display: flex;
-    font-size: 2em;
-    align-items: center;
-    gap: var(--spacing);
-    text-decoration: none;
-}
-
-.image-button>img {
-    width: 1.5em;
+    color: var(--color4);
 }
 
 .gallery {
@@ -104,7 +105,8 @@ header {
 }
 
 .gallery-item>* {
-    display: none;
+    opacity: 0;
+    transition: opacity var(--transition-time) ease;
 }
 
 .gallery-item-info {
@@ -112,6 +114,7 @@ header {
     position: absolute;
     flex-flow: column nowrap;
     align-items: flex-end;
+    opacity: 1;
     gap: var(--border);
     top: calc(var(--border) * -1);
     right: calc(var(--border) * -1);
@@ -132,7 +135,7 @@ header {
 }
 
 .gallery-item:hover>* {
-    display: flex;
+    opacity: 1;
 }
 
 .gallery-item:hover .gallery-item-info {
@@ -179,7 +182,7 @@ fa-text-gallery-item {
     padding: var(--spacing);
 }
 
-footer {
+fa-footer {
     height: 10vh;
     display: flex;
     padding: var(--spacing);
@@ -194,7 +197,7 @@ footer {
         background-color: rgba(0, 0, 0, 0.7);
     }
     .gallery-item>* {
-        display: flex;
+        opacity: 1;
     }
     .gallery-item .gallery-item-info>p {
         background-color: var(--color3);

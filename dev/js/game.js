@@ -36,7 +36,7 @@ let runner;
 
 /************************************************* METHODS *******************************************************/
 
-window.onresize = function (event) {
+window.onresize = function(event) {
     // Shift all gravity objects
     // updateGameObjects();
     gameObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
@@ -58,7 +58,7 @@ window.onresize = function (event) {
     createObjectsFromHTML();
 };
 
-window.onmousemove = function (event) {
+window.onmousemove = function(event) {
     mousePosition = { x: event.clientX + window.scrollX, y: event.clientY + window.scrollY };
 
     if (mouseConstraint == undefined) {
@@ -68,7 +68,7 @@ window.onmousemove = function (event) {
     Matter.Body.setPosition(mouseConstraint, mousePosition);
 };
 
-window.onload = function (event) {
+window.onload = function(event) {
     updateVariables();
 
     // Create an engine
@@ -115,7 +115,7 @@ window.onload = function (event) {
         render: { visible: false }
     })]);
 
-    Matter.Events.on(engine, 'afterUpdate', function (event) {
+    Matter.Events.on(engine, 'afterUpdate', function(event) {
         // If one of the gravity shapes has reached the bottom of the website, destroy it
         for (let i = gameObjects.length - 1; i >= 0; i--) {
             if (gameObjects[i].position.y > wrapperHeight + shapeSize) {
@@ -126,7 +126,7 @@ window.onload = function (event) {
     });
 
     // Create a new shape after a set interval
-    setInterval(function () {
+    setInterval(function() {
         if (document.hasFocus() && gameObjects.length <= MAX_SHPS) {
             createGameObject();
         }

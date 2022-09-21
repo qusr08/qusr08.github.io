@@ -28,7 +28,6 @@ window.customElements.define('fa-gallery-item', class extends HTMLElement {
             infoHTML += `</div>`;
         }
 
-        this.style.backgroundImage = `url('${image}')`;
         this.style.display = (infoHTML.indexOf("Featured") != -1 ? "unset" : "none");
 
         this.innerHTML = `
@@ -74,6 +73,80 @@ window.customElements.define('fa-text-gallery-item', class extends HTMLElement {
                 </div>
                 <div class="hori-list" style="flex-wrap: wrap;">${tagsHTML}</div>
             </a>
+        `;
+    }
+});
+
+window.customElements.define('fa-footer', class extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        this.innerHTML = `
+            <p>Last updated on: <strong>9/20/2022</strong> <em>Version 3.0.0</em></p>
+            <a href="https://github.com/qusr08/frankalfano" target="_blank">Website Github Repository</a>
+            <p>Created by Frank Alfano</p>
+        `;
+    }
+});
+
+window.customElements.define('fa-header', class extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        let title = this.getAttribute('title');
+        let subtitle = this.getAttribute('subtitle');
+        let buttonText = this.getAttribute('buttonText');
+        let buttonLink = this.getAttribute('buttonLink');
+        let buttonOnClick = this.getAttribute('buttonOnClick');
+
+        let titleHTML = ``;
+        if (title != undefined) {
+            titleHTML = `<h1 class="box-em matter-html" style="font-size: max(7vw, 3em);">${title}</h1>`;
+        }
+
+        let subtitleHTML = ``;
+        if (subtitle != undefined) {
+            subtitleHTML = `<h2 class="box-em matter-html" style="font-size: max(3vw, 1.5em);"><em>${subtitle}</em></h2>`;
+        }
+
+        let buttonHTML = ``;
+        if (buttonText != undefined) {
+            if (buttonLink != undefined) {
+                buttonHTML = `<a class="box-em button matter-html" style="font-size: max(2vw, 1em);" href="${buttonLink}">${buttonText}</a>`;
+            } else if (buttonOnClick != undefined) {
+                buttonHTML = `<a class="box-em button matter-html" style="font-size: max(2vw, 1em);" onclick="${buttonOnClick}">${buttonText}</a>`;
+            }
+        }
+
+        this.innerHTML = `
+            <div class="vert-list">
+                <img style="width: 15vw; align-self: center;" src="media/logo.png">
+                <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
+                ${titleHTML}
+                ${subtitleHTML}
+                ${buttonHTML}
+            </div>
+        `;
+    }
+});
+
+window.customElements.define('fa-game-header', class extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        let titleImage = this.getAttribute('title');
+        let backgroundImage = this.getAttribute('background');
+
+        this.innerHTML = `
+            <div class="vert-list" style="max-width: 100%; background-image: url('${backgroundImage}');">
+                <img src="${titleImage}">
+            </div>
         `;
     }
 });
