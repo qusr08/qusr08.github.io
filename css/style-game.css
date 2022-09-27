@@ -36,7 +36,7 @@ header>img {
     width: var(--gallery-size);
     border-left: var(--color1) solid 0;
     background-color: var(--color3);
-    /* background-image: url('../media/space-background.png'); */
+    /* background-image: url('media/space-background.png'); */
     /* background-position: 500px 0px; */
     /* background-size: 1500px; */
     height: 100%;

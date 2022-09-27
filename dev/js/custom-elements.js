@@ -23,7 +23,13 @@ window.customElements.define('fa-gallery-item', class extends HTMLElement {
         if (info != undefined) {
             infoHTML += `<div class="gallery-item-info">`;
             info.trim().split(',').forEach(item => {
-                infoHTML += `<p>${item.trim()}</p>`;
+                if (item.indexOf("GMTK Game Jam 2021") != -1) {
+                    infoHTML += `<p class="gmtk-2021">${item.trim()}</p>`;
+                } else if (item.indexOf("GMTK Game Jam 2022") != -1) {
+                    infoHTML += `<p class="gmtk-2022">${item.trim()}</p>`;
+                } else {
+                    infoHTML += `<p>${item.trim()}</p>`;
+                }
             });
             infoHTML += `</div>`;
         }
@@ -84,8 +90,8 @@ window.customElements.define('fa-footer', class extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = `
-            <p>Last updated on: <strong>9/20/2022</strong> <em>Version 3.0.0</em></p>
-            <a href="https://github.com/qusr08/frankalfano" target="_blank">Website Github Repository</a>
+            <p>Last updated on: <span id="github-date"><strong>XX/XX/XXXX</strong></span> <em>Version 3.0.0</em></p>
+            <a href="https://github.com/qusr08/frankalfano" target="_blank"><p>Website Github Repository</p></a>
             <p>Created by Frank Alfano</p>
         `;
     }
@@ -140,13 +146,53 @@ window.customElements.define('fa-game-header', class extends HTMLElement {
     }
 
     connectedCallback() {
-        let titleImage = this.getAttribute('title');
-        let backgroundImage = this.getAttribute('background');
+        let project = this.getAttribute('project');
 
         this.innerHTML = `
-            <div class="vert-list" style="max-width: 100%; background-image: url('${backgroundImage}');">
-                <img src="${titleImage}">
+            <div style="background-image: url('media/${project}/${project}-title-background.png');">
+                <img style="width: 75vw;" src="media/${project}/${project}-title-art.png">
+                <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
             </div>
+        `;
+    }
+});
+
+window.customElements.define('fa-game-credit', class extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        let category = this.getAttribute('category');
+        let people = this.getAttribute('people');
+        let tools = this.getAttribute('tools');
+
+        let toolsHTML = `<div>`;
+        if (tools != undefined) {
+            toolsHTML += `<p><em>Using ${tools}</em></p>`;
+        }
+        toolsHTML += "</div>";
+
+        this.innerHTML = `
+            <h2>${category}</h2>
+            <p>${people}</p>
+            ${toolsHTML}
+        `;
+    }
+});
+
+window.customElements.define('fa-game-music', class extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        let title = this.getAttribute('title');
+        let source = this.getAttribute('source');
+
+        this.innerHTML = `
+            <h2>${title}</h2>
+            <audio controls loop src="${source}" type="audio/wav"></audio>
         `;
     }
 });
@@ -170,7 +216,7 @@ function toggleFeaturedGalleryItems(button) {
     }
 
     // Change the inner text of the toggle button
-    button.innerHTML = `${isFeaturedGallery ? "View Featured Projects": "View All Projects"}`;
+    button.innerHTML = `${isFeaturedGallery ? "View Featured Projects" : "View All Projects"}`;
 
     // Add or remove the featured class from the gallery object so it toggles back and forth each time the button is pressed
     if (isFeaturedGallery) {
@@ -179,3 +225,24 @@ function toggleFeaturedGalleryItems(button) {
         gallery.classList.add("featured");
     }
 }
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        let repos = JSON.parse(this.responseText);
+
+        repos.forEach((repo) => {
+            if (repo.name == "frankalfano") {
+                console.log("Found!");
+                var lastUpdated = new Date(repo.updated_at);
+                var day = lastUpdated.getUTCDate();
+                var month = lastUpdated.getUTCMonth();
+                var year = lastUpdated.getUTCFullYear();
+                document.getElementById('#github-date').innerHTML = `<strong>${month}/${day}/${year}</strong>`;
+            }
+        });
+    }
+};
+xhttp.open("GET", "https://api.github.com/users/qusr08/repos", true);
+xhttp.open("GET", "https://api.github.com/repos/qusr08/frankalfano/commits", true);
+xhttp.send();

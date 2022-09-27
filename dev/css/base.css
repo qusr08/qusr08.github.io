@@ -8,6 +8,7 @@
     --color3: #D32344;
     --color4: white;
     --color5: #222222;
+    --tint-color: rgba(0, 0, 0, 0.7);
     --spacing: max(1vw, 1vh);
     --border: 5px;
     --transition-time: 0.2s;
@@ -19,6 +20,10 @@
     font-family: 'Barlow', sans-serif;
     color: var(--color4);
     margin: 0px;
+}
+
+p {
+    font-size: 1.15em;
 }
 
 ::selection {

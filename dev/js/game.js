@@ -36,7 +36,7 @@ let runner;
 
 /************************************************* METHODS *******************************************************/
 
-window.onresize = function(event) {
+window.onresize = function (event) {
     // Shift all gravity objects
     // updateGameObjects();
     gameObjects.forEach(element => { Matter.Composite.remove(engine.world, element); });
@@ -58,7 +58,7 @@ window.onresize = function(event) {
     createObjectsFromHTML();
 };
 
-window.onmousemove = function(event) {
+window.onmousemove = function (event) {
     mousePosition = { x: event.clientX + window.scrollX, y: event.clientY + window.scrollY };
 
     if (mouseConstraint == undefined) {
@@ -68,7 +68,31 @@ window.onmousemove = function(event) {
     Matter.Body.setPosition(mouseConstraint, mousePosition);
 };
 
-window.onload = function(event) {
+window.onload = function (event) {
+    // #region Website Updating
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let repos = JSON.parse(this.responseText);
+
+            repos.forEach((repo) => {
+                if (repo.name == "frankalfano") {
+                    console.log("Found!");
+                    var lastUpdated = new Date(repo.updated_at);
+                    var day = lastUpdated.getUTCDate();
+                    var month = lastUpdated.getUTCMonth();
+                    var year = lastUpdated.getUTCFullYear();
+                    document.getElementById('#github-date').innerHTML = `<strong>${month}/${day}/${year}</strong>`;
+                }
+            });
+        }
+    };
+    xhttp.open("GET", "https://api.github.com/users/qusr08/repos", true);
+    xhttp.send();
+
+    // #endregion
+
     updateVariables();
 
     // Create an engine
@@ -115,7 +139,7 @@ window.onload = function(event) {
         render: { visible: false }
     })]);
 
-    Matter.Events.on(engine, 'afterUpdate', function(event) {
+    Matter.Events.on(engine, 'afterUpdate', function (event) {
         // If one of the gravity shapes has reached the bottom of the website, destroy it
         for (let i = gameObjects.length - 1; i >= 0; i--) {
             if (gameObjects[i].position.y > wrapperHeight + shapeSize) {
@@ -126,7 +150,7 @@ window.onload = function(event) {
     });
 
     // Create a new shape after a set interval
-    setInterval(function() {
+    setInterval(function () {
         if (document.hasFocus() && gameObjects.length <= MAX_SHPS) {
             createGameObject();
         }
