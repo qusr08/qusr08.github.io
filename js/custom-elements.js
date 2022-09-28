@@ -1,155 +1,207 @@
-const PROJECT_ROOT = "/frankalfano";
+window.customElements.define('fa-gallery-item', class extends HTMLElement {
+    constructor() {
+        super();
+    }
 
-window.customElements.define('custom-menu', class extends HTMLElement {
+    connectedCallback() {
+        let name = this.getAttribute('name');
+        let dates = this.getAttribute('dates');
+        let desc = this.getAttribute('desc');
+        let image = this.getAttribute('image');
+        let link = this.getAttribute('link');
+        let tags = this.getAttribute('tags');
+        let info = this.getAttribute('info');
+
+        let tagsHTML = "";
+        if (tags != undefined) {
+            tags.trim().split(',').forEach(tag => {
+                tagsHTML += `<p class="gallery-em">${tag.trim()}</p>`;
+            });
+        }
+
+        let infoHTML = "";
+        if (info != undefined) {
+            infoHTML += `<div class="gallery-item-info">`;
+            info.trim().split(',').forEach(item => {
+                if (item.indexOf("GMTK Game Jam 2021") != -1) {
+                    infoHTML += `<p class="gmtk-2021">${item.trim()}</p>`;
+                } else if (item.indexOf("GMTK Game Jam 2022") != -1) {
+                    infoHTML += `<p class="gmtk-2022">${item.trim()}</p>`;
+                } else if (item.indexOf("Featured") != -1) {
+                    infoHTML += `<p class="special">${item.trim()}</p>`;
+                } else {
+                    infoHTML += `<p>${item.trim()}</p>`;
+                }
+            });
+            infoHTML += `</div>`;
+        }
+
+        this.style.display = (infoHTML.indexOf("Featured") != -1 ? "unset" : "none");
+
+        this.innerHTML = `
+            <a class="gallery-item vert-list" style="background-image: url('${image}');" href="${link}">
+                <div class="vert-list">
+                    <h1 class="gallery-em">${name}</h1>
+                    <h3>${dates}</h3>
+                    <p>${desc}</p>
+                </div>
+                <div class="hori-list" style="flex-wrap: wrap;">${tagsHTML}</div>
+                ${infoHTML}
+            </a>
+        `;
+    }
+});
+
+window.customElements.define('fa-text-gallery-item', class extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        let name = this.getAttribute('name');
+        let dates = this.getAttribute('dates');
+        let status = this.getAttribute('status');
+        let desc = this.getAttribute('desc');
+        let tags = this.getAttribute('tags');
+
+        let tagsHTML = "";
+        if (tags != undefined) {
+            tags.trim().split(',').forEach(tag => {
+                tagsHTML += `<p class="gallery-em">${tag.trim()}</p>`;
+            });
+        }
+
+        this.innerHTML = `
+            <a class="text-gallery-item vert-list">
+                <div class="vert-list">
+                    <h1 class="gallery-em">${name}</h1>
+                    <h2><em>${status}</em></h2>
+                    <h3>${dates}</h3>
+                    <p>${desc}</p>
+                </div>
+                <div class="hori-list" style="flex-wrap: wrap;">${tagsHTML}</div>
+            </a>
+        `;
+    }
+});
+
+window.customElements.define('fa-footer', class extends HTMLElement {
     constructor() {
         super();
     }
 
     connectedCallback() {
         this.innerHTML = `
-            <div>
-                <div id="info">
-                    <a href="${PROJECT_ROOT}/media/Resume.pdf">Resume</a>
-                    <a href="">About</a>
-                    <a href="${PROJECT_ROOT}/index.html"><img src="${PROJECT_ROOT}/media/logo.png"></a>
-                    <a href="mailto:falfanoiii@gmail.com">Email</a>
-                    <a href="https://discordapp.com/users/368904010322673665/">Discord</a>
-                </div>
-                <div class="socials">
-                    <a class="social" href="https://www.instagram.com/frankalfanoiii/"><img src="${PROJECT_ROOT}/media/logos/instagram-logo.png"></a>
-                    <a class="social" href="https://discordapp.com/users/368904010322673665/"><img src="${PROJECT_ROOT}/media/logos/discord-logo.png"></a>
-                    <a class="social" href="https://steamcommunity.com/id/qusr/"><img src="${PROJECT_ROOT}/media/logos/steam-logo.png"></a>
-                    <a class="social" href="https://twitter.com/__qusr"><img src="${PROJECT_ROOT}/media/logos/twitter-logo.png"></a>
-                    <a class="social" href="https://qusr.itch.io/"><img src="${PROJECT_ROOT}/media/logos/itchio-logo.png"></a>
-                    <a class="social" href="https://fontstruct.com/fontstructors/1616822/quasar-1"><img src="${PROJECT_ROOT}/media/logos/fontstruct-logo.png"></a>
-                    <a class="social" href="https://github.com/qusr08"><img src="${PROJECT_ROOT}/media/logos/github-logo.png"></a>
-                    <a class="social" href="https://www.linkedin.com/in/frankalfanoiii/"><img src="${PROJECT_ROOT}/media/logos/linkedin-logo.png"></a>
-                </div>
+            <p>Last updated on: <strong><span id="github-date">XX/XX/XXXX</span></strong> <em><span id="github-version">Version X.X.X</span></em></p>
+            <p><a href="https://github.com/qusr08/qusr08.github.io">Website Github Repository</a></p>
+            <p>Created by Frank Alfano</p>
+        `;
+    }
+});
+
+window.customElements.define('fa-header', class extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        let title = this.getAttribute('title');
+        let subtitle = this.getAttribute('subtitle');
+        let buttonText = this.getAttribute('buttonText');
+        let buttonLink = this.getAttribute('buttonLink');
+        let buttonOnClick = this.getAttribute('buttonOnClick');
+
+        let titleHTML = ``;
+        if (title != undefined) {
+            titleHTML = `<h1 class="box-em matter-html" style="font-size: max(7vw, 3em);">${title}</h1>`;
+        }
+
+        let subtitleHTML = ``;
+        if (subtitle != undefined) {
+            subtitleHTML = `<h2 class="box-em matter-html" style="font-size: max(3vw, 1.5em);"><em>${subtitle}</em></h2>`;
+        }
+
+        let buttonHTML = ``;
+        if (buttonText != undefined) {
+            if (buttonLink != undefined) {
+                buttonHTML = `<a class="box-em button matter-html" style="font-size: max(2vw, 1em);" href="${buttonLink}">${buttonText}</a>`;
+            } else if (buttonOnClick != undefined) {
+                buttonHTML = `<a class="box-em button matter-html" style="font-size: max(2vw, 1em);" onclick="${buttonOnClick}">${buttonText}</a>`;
+            }
+        }
+
+        this.innerHTML = `
+            <div class="vert-list">
+                <img style="width: 15vw; align-self: center;" src="media/logo.png">
+                <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
+                ${titleHTML}
+                ${subtitleHTML}
+                ${buttonHTML}
             </div>
         `;
     }
 });
 
-window.customElements.define('custom-gallery', class extends HTMLElement {
+window.customElements.define('fa-game-header', class extends HTMLElement {
     constructor() {
         super();
     }
 
     connectedCallback() {
-        this.innerHTML = `
-            <a class="gallery-item" href="${PROJECT_ROOT}/projects/gcmdesigns.html" style="background-image: url('${PROJECT_ROOT}/projects/gcmdesigns/gcmdesigns-thumbnail.png');">
-                <h1>gcmdesigns</h1>
-                <h4>Mar 2022 - Present</h4>
-                <div class="gallery-item-banner">
-                    <p><strong>New Addition!</strong></p>
-                </div>
-            </a>
-            <a class="gallery-item" href="${PROJECT_ROOT}/projects/prichi.html" style="background-image: url('${PROJECT_ROOT}/projects/prichi/prichi-thumbnail.png');">
-                <h1>Prichi</h1>
-                <h4>Oct 2021 - Dec 2021</h4>
-            </a>
-            <a class="gallery-item" href="${PROJECT_ROOT}/projects/into-orbit.html" style="background-image: url('${PROJECT_ROOT}/projects/into-orbit/into-orbit-thumbnail.png');">
-                <h1>Into Orbit</h1>
-                <h4>Aug 2021 - Oct 2021</h4>
-            </a>
-            <a class="gallery-item" href="${PROJECT_ROOT}/projects/blockchain.html" style="background-image: url('${PROJECT_ROOT}/projects/blockchain/blockchain-thumbnail.png');">
-                <h1>Blockchain</h1>
-                <h4>Jun 2021 - Jul 2021</h4>
-                <div class="gallery-item-banner">
-                    <p><strong>Top 10%</strong> GMTK Game Jam 2021</p>
-                </div>
-            </a>
-            <a class="gallery-item" href="${PROJECT_ROOT}/projects/monozombie.html" style="background-image: url('${PROJECT_ROOT}/projects/monozombie/monozombie-thumbnail.png');">
-                <h1>Monozombie</h1>
-                <h4>Feb 2021 - May 2021</h4>
-            </a>
-            <a class="gallery-item" href="${PROJECT_ROOT}/projects/collab.html" style="background-image: url('${PROJECT_ROOT}/projects/collab/collab-thumbnail.png');">
-                <h1>Collab</h1>
-                <h4>Oct 2019 - Dec 2019</h4>
-            </a>
-            <a class="gallery-item" href="${PROJECT_ROOT}/projects/wumpus.html" style="background-image: url('${PROJECT_ROOT}/projects/wumpus/wumpus-thumbnail.png');">
-                <h1>Wumpus</h1>
-                <h4>Apr 2019 - Jun 2019</h4>
-            </a>
-        `;
-    }
-});
+        let project = this.getAttribute('project');
 
-window.customElements.define('custom-footer', class extends HTMLElement {
-    constructor() {
-        super();
-    }
-
-    connectedCallback() {
-        this.innerHTML = `
-            <footer>
-                <custom-menu></custom-menu>
-                <p>Last updated on June 10th, 2022</p>
-                <a href="https://github.com/qusr08${PROJECT_ROOT}">Website Github Repository</a>
-            </footer>
-        `;
-    }
-});
-
-window.customElements.define('mobile-warning', class extends HTMLElement {
-    constructor() {
-        super();
-    }
-
-    connectedCallback() {
-        this.innerHTML = `
-            <p>
-                <strong>Hey!</strong> This website is best viewed on a device with a larger screen :)
-            </p>
-        `;
-    }
-});
-
-window.customElements.define('game-menu', class extends HTMLElement {
-    constructor() {
-        super();
-    }
-
-    connectedCallback() {
-        this.innerHTML = `
-            <div class="game-menu">
-                <button onClick="toggleMenu()">≡</button>
-                <a href="${PROJECT_ROOT}/index.html"><img src="${PROJECT_ROOT}/media/logo.png"></a>
-                <custom-gallery></custom-gallery>
+        this.innerHTML += `
+            <div style="background-image: url('media/${project}/${project}-title-background.png');">
+                <img style="max-width: 75vw; max-height: 50vh; width: 100%; height: 100%; object-fit: contain;" src="media/${project}/${project}-title-art.png">
+                <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
+                <a class="box-em button" style="position: absolute; left: var(--spacing); bottom: var(--spacing);" href="index.html">Back To Main Page</a>
             </div>
         `;
     }
 });
 
-window.customElements.define('game-credit', class extends HTMLElement {
+window.customElements.define('fa-game-credit', class extends HTMLElement {
     constructor() {
         super();
     }
 
     connectedCallback() {
-        this.innerHTML = "";
+        let category = this.getAttribute('category');
+        let people = this.getAttribute('people');
+        let tools = this.getAttribute('tools');
 
-        if (this.getAttribute("category")) {
-            this.innerHTML += `<h3>${this.getAttribute("category")}</h3>`;
+        let toolsHTML = `<div>`;
+        if (tools != undefined) {
+            toolsHTML += `<p><em>Using ${tools}</em></p>`;
         }
-        if (this.getAttribute("people")) {
-            this.innerHTML += `<p>${this.getAttribute("people")}</p>`;
-        }
-        if (this.getAttribute("tools")) {
-            this.innerHTML += `<p><em>Using ${this.getAttribute("tools")}</em></p>`;
-        }
+        toolsHTML += "</div>";
+
+        this.innerHTML = `
+            <h2>${category}</h2>
+            <p>${people}</p>
+            ${toolsHTML}
+        `;
     }
 });
 
-window.customElements.define('game-music', class extends HTMLElement {
+window.customElements.define('fa-game-music', class extends HTMLElement {
     constructor() {
         super();
     }
 
     connectedCallback() {
+        let title = this.getAttribute('title');
+        let source = this.getAttribute('source');
+        let link = this.getAttribute('link');
+
+        let titleHTML = `<h2>${title}</h2>`;
+        if (link != undefined) {
+            titleHTML = `<h2><a href="${link}">${title}</a></h2>`
+        }
+
         this.innerHTML = `
-            <h3>${this.getAttribute("name")}</h3>
-            <audio controls loop src="${this.getAttribute("src")}"></audio>
+            ${titleHTML}
+            <audio controls loop src="${source}" type="audio/wav"></audio>
         `;
     }
 });
