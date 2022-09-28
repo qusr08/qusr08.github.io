@@ -34,7 +34,7 @@ function updateFromGithub() {
     let xhttpDate = new XMLHttpRequest();
     let xhttpVersion = new XMLHttpRequest();
 
-    xhttpDate.onreadystatechange = function () {
+    xhttpDate.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let repos = JSON.parse(this.responseText);
 
@@ -53,10 +53,10 @@ function updateFromGithub() {
         }
     };
 
-    xhttpVersion.onreadystatechange = function () {
+    xhttpVersion.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let commit = JSON.parse(this.responseText)[0];
-            document.getElementById('github-version').innerHTML = `<a href="${commit.html_url}">${commit.commit.message}</a>`;
+            document.getElementById('github-version').innerHTML = `<a href="${commit.html_url}">${commit.commit.message.split("\n\n")[0]}</a>`;
         }
     };
 
@@ -67,7 +67,7 @@ function updateFromGithub() {
     xhttpVersion.send();
 }
 
-window.onload = function (event) {
+window.onload = function(event) {
     updateFromGithub();
 
     // The game won't always be loaded for each webpage
