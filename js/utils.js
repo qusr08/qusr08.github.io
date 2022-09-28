@@ -40,7 +40,7 @@ function updateFromGithub() {
 
             repos.forEach((repo) => {
                 if (repo.name == "qusr08.github.io") {
-                    let lastUpdated = new Date(repo.updated_at);
+                    let lastUpdated = new Date(repo.pushed_at);
                     let day = lastUpdated.getUTCDate();
                     let month = lastUpdated.getUTCMonth();
                     let year = lastUpdated.getUTCFullYear();
