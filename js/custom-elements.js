@@ -154,7 +154,7 @@ window.customElements.define('fa-game-header', class extends HTMLElement {
             <div style="background-image: url('media/${project}/${project}-title-background.png');">
                 <img style="max-width: 75vw; max-height: 50vh; width: 100%; height: 100%; object-fit: contain;" src="media/${project}/${project}-title-art.png">
                 <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
-                <a class="box-em button" style="position: absolute; left: var(--spacing); bottom: var(--spacing);" href="index.html">Back To Main Page</a>
+                <a class="box-em button" style="position: absolute; left: var(--spacing); bottom: var(--spacing);" href="index.html#projects">Back To Main Page</a>
             </div>
         `;
     }

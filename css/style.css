@@ -1,9 +1,11 @@
 #wrapper {
-    position: absolute;
     width: 100%;
     min-height: 100vh;
-    top: 0px;
-    left: 0px;
+}
+
+#matter {
+    position: absolute;
+    z-index: -100;
 }
 
 body {
