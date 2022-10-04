@@ -85,10 +85,6 @@ fa-footer {
     transition: letter-spacing var(--transition-time) ease, font-weight var(--transition-time) ease, background-color var(--transition-time) ease;
 }
 
-.button.matter-html {
-    background-color: var(--panel-color-transparent);
-}
-
 .button>img {
     width: 1.5em;
 }
@@ -98,10 +94,6 @@ fa-footer {
     font-weight: unset;
     background-color: var(--detail-color);
     color: var(--text-color);
-}
-
-.button:hover.matter-html {
-    background-color: var(--detail-color-transparent);
 }
 
 audio {
