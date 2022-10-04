@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: var(--color1);
+    background-color: var(--background-color);
     overflow-x: hidden;
 }
 
@@ -62,12 +62,12 @@ fa-footer {
 }
 
 .box-em {
-    background-color: var(--color3);
+    background-color: var(--detail-color);
     padding: var(--spacing);
 }
 
 .box-reg {
-    background-color: var(--color2);
+    background-color: var(--panel-color);
     padding: var(--spacing);
 }
 
@@ -80,8 +80,8 @@ fa-footer {
     cursor: pointer;
     letter-spacing: unset;
     font-weight: 100;
-    background-color: var(--color2);
-    color: var(--color4);
+    background-color: var(--panel-color);
+    color: var(--text-color);
     transition: letter-spacing var(--transition-time) ease, font-weight var(--transition-time) ease, background-color var(--transition-time) ease;
 }
 
@@ -92,17 +92,17 @@ fa-footer {
 .button:hover {
     letter-spacing: 0.1em;
     font-weight: unset;
-    background-color: var(--color3);
-    color: var(--color4);
+    background-color: var(--detail-color);
+    color: var(--text-color);
 }
 
 audio {
-    background-color: var(--color4);
+    background-color: var(--text-color);
     width: 100%;
 }
 
 audio::-webkit-media-controls-panel {
-    background-color: var(--color4);
+    background-color: var(--text-color);
     align-self: stretch;
 }
 
@@ -143,7 +143,7 @@ fa-game-header>div {
     width: 100%;
     max-width: 100%;
     border-width: 0px;
-    background-color: var(--color2);
+    background-color: var(--panel-color);
     text-align: center;
 }
 
@@ -157,7 +157,7 @@ fa-game-header>div {
 
 fa-game-credit,
 fa-game-music {
-    background-color: var(--color2);
+    background-color: var(--panel-color);
     padding: var(--spacing);
     display: flex;
     flex-flow: column nowrap;
@@ -182,7 +182,7 @@ fa-game-music>h2 {
 
 .special {
     font-weight: bold;
-    background-image: linear-gradient(var(--color6), var(--color6));
+    background-image: linear-gradient(var(--featured-color), var(--featured-color));
 }
 
 
@@ -206,7 +206,7 @@ fa-game-music>h2 {
     background-position: center;
     background-size: cover;
     background-blend-mode: multiply;
-    border: 0px solid var(--color2);
+    border: 0px solid var(--panel-color);
     padding: var(--spacing);
     justify-content: space-between;
     cursor: pointer;
@@ -232,7 +232,7 @@ fa-game-music>h2 {
 }
 
 .gallery-item-info>p {
-    background-color: var(--color2);
+    background-color: var(--panel-color);
     padding: var(--border);
     width: fit-content;
     transition: background-color var(--transition-time) ease;
@@ -253,11 +253,11 @@ fa-game-music>h2 {
 }
 
 .gallery-item:hover .gallery-item-info>p {
-    background-color: var(--color3);
+    background-color: var(--detail-color);
 }
 
 .gallery-em {
-    background-color: var(--color3);
+    background-color: var(--detail-color);
     padding: var(--border);
 }
 
@@ -267,7 +267,7 @@ fa-text-gallery-item {
 
 .text-gallery-item {
     justify-content: space-between;
-    background-color: var(--color2);
+    background-color: var(--panel-color);
     padding: var(--spacing);
 }
 
@@ -278,8 +278,8 @@ fa-text-gallery-item {
     position: fixed;
     z-index: 100;
     top: 0px;
-    background-color: var(--color4);
-    color: var(--color3);
+    background-color: var(--text-color);
+    color: var(--detail-color);
     align-self: center;
     visibility: hidden;
     margin: var(--spacing);
@@ -295,7 +295,7 @@ fa-text-gallery-item {
         opacity: 1;
     }
     .gallery-item .gallery-item-info>p {
-        background-color: var(--color3);
+        background-color: var(--detail-color);
     }
     .gallery-item:hover {
         border-width: 0px;

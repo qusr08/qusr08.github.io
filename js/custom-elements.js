@@ -132,7 +132,7 @@ window.customElements.define('fa-header', class extends HTMLElement {
 
         this.innerHTML = `
             <div class="vert-list">
-                <img style="width: 15vw; align-self: center;" src="media/logo.png">
+                <img style="width: 15vw; align-self: center;" src="media/logo-squared.png">
                 <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
                 ${titleHTML}
                 ${subtitleHTML}
