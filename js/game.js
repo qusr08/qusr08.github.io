@@ -3,8 +3,13 @@
 // https://stackoverflow.com/questions/9692448/how-can-you-find-the-centroid-of-a-concave-irregular-polygon-in-javascript
 // https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
 
+// https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function
+
 // Setup the app
 "use strict";
+
+// https://stackoverflow.com/questions/1740700/how-to-get-hex-color-value-rather-than-rgb-value
+const RGBA_2_HEX = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`;
 
 const BASE_WINDOW_WIDTH = 1920;
 const BASE_WINDOW_HEIGHT = 1080;
@@ -22,6 +27,10 @@ const MOUSE_CONSTRAINT_DAMPING = 0;
 const HTML_CONSTRAINT_STIFFNESS = 0.025;
 const HTML_CONSTRAINT_DAMPING = 0.1;
 const HTML_CONSTRAINT_DISTANCE_MODIFIER = 12;
+
+const ANIMATION_EASING_CONTROLLER = bezier(0.25, 0.1, 0.25, 1.0);
+const ANIMATION_RATE = 1;
+const ANIMATION_TIME = getComputedStyle(document.documentElement).getPropertyValue("--transition-time").replace('s', '') * 1000;
 
 // https://www.temiz.dev/blog/matter-js-collisions-explained
 const CATEGORY_GAME = 2;
@@ -57,9 +66,9 @@ let isInitialized = false;
 
 /************************************************* METHODS *******************************************************/
 
-window.onresize = function(event) { updateGame(); };
+window.onresize = function (event) { updateGame(); };
 
-window.onmousemove = function(event) { if (isInitialized) { mouseMatterObject.update({ x: event.clientX + window.scrollX, y: event.clientY + window.scrollY }); } };
+window.onmousemove = function (event) { if (isInitialized) { mouseMatterObject.update({ x: event.clientX + window.scrollX, y: event.clientY + window.scrollY }); } };
 
 function initializeGame() {
     updateVariables();
@@ -73,7 +82,7 @@ function initializeGame() {
             width: WRAPPER.offsetWidth,
             height: WRAPPER.offsetHeight,
             wireframes: false,
-            background: getComputedStyle(document.documentElement).getPropertyValue('--color1'),
+            background: getComputedStyle(document.documentElement).getPropertyValue('--background-color'),
             hasBounds: true
         },
         element: document.getElementById("matter"),
@@ -81,6 +90,8 @@ function initializeGame() {
     });
     render.canvas.style.imageRendering = 'pixelated';
     Matter.Render.run(render);
+
+    updateVariables();
 
     // Create a runner
     runner = Matter.Runner.create();
@@ -90,7 +101,7 @@ function initializeGame() {
     mouseMatterObject = new MouseMatterObject();
 
     // Add update functionality for matter
-    Matter.Events.on(engine, 'afterUpdate', function(event) {
+    Matter.Events.on(engine, 'afterUpdate', function (event) {
         // If one of the gravity shapes has reached the bottom of the website, destroy it
         for (let i = gameObjects.length - 1; i >= 0; i--) {
             if (gameObjects[i].position.y > WRAPPER.offsetHeight + shapeSize) {
@@ -101,7 +112,7 @@ function initializeGame() {
     });
 
     // Create a new shape after a set interval
-    setInterval(function() {
+    setInterval(function () {
         if (document.hasFocus() && gameObjects.length <= SHAPE_MAX_COUNT) {
             createGameObject();
         }
@@ -110,6 +121,8 @@ function initializeGame() {
     // Create background object
     createHTMLMatterObjects();
     createPegObjects();
+
+    window.requestAnimationFrame(updateHTMLMatterObjects);
 
     isInitialized = true;
 }
@@ -163,7 +176,7 @@ function createGameObject() {
     let x = Math.random() * WRAPPER.offsetWidth;
     let y = -shapeSize * 2;
     let options = {
-        render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color3') },
+        render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--detail-color') },
         collisionFilter: {
             category: CATEGORY_GAME,
             mask: CATEGORY_GAME | CATEGORY_HTML
@@ -210,7 +223,7 @@ function createPegObjects() {
 
             // Create the peg object
             let pegBody = Matter.Bodies.circle(x, y, size, {
-                render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--color5') },
+                render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--peg-color') },
                 collisionFilter: {
                     category: CATEGORY_HTML,
                     mask: CATEGORY_GAME
@@ -285,14 +298,46 @@ function updateGame() {
     }
 }
 
+function updateHTMLMatterObjects (timestamp) {
+    HTMLMatterObjects.forEach(matterObject => {
+        if (matterObject.willAnimate) {
+            matterObject.update();
+        }
+    });
+
+    window.requestAnimationFrame(updateHTMLMatterObjects);
+}
+
+// https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+function map(number, inMin, inMax, outMin, outMax) {
+    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+
 class HTMLMatterObject {
     constructor(HTMLElement) {
         this.HTMLElement = HTMLElement;
+        this.width = -1;
+        this.height = -1;
+        this.x = -1;
+        this.y = -1;
+
+        this.willAnimate = HTMLElement.classList.contains("button");
 
         this.body = undefined;
         this.pegVoid = undefined;
         this.constraintBodies = [undefined, undefined];
         this.constraints = [undefined, undefined];
+
+        // this.animationInterval = undefined;
+        // this.animationValue = 0;
+        // this.animateForward = true;
+
+        // let _this = this;
+        // if (this.willAnimate) {
+        //     setInterval(function () {
+        //         _this.update();
+        //     }, 1);
+        // }
 
         this.update();
     }
@@ -304,42 +349,85 @@ class HTMLMatterObject {
         let x = this.HTMLElement.offsetLeft + (width / 2);
         let y = this.HTMLElement.offsetTop + (height / 2);
 
-        // If the body has been created before, we are going to replace it here with new dimensions
-        if (this.body != undefined) {
-            Matter.Composite.remove(engine.world, this.body);
+        // If the dimensions have changed from the starting place, 
+        if (this.width != width || this.height != height || this.x != x || this.y != y) {
+            this.width = width;
+            this.height = height;
+            this.x = x;
+            this.y = y;
+
+            // If the body has been created before, we are going to replace it here with new dimensions
+            if (this.body != undefined) {
+                Matter.Composite.remove(engine.world, this.body);
+            }
+
+            let backgroundColor = RGBA_2_HEX(getComputedStyle(this.HTMLElement).backgroundColor);
+            console.log(getComputedStyle(this.HTMLElement).backgroundColor);
+            if (this.willAnimate) {
+                backgroundColor = backgroundColor.slice(0, -2);
+            }
+
+            // Create a matter body
+            this.body = Matter.Bodies.rectangle(x, y, width, height, {
+                render: { fillStyle: backgroundColor },
+                collisionFilter: {
+                    category: CATEGORY_HTML,
+                    mask: CATEGORY_GAME | CATEGORY_HTML
+                },
+                label: 'HTMLMatterObject'
+            });
+
+            if (!this.willAnimate) {
+                this.HTMLElement.style.backgroundColor = 'transparent';
+            }
+
+            // Add the body to the world
+            Matter.Composite.add(engine.world, this.body);
+
+            // Calculate the peg void from the body
+            // this.pegVoid = [{ x: x, y: y, w: width + (shapeSize * 2), h: (height * 1.5) + (shapeSize * 2) }];
+            this.pegVoid = { x: x, y: y, r: (Math.max(width, height) / 2) + (shapeSize * 2) };
+
+            // Remove old constraints
+            this.constraints.forEach(constraint => { if (constraint != undefined) { Matter.Composite.remove(engine.world, constraint); } });
+            this.constraintBodies.forEach(constraintBody => { if (constraintBody != undefined) { Matter.Composite.remove(engine.world, constraintBody); } });
+
+            // Remake constraints
+            this.constraintBodies[0] = createConstraintBody({ x: x - (width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: y });
+            this.constraintBodies[1] = createConstraintBody({ x: x + (width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: y });
+            Matter.Composite.add(engine.world, this.constraintBodies);
+            this.constraints[0] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, this.body, this.constraintBodies[0]);
+            this.constraints[1] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, this.body, this.constraintBodies[1]);
+            Matter.Composite.add(engine.world, this.constraints);
         }
-
-        // Create a matter body
-        this.body = Matter.Bodies.rectangle(x, y, width, height, {
-            render: { fillStyle: getComputedStyle(this.HTMLElement).backgroundColor },
-            collisionFilter: {
-                category: CATEGORY_HTML,
-                mask: CATEGORY_GAME | CATEGORY_HTML
-            },
-            label: 'HTMLMatterObject'
-        });
-
-        this.HTMLElement.style.backgroundColor = 'transparent';
-
-        // Add the body to the world
-        Matter.Composite.add(engine.world, this.body);
-
-        // Calculate the peg void from the body
-        // this.pegVoid = [{ x: x, y: y, w: width + (shapeSize * 2), h: (height * 1.5) + (shapeSize * 2) }];
-        this.pegVoid = { x: x, y: y, r: (Math.max(width, height) / 2) + (shapeSize * 2) };
-
-        // Remove old constraints
-        this.constraints.forEach(constraint => { if (constraint != undefined) { Matter.Composite.remove(engine.world, constraint); } });
-        this.constraintBodies.forEach(constraintBody => { if (constraintBody != undefined) { Matter.Composite.remove(engine.world, constraintBody); } });
-
-        // Remake constraints
-        this.constraintBodies[0] = createConstraintBody({ x: x - (width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: y });
-        this.constraintBodies[1] = createConstraintBody({ x: x + (width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: y });
-        Matter.Composite.add(engine.world, this.constraintBodies);
-        this.constraints[0] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, this.body, this.constraintBodies[0]);
-        this.constraints[1] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, this.body, this.constraintBodies[1]);
-        Matter.Composite.add(engine.world, this.constraints);
     }
+
+    // startAnimation(animateForward) {
+    //     this.animateForward = animateForward;
+
+    //     // Use _this to access class variables inside the timer function
+    //     let _this = this;
+
+    //     // Start the animation loop
+    //     this.animationInterval = setInterval(function() {
+    //         // let scaleValue = map(_this.animationValue, 0, 1, 1, 1.2);
+    //         // Matter.Body.scale(_this.body, scaleValue, 1);
+
+    //         _this.animationValue += (_this.animateForward ? 1 : -1) * (ANIMATION_RATE / ANIMATION_TIME);
+
+    //         // If the animation has reached the animation value it was trying to get to
+    //         if ((_this.animateForward && _this.animationValue >= 1) || (!_this.animateForward && _this.animationValue <= 0)) {
+    //             _this.stopAnimation();
+    //             console.log("awd");
+    //         }
+    //     }, ANIMATION_RATE);
+    // }
+
+    // stopAnimation () {
+    //     // Clear the animation loop
+    //     clearInterval(this.animationInterval);
+    //     this.animationInterval = undefined;
+    // }
 }
 
 class MouseMatterObject {
