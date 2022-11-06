@@ -21,6 +21,7 @@
     font-family: 'Barlow', sans-serif;
     color: var(--text-color);
     margin: 0px;
+    font-weight: 300;
 }
 
 p {
@@ -32,24 +33,27 @@ p {
     background: var(--text-color);
 }
 
-a:link {
+a:link>span {
+    color: var(--text-color);
+    transition: color var(--transition-time) ease, background var(--transition-time) ease;
+}
+
+a:visited>span {
     color: var(--text-color);
 }
 
-a:visited {
+a:focus>span {
     color: var(--text-color);
 }
 
-a:focus {
-    color: var(--text-color);
+a:hover>span {
+    color: var(--background-color);
+    background: var(--text-color);
 }
 
-a:hover {
-    color: var(--detail-color);
-}
-
-a:active {
-    color: var(--detail-color);
+a:active>span {
+    color: var(--background-color);
+    background: var(--text-color);
 }
 
 ::-webkit-scrollbar {

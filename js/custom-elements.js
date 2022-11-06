@@ -93,7 +93,7 @@ window.customElements.define('fa-footer', class extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <p>Last updated on: <strong><span id="github-date">XX/XX/XXXX</span></strong> <em><span id="github-version">Version X.X.X</span></em></p>
-            <p><a href="https://github.com/qusr08/qusr08.github.io">Website Github Repository</a></p>
+            <p><a href="https://github.com/qusr08/qusr08.github.io"><span>Website Github Repository</span></a></p>
             <p>Created by Frank Alfano</p>
         `;
     }
@@ -196,7 +196,7 @@ window.customElements.define('fa-game-music', class extends HTMLElement {
 
         let titleHTML = `<h2>${title}</h2>`;
         if (link != undefined) {
-            titleHTML = `<h2><a href="${link}">${title}</a></h2>`
+            titleHTML = `<h2><a href="${link}"><span>${title}</span></a></h2>`
         }
 
         this.innerHTML = `

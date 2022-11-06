@@ -56,7 +56,7 @@ function updateFromGithub() {
     xhttpVersion.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let commit = JSON.parse(this.responseText)[0];
-            document.getElementById('github-version').innerHTML = `<a href="${commit.html_url}">${commit.commit.message.split("\n\n")[0]}</a>`;
+            document.getElementById('github-version').innerHTML = `<a href="${commit.html_url}"><span>${commit.commit.message.split("\n\n")[0]}</span></a>`;
         }
     };
 
