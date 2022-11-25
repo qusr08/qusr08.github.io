@@ -48,8 +48,10 @@ main {
 fa-header {
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding-left: calc(var(--spacing) * 6);
+    padding-right: calc(var(--spacing) * 6);
 }
 
 fa-footer {
