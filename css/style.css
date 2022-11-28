@@ -1,4 +1,4 @@
-#wrapper {
+    #wrapper {
     width: 100%;
     min-height: 100vh;
 }
@@ -48,10 +48,18 @@ main {
 fa-header {
     height: 100vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-flow: column nowrap;
+    justify-content: center;
     padding-left: calc(var(--spacing) * 6);
     padding-right: calc(var(--spacing) * 6);
+}
+
+fa-header>div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing);
 }
 
 fa-footer {
@@ -286,6 +294,12 @@ fa-text-gallery-item {
     visibility: hidden;
     margin: var(--spacing);
     text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    fa-header>div {
+        flex-flow: column-reverse nowrap;
+    }
 }
 
 @media screen and (max-width: 780px) {
