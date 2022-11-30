@@ -245,7 +245,6 @@ fa-game-music>h2 {
     background-color: var(--panel-color);
     padding: var(--border);
     width: fit-content;
-    transition: background-color var(--transition-time) ease;
 }
 
 .gallery-item:hover {
@@ -260,10 +259,6 @@ fa-game-music>h2 {
 .gallery-item:hover .gallery-item-info {
     top: calc(var(--border) * -2);
     right: calc(var(--border) * -2);
-}
-
-.gallery-item:hover .gallery-item-info>p {
-    background-color: var(--detail-color);
 }
 
 .gallery-em {
