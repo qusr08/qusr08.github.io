@@ -1,8 +1,11 @@
 // https://brm.io/matter-js/docs/
+// http://schteppe.github.io/poly-decomp.js/#path=160,150/118,108/78,154/32,48/192,40
 
 // https://stackoverflow.com/questions/9692448/how-can-you-find-the-centroid-of-a-concave-irregular-polygon-in-javascript
 // https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+// https://stackoverflow.com/questions/14033281/including-javascript-files-from-github-into-html-pages
 
+// https://github.com/gre/bezier-easing
 // https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function
 
 // Setup the app
@@ -24,7 +27,7 @@ const PEG_THRESHOLD = 0;
 
 const MOUSE_CONSTRAINT_STIFFNESS = 0.1;
 const MOUSE_CONSTRAINT_DAMPING = 0;
-const HTML_CONSTRAINT_STIFFNESS = 0.025;
+const HTML_CONSTRAINT_STIFFNESS = 0.01;
 const HTML_CONSTRAINT_DAMPING = 0.1;
 const HTML_CONSTRAINT_DISTANCE_MODIFIER = 12;
 
@@ -32,6 +35,7 @@ const HTML_CONSTRAINT_DISTANCE_MODIFIER = 12;
 const CATEGORY_GAME = 2;
 const CATEGORY_HTML = 4;
 const CATEGORY_CONSTRAINT = 8;
+const CATEGORY_SPRITE = 16;
 
 let widthRatio, heightRatio;
 let shapeSize, shapeVelocity, shapeAngleVelocity;
@@ -108,12 +112,16 @@ function initializeGame() {
 }
 
 function createHTMLMatterObjects() {
-    Array.from(document.getElementsByClassName("matter-html")).forEach(element => {
-        HTMLMatterObjects.push(new HTMLMatterObject(element));
+    Array.from(document.getElementsByClassName("matter-rect-html")).forEach(element => {
+        HTMLMatterObjects.push(new HTMLMatterRectObject(element));
+    });
+
+    Array.from(document.getElementsByClassName("matter-logo-html")).forEach(element => {
+        HTMLMatterObjects.push(new HTMLMatterLogoObject(element));
     });
 }
 
-function createConstraint(stiffness, damping, mainBody, otherBody) {
+function createConstraint(stiffness, damping, length, mainBody, otherBody) {
     // Link the constraint object to the object passed into the function
     return Matter.Constraint.create({
         bodyA: mainBody,
@@ -121,7 +129,7 @@ function createConstraint(stiffness, damping, mainBody, otherBody) {
         pointA: { x: otherBody.position.x - mainBody.position.x, y: otherBody.position.y - mainBody.position.y },
         stiffness: stiffness,
         damping: damping,
-        length: 0,
+        length: length,
         render: { visible: false },
         label: 'Constraint'
     });
@@ -280,9 +288,7 @@ function updateGame() {
 
 function updateHTMLMatterObjects(timestamp) {
     HTMLMatterObjects.forEach(matterObject => {
-        if (matterObject.willAnimate) {
-            matterObject.update();
-        }
+        matterObject.update();
     });
 
     window.requestAnimationFrame(updateHTMLMatterObjects);
@@ -295,13 +301,9 @@ function map(number, inMin, inMax, outMin, outMax) {
 
 class HTMLMatterObject {
     constructor(HTMLElement) {
-        // let _this = this;
         this.HTMLElement = HTMLElement;
-        this.willAnimate = HTMLElement.classList.contains("button");
-        this.backgroundColor = getComputedStyle(this.HTMLElement).backgroundColor;
-        if (this.willAnimate) {
-            this.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue("--panel-color");
-        }
+        this.HTMLElementOffsetX = 0;
+        this.HTMLElementOffsetY = 0;
 
         this.width = -1;
         this.height = -1;
@@ -312,8 +314,6 @@ class HTMLMatterObject {
         this.pegVoid = undefined;
         this.constraintBodies = [undefined, undefined];
         this.constraints = [undefined, undefined];
-
-        this.update();
     }
 
     update() {
@@ -336,16 +336,7 @@ class HTMLMatterObject {
             }
 
             // Create a matter body
-            this.body = Matter.Bodies.rectangle(x, y, width, height, {
-                render: { fillStyle: this.backgroundColor },
-                collisionFilter: {
-                    category: CATEGORY_HTML,
-                    mask: CATEGORY_GAME | CATEGORY_HTML
-                },
-                label: 'HTMLMatterObject'
-            });
-
-            this.HTMLElement.style.backgroundColor = 'transparent';
+            this.body = this.createBody();
 
             // Add the body to the world
             Matter.Composite.add(engine.world, this.body);
@@ -359,13 +350,79 @@ class HTMLMatterObject {
             this.constraintBodies.forEach(constraintBody => { if (constraintBody != undefined) { Matter.Composite.remove(engine.world, constraintBody); } });
 
             // Remake constraints
-            this.constraintBodies[0] = createConstraintBody({ x: x - (width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: y });
-            this.constraintBodies[1] = createConstraintBody({ x: x + (width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: y });
+            this.constraintBodies[0] = createConstraintBody({ x: this.x - (this.width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
+            this.constraintBodies[1] = createConstraintBody({ x: this.x + (this.width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
             Matter.Composite.add(engine.world, this.constraintBodies);
-            this.constraints[0] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, this.body, this.constraintBodies[0]);
-            this.constraints[1] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, this.body, this.constraintBodies[1]);
+            this.constraints[0] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[0]);
+            this.constraints[1] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[1]);
             Matter.Composite.add(engine.world, this.constraints);
         }
+
+        // https://stackoverflow.com/questions/50391891/how-to-apply-sprite-textures-to-matter-js-bodies
+        // Update the position of the html element with the position of the matter object
+        let translatePosition = this.body.position;
+        let translateAngle = this.body.angle * (180 / Math.PI);
+        this.HTMLElement.style.transform = "translate(" + (translatePosition.x - this.x + this.HTMLElementOffsetX) + "px, " + (translatePosition.y - this.y + this.HTMLElementOffsetY) + "px) rotate(" + translateAngle + "deg)";
+    }
+
+    createBody() {}
+}
+
+class HTMLMatterRectObject extends HTMLMatterObject {
+    constructor(HTMLElement) {
+        super(HTMLElement);
+
+        this.update();
+    }
+
+    createBody() {
+        return Matter.Bodies.rectangle(this.x, this.y, this.width, this.height, {
+            render: { fillStyle: 'transparent' },
+            collisionFilter: {
+                category: CATEGORY_HTML,
+                mask: CATEGORY_GAME | CATEGORY_HTML
+            },
+            label: 'HTMLMatterRectObject'
+        });
+    }
+}
+
+class HTMLMatterLogoObject extends HTMLMatterObject {
+    constructor(HTMLElement) {
+        super(HTMLElement);
+
+        // http://maschek.hu/imagemap/imgmap/
+        this.imageCoords = "1468,99,1333,108,1212,131,1096,167,985,215,885,275,813,326,478,0,394,85,719,409,621,523,213,296,152,400,551,630,485,764,33,651,2,766,444,886,425,977,411,1097,409,1220,1089,1217,1128,1287,1186,1346,1259,1387,1338,1406,1429,1406,1430,1204,2519,1219,2520,1098,2520,1015,2501,918,2467,802,2417,684,2348,568,2262,458,2152,349,2011,248,1843,168,1706,128,1593,107".split(',');
+        this.imageWidth = 2526;
+        this.imageHeight = 1408;
+
+        this.update();
+    }
+
+    createBody() {
+        // Calculate the vertices of the collision polygon
+        let vertices = [];
+        let ratio = this.width / this.imageWidth;
+        for (let i = 0; i < this.imageCoords.length; i += 2) {
+            vertices.push({ x: this.imageCoords[i] * ratio, y: this.imageCoords[i + 1] * ratio });
+        }
+
+        this.HTMLElementOffsetX = -115 * ratio;
+        this.HTMLElementOffsetY = -31 * ratio;
+
+        // Create the body
+        return Matter.Bodies.fromVertices(this.x, this.y, vertices, {
+            render: {
+                // lineWidth: 1,
+                // strokeStyle: '#00FF00',
+                fillStyle: 'transparent'
+            },
+            collisionFilter: {
+                category: CATEGORY_HTML,
+                mask: CATEGORY_GAME | CATEGORY_HTML
+            },
+            label: 'HTMLMatterLogoObject'
+        });
     }
 }
 
@@ -386,7 +443,7 @@ class MouseMatterObject {
 
         // Create the constraint to connect the body to the mouse position
         this.constraintBody = createConstraintBody(this.mousePosition);
-        this.constraint = createConstraint(MOUSE_CONSTRAINT_STIFFNESS, MOUSE_CONSTRAINT_DAMPING, this.body, this.constraintBody);
+        this.constraint = createConstraint(MOUSE_CONSTRAINT_STIFFNESS, MOUSE_CONSTRAINT_DAMPING, 0, this.body, this.constraintBody);
 
         // Add the body and constraints to the world
         Matter.Composite.add(engine.world, [this.body, this.constraintBody, this.constraint]);

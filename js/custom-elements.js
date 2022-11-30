@@ -113,20 +113,20 @@ window.customElements.define('fa-header', class extends HTMLElement {
 
         let titleHTML = ``;
         if (title != undefined) {
-            titleHTML = `<h1 class="box-em matter-html" style="font-size: max(7vw, 3em);">${title}</h1>`;
+            titleHTML = `<h1 class="box-em matter-rect-html" style="font-size: max(7vw, 3em);">${title}</h1>`;
         }
 
         let subtitleHTML = ``;
         if (subtitle != undefined) {
-            subtitleHTML = `<h2 class="box-em matter-html" style="font-size: max(3vw, 1.5em);"><em>${subtitle}</em></h2>`;
+            subtitleHTML = `<h2 class="box-em matter-rect-html" style="font-size: max(3vw, 1.5em);"><em>${subtitle}</em></h2>`;
         }
 
         let buttonHTML = ``;
         if (buttonText != undefined) {
             if (buttonLink != undefined) {
-                buttonHTML = `<a class="box-em button matter-html" style="font-size: max(2vw, 1em);" href="${buttonLink}">${buttonText}</a>`;
+                buttonHTML = `<a class="box-em button matter-rect-html" style="font-size: max(2vw, 1em);" href="${buttonLink}">${buttonText}</a>`;
             } else if (buttonOnClick != undefined) {
-                buttonHTML = `<a class="box-em button matter-html" style="font-size: max(2vw, 1em);" onclick="${buttonOnClick}">${buttonText}</a>`;
+                buttonHTML = `<a class="box-em button matter-rect-html" style="font-size: max(2vw, 1em);" onclick="${buttonOnClick}">${buttonText}</a>`;
             }
         }
 
@@ -138,7 +138,7 @@ window.customElements.define('fa-header', class extends HTMLElement {
                     ${subtitleHTML}
                     ${buttonHTML}
                 </div>
-                <img style="width: 30vw;" src="media/logo-squared.png">
+                <img class="matter-logo-html" style="width: 30vw;" src="media/logo-squared.png">
             </div>
         `;
     }
