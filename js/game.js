@@ -35,7 +35,11 @@ const HTML_CONSTRAINT_DISTANCE_MODIFIER = 12;
 const CATEGORY_GAME = 2;
 const CATEGORY_HTML = 4;
 const CATEGORY_CONSTRAINT = 8;
-const CATEGORY_SPRITE = 16;
+
+// http://maschek.hu/imagemap/imgmap/
+const LOGO_IMAGE_COORDS = "1468,99,1333,108,1212,131,1096,167,985,215,885,275,813,326,478,0,394,85,719,409,621,523,213,296,152,400,551,630,485,764,33,651,2,766,444,886,425,977,411,1097,409,1220,1089,1217,1128,1287,1186,1346,1259,1387,1338,1406,1429,1406,1430,1204,2519,1219,2520,1098,2520,1015,2501,918,2467,802,2417,684,2348,568,2262,458,2152,349,2011,248,1843,168,1706,128,1593,107".split(',');
+const LOGO_IMAGE_WIDTH = 2526;
+const LOGO_IMAGE_HEIGHT = 1408;
 
 let widthRatio, heightRatio;
 let shapeSize, shapeVelocity, shapeAngleVelocity;
@@ -79,7 +83,7 @@ function initializeGame() {
     runner = Matter.Runner.create();
     Matter.Runner.run(runner, engine);
 
-    updateVariables();
+    updateGameVariables();
 
     // Create mouse interaction object
     mouseMatterObject = new MouseMatterObject();
@@ -111,14 +115,58 @@ function initializeGame() {
     isInitialized = true;
 }
 
+function updateGame() {
+    // Update variables
+    updateGameVariables();
+
+    // Resize window and renderer
+    render.bounds.max.x = WRAPPER.offsetWidth;
+    render.bounds.max.y = WRAPPER.offsetHeight;
+    render.options.width = WRAPPER.offsetWidth;
+    render.options.height = WRAPPER.offsetHeight;
+    render.canvas.width = WRAPPER.offsetWidth;
+    render.canvas.height = WRAPPER.offsetHeight;
+
+    if (isInitialized) {
+        // Remove all physics game objects
+        removeAllGameObjects();
+
+        // Remove all current peg bodies
+        removeAllPegObjects();
+
+        // Update html objects
+        HTMLMatterObjects.forEach(HTMLMatterObject => { HTMLMatterObject.initialize(); });
+
+        // Recreate peg objects
+        createPegObjects();
+    }
+}
+
+function updateGameVariables() {
+    // Update variables
+    widthRatio = window.innerWidth / BASE_WINDOW_WIDTH;
+    heightRatio = window.innerHeight / BASE_WINDOW_HEIGHT;
+    shapeSize = widthRatio * BASE_SHAPE_SIZE;
+    shapeVelocity = widthRatio * BASE_SHAPE_VELOCITY;
+    shapeAngleVelocity = widthRatio * BASE_SHAPE_VELOCITY_ANGULAR;
+}
+
 function createHTMLMatterObjects() {
     Array.from(document.getElementsByClassName("matter-rect-html")).forEach(element => {
         HTMLMatterObjects.push(new HTMLMatterRectObject(element));
     });
 
     Array.from(document.getElementsByClassName("matter-logo-html")).forEach(element => {
-        HTMLMatterObjects.push(new HTMLMatterLogoObject(element));
+        HTMLMatterObjects.push(new HTMLMatterPolyObject(element, LOGO_IMAGE_COORDS, LOGO_IMAGE_WIDTH, LOGO_IMAGE_HEIGHT));
     });
+}
+
+function updateHTMLMatterObjects(timestamp) {
+    HTMLMatterObjects.forEach(matterObject => {
+        matterObject.update();
+    });
+
+    window.requestAnimationFrame(updateHTMLMatterObjects);
 }
 
 function createConstraint(stiffness, damping, length, mainBody, otherBody) {
@@ -183,10 +231,12 @@ function createGameObject() {
     gameObjects.push(o);
 }
 
-function createPegObjects() {
-    // Remove all current peg bodies
-    removeAllPegObjects();
+function removeAllGameObjects() {
+    gameObjects.forEach(gameObject => { Matter.Composite.remove(engine.world, gameObject); });
+    gameObjects = [];
+}
 
+function createPegObjects() {
     // Create variables for how to start the peg generation
     let perlinNoise = new SimplexNoise();
     let gap = shapeSize * 2.5;
@@ -226,11 +276,6 @@ function createPegObjects() {
     }
 }
 
-function removeAllGameObjects() {
-    gameObjects.forEach(gameObject => { Matter.Composite.remove(engine.world, gameObject); });
-    gameObjects = [];
-}
-
 function removeAllPegObjects() {
     pegObjects.forEach(pegObject => { Matter.Composite.remove(engine.world, pegObject); });
     pegObjects = [];
@@ -249,113 +294,67 @@ function isPegInVoid(point) {
     return isVoid;
 }
 
-function getRandomNumber(min, max) {
-    return Math.random() * (max - min) + min;
-}
-
-function updateVariables() {
-    // Update variables
-    widthRatio = window.innerWidth / BASE_WINDOW_WIDTH;
-    heightRatio = window.innerHeight / BASE_WINDOW_HEIGHT;
-    shapeSize = widthRatio * BASE_SHAPE_SIZE;
-    shapeVelocity = widthRatio * BASE_SHAPE_VELOCITY;
-    shapeAngleVelocity = widthRatio * BASE_SHAPE_VELOCITY_ANGULAR;
-}
-
-function updateGame() {
-    // Update variables
-    updateVariables();
-
-    // Resize window and renderer
-    render.bounds.max.x = WRAPPER.offsetWidth;
-    render.bounds.max.y = WRAPPER.offsetHeight;
-    render.options.width = WRAPPER.offsetWidth;
-    render.options.height = WRAPPER.offsetHeight;
-    render.canvas.width = WRAPPER.offsetWidth;
-    render.canvas.height = WRAPPER.offsetHeight;
-
-    if (isInitialized) {
-        // Remove all current game objects
-        removeAllGameObjects();
-
-        // Update html objects
-        HTMLMatterObjects.forEach(HTMLMatterObject => { HTMLMatterObject.update(); });
-
-        // Recreate peg objects
-        createPegObjects();
-    }
-}
-
-function updateHTMLMatterObjects(timestamp) {
-    HTMLMatterObjects.forEach(matterObject => {
-        matterObject.update();
-    });
-
-    window.requestAnimationFrame(updateHTMLMatterObjects);
-}
-
-function map(number, inMin, inMax, outMin, outMax) {
-    // https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
-    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-}
-
+// Abstract class
 class HTMLMatterObject {
     constructor(HTMLElement) {
         this.HTMLElement = HTMLElement;
         this.HTMLElementOffsetX = 0;
         this.HTMLElementOffsetY = 0;
 
-        this.width = -1;
-        this.height = -1;
-        this.x = -1;
-        this.y = -1;
+        // Calculate dimensions of HTML element
+        this.width = 0;
+        this.height = 0;
+        this.x = 0;
+        this.y = 0;
 
         this.body = undefined;
         this.pegVoid = undefined;
         this.constraintBodies = [undefined, undefined];
         this.constraints = [undefined, undefined];
+
+        this.isInitialized = false;
+        // initialize() should be called in all subclasses
+    }
+
+    initialize() {
+        // Calculate dimensions of HTML element
+        this.width = this.HTMLElement.offsetWidth;
+        this.height = this.HTMLElement.offsetHeight;
+        this.x = this.HTMLElement.offsetLeft + (this.width / 2);
+        this.y = this.HTMLElement.offsetTop + (this.height / 2);
+
+        // If the body has been created before, we are going to replace it here with new dimensions
+        if (this.body != undefined) {
+            Matter.Composite.remove(engine.world, this.body);
+        }
+
+        // Create a matter body
+        this.body = this.createBody();
+        Matter.Composite.add(engine.world, this.body);
+
+        // Calculate the peg void from the body
+        // this.pegVoid = [{ x: this.x, y: this.y, w: this.width + (shapeSize * 2), h: (this.height * 1.5) + (shapeSize * 2) }];
+        this.pegVoid = { x: this.x, y: this.y, r: (Math.max(this.width, this.height) / 2) + (shapeSize * 2) };
+
+        // Remove old constraints
+        this.constraints.forEach(constraint => { if (constraint != undefined) { Matter.Composite.remove(engine.world, constraint); } });
+        this.constraintBodies.forEach(constraintBody => { if (constraintBody != undefined) { Matter.Composite.remove(engine.world, constraintBody); } });
+
+        // Create constraints
+        this.constraintBodies[0] = createConstraintBody({ x: this.x - (this.width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
+        this.constraintBodies[1] = createConstraintBody({ x: this.x + (this.width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
+        Matter.Composite.add(engine.world, this.constraintBodies);
+        this.constraints[0] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[0]);
+        this.constraints[1] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[1]);
+        Matter.Composite.add(engine.world, this.constraints);
+
+        this.isInitialized = true;
     }
 
     update() {
-        // Calculate dimensions of HTML element
-        let width = this.HTMLElement.offsetWidth;
-        let height = this.HTMLElement.offsetHeight;
-        let x = this.HTMLElement.offsetLeft + (width / 2);
-        let y = this.HTMLElement.offsetTop + (height / 2);
-
-        // If the dimensions have changed from the starting place, 
-        if (this.width != width || this.height != height || this.x != x || this.y != y) {
-            this.width = width;
-            this.height = height;
-            this.x = x;
-            this.y = y;
-
-            // If the body has been created before, we are going to replace it here with new dimensions
-            if (this.body != undefined) {
-                Matter.Composite.remove(engine.world, this.body);
-            }
-
-            // Create a matter body
-            this.body = this.createBody();
-
-            // Add the body to the world
-            Matter.Composite.add(engine.world, this.body);
-
-            // Calculate the peg void from the body
-            // this.pegVoid = [{ x: x, y: y, w: width + (shapeSize * 2), h: (height * 1.5) + (shapeSize * 2) }];
-            this.pegVoid = { x: x, y: y, r: (Math.max(width, height) / 2) + (shapeSize * 2) };
-
-            // Remove old constraints
-            this.constraints.forEach(constraint => { if (constraint != undefined) { Matter.Composite.remove(engine.world, constraint); } });
-            this.constraintBodies.forEach(constraintBody => { if (constraintBody != undefined) { Matter.Composite.remove(engine.world, constraintBody); } });
-
-            // Remake constraints
-            this.constraintBodies[0] = createConstraintBody({ x: this.x - (this.width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
-            this.constraintBodies[1] = createConstraintBody({ x: this.x + (this.width / HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
-            Matter.Composite.add(engine.world, this.constraintBodies);
-            this.constraints[0] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[0]);
-            this.constraints[1] = createConstraint(HTML_CONSTRAINT_STIFFNESS, HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[1]);
-            Matter.Composite.add(engine.world, this.constraints);
+        // If the object is not initialized, do not update
+        if (!this.isInitialized) {
+            return;
         }
 
         // https://stackoverflow.com/questions/50391891/how-to-apply-sprite-textures-to-matter-js-bodies
@@ -372,7 +371,7 @@ class HTMLMatterRectObject extends HTMLMatterObject {
     constructor(HTMLElement) {
         super(HTMLElement);
 
-        this.update();
+        this.initialize();
     }
 
     createBody() {
@@ -387,16 +386,15 @@ class HTMLMatterRectObject extends HTMLMatterObject {
     }
 }
 
-class HTMLMatterLogoObject extends HTMLMatterObject {
-    constructor(HTMLElement) {
+class HTMLMatterPolyObject extends HTMLMatterObject {
+    constructor(HTMLElement, imageCoords, imageWidth, imageHeight) {
         super(HTMLElement);
 
-        // http://maschek.hu/imagemap/imgmap/
-        this.imageCoords = "1468,99,1333,108,1212,131,1096,167,985,215,885,275,813,326,478,0,394,85,719,409,621,523,213,296,152,400,551,630,485,764,33,651,2,766,444,886,425,977,411,1097,409,1220,1089,1217,1128,1287,1186,1346,1259,1387,1338,1406,1429,1406,1430,1204,2519,1219,2520,1098,2520,1015,2501,918,2467,802,2417,684,2348,568,2262,458,2152,349,2011,248,1843,168,1706,128,1593,107".split(',');
-        this.imageWidth = 2526;
-        this.imageHeight = 1408;
+        this.imageCoords = imageCoords;
+        this.imageWidth = imageWidth;
+        this.imageHeight = imageHeight;
 
-        this.update();
+        this.initialize();
     }
 
     createBody() {
@@ -421,7 +419,7 @@ class HTMLMatterLogoObject extends HTMLMatterObject {
                 category: CATEGORY_HTML,
                 mask: CATEGORY_GAME | CATEGORY_HTML
             },
-            label: 'HTMLMatterLogoObject'
+            label: 'HTMLMatterPolyObject'
         });
     }
 }
@@ -456,4 +454,13 @@ class MouseMatterObject {
         // The mouse body will follow it around because the two bodies are joined together
         Matter.Body.setPosition(this.constraintBody, this.mousePosition);
     }
+}
+
+function map(number, inMin, inMax, outMin, outMax) {
+    // https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+
+function getRandomNumber(min, max) {
+    return Math.random() * (max - min) + min;
 }

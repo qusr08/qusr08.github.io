@@ -94,6 +94,7 @@ window.customElements.define('fa-footer', class extends HTMLElement {
         this.innerHTML = `
             <p>Last updated on: <strong><span id="github-date">XX/XX/XXXX</span></strong> <em><span id="github-version">Version X.X.X</span></em></p>
             <p><a href="https://github.com/qusr08/qusr08.github.io"><span>Website Github Repository</span></a></p>
+            <img style="filter: invert(1); width: 10vw;" src="../media/signature.png">
             <p>Created by Frank Alfano</p>
         `;
     }

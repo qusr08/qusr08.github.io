@@ -63,7 +63,7 @@ fa-header>div {
 }
 
 fa-footer {
-    height: 10vh;
+    height: 20vh;
     display: flex;
     padding: var(--spacing);
     flex-flow: column nowrap;
