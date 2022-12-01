@@ -92,18 +92,25 @@ fa-footer {
     font-weight: 100;
     background-color: var(--panel-color);
     color: var(--text-color);
-    transition: letter-spacing var(--transition-time) ease, font-weight var(--transition-time) ease, background-color var(--transition-time) ease;
+    transition: letter-spacing var(--transition-time) ease, font-weight var(--transition-time) ease, background-color var(--transition-time) ease, color var(--transition-time) ease;
 }
 
 .button>img {
     width: 1.5em;
+    transition: filter var(--transition-time) ease;
 }
 
 .button:hover {
     letter-spacing: 0.1em;
     font-weight: unset;
-    background-color: var(--detail-color);
-    color: var(--text-color);
+    /* background-color: var(--detail-color); */
+    background-color: var(--text-color);
+    /* color: var(--text-color); */
+    color: var(--panel-color);
+}
+
+.button:hover>img {
+    filter: invert(1);
 }
 
 audio {
@@ -181,18 +188,18 @@ fa-game-music>h2 {
 }
 
 .gmtk-2021 {
-    font-weight: bold;
+    /* font-weight: bold; */
     background-image: linear-gradient(#03FFC7, #2BBEC3);
 }
 
 .gmtk-2022 {
-    font-weight: bold;
+    /* font-weight: bold; */
     background-image: linear-gradient(#FF9C00, #FF0900);
 }
 
 .special {
-    font-weight: bold;
-    background-image: linear-gradient(var(--featured-color), var(--featured-color));
+    /* font-weight: bold; */
+    background-image: linear-gradient(#d6cd20, #d6cd20);
 }
 
 
