@@ -10,76 +10,43 @@ window.customElements.define('fa-gallery-item', class extends HTMLElement {
         let image = this.getAttribute('image');
         let link = this.getAttribute('link');
         let tags = this.getAttribute('tags');
-        let info = this.getAttribute('info');
+        let labels = this.getAttribute('labels');
 
         let tagsHTML = "";
         if (tags != undefined) {
             tags.trim().split(',').forEach(tag => {
-                tagsHTML += `<p class="gallery-em">${tag.trim()}</p>`;
+                tagsHTML += `<p class="gallery-box">${tag.trim()}</p>`;
             });
         }
 
-        let infoHTML = "";
-        if (info != undefined) {
-            infoHTML += `<div class="gallery-item-info">`;
-            info.trim().split(',').forEach(item => {
+        let labelsHTML = "";
+        if (labels != undefined) {
+            labelsHTML += `<div class="gallery-item-labels">`;
+            labels.trim().split(',').forEach(item => {
                 if (item.indexOf("GMTK Game Jam 2021") != -1) {
-                    infoHTML += `<p class="gmtk-2021">${item.trim()}</p>`;
+                    labelsHTML += `<p class="gmtk-2021">${item.trim()}</p>`;
                 } else if (item.indexOf("GMTK Game Jam 2022") != -1) {
-                    infoHTML += `<p class="gmtk-2022">${item.trim()}</p>`;
+                    labelsHTML += `<p class="gmtk-2022">${item.trim()}</p>`;
                 } else if (item.indexOf("Featured") != -1) {
-                    infoHTML += `<p class="special">${item.trim()}</p>`;
+                    labelsHTML += `<p class="special">${item.trim()}</p>`;
                 } else {
-                    infoHTML += `<p>${item.trim()}</p>`;
+                    labelsHTML += `<p>${item.trim()}</p>`;
                 }
             });
-            infoHTML += `</div>`;
+            labelsHTML += `</div>`;
         }
 
-        this.style.display = (infoHTML.indexOf("Featured") != -1 ? "unset" : "none");
+        this.style.display = (labelsHTML.indexOf("Featured") != -1 ? "unset" : "none");
 
         this.innerHTML = `
             <a class="gallery-item vert-list" style="background-image: url('${image}');" href="${link}">
                 <div class="vert-list">
-                    <h1 class="gallery-em">${name}</h1>
+                    <h1 class="gallery-box">${name}</h1>
                     <h3>${dates}</h3>
                     <p>${desc}</p>
                 </div>
-                <div class="hori-list" style="flex-wrap: wrap;">${tagsHTML}</div>
-                ${infoHTML}
-            </a>
-        `;
-    }
-});
-
-window.customElements.define('fa-text-gallery-item', class extends HTMLElement {
-    constructor() {
-        super();
-    }
-
-    connectedCallback() {
-        let name = this.getAttribute('name');
-        let dates = this.getAttribute('dates');
-        let status = this.getAttribute('status');
-        let desc = this.getAttribute('desc');
-        let tags = this.getAttribute('tags');
-
-        let tagsHTML = "";
-        if (tags != undefined) {
-            tags.trim().split(',').forEach(tag => {
-                tagsHTML += `<p class="gallery-em">${tag.trim()}</p>`;
-            });
-        }
-
-        this.innerHTML = `
-            <a class="text-gallery-item vert-list">
-                <div class="vert-list">
-                    <h1 class="gallery-em">${name}</h1>
-                    <h2><em>${status}</em></h2>
-                    <h3>${dates}</h3>
-                    <p>${desc}</p>
-                </div>
-                <div class="hori-list" style="flex-wrap: wrap;">${tagsHTML}</div>
+                <div class="hori-list gallery-item-tags" style="flex-wrap: wrap;">${tagsHTML}</div>
+                ${labelsHTML}
             </a>
         `;
     }
@@ -94,7 +61,7 @@ window.customElements.define('fa-footer', class extends HTMLElement {
         this.innerHTML = `
             <p>Last updated on: <strong><span id="github-date">XX/XX/XXXX</span></strong> <em><span id="github-version">Version X.X.X</span></em></p>
             <p><a href="https://github.com/qusr08/qusr08.github.io"><span>Website Github Repository</span></a></p>
-            <img style="filter: invert(1); width: 10vw;" src="../media/signature.png">
+            <img style="filter: invert(1); width: max(10vw, 200px);" src="../media/signature.png">
             <p>Created by Frank Alfano</p>
         `;
     }
