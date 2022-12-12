@@ -7,10 +7,10 @@ function toggleFeaturedGalleryItems(button) {
 
     for (let i = 0; i < galleryItems.length; i++) {
         // Get the info tags of the gallery item
-        let infoAttr = galleryItems[i].getAttribute('info');
+        let labels = galleryItems[i].getAttribute('labels');
 
         // Make sure to only set the visibility of the non-featured items
-        if (infoAttr != undefined && infoAttr.indexOf("Featured") != -1) {
+        if (labels != undefined && labels.indexOf("Featured") != -1) {
             continue;
         }
 
@@ -22,11 +22,7 @@ function toggleFeaturedGalleryItems(button) {
     button.innerHTML = `${isFeaturedGallery ? "View Featured Projects" : "View All Projects"}`;
 
     // Add or remove the featured class from the gallery object so it toggles back and forth each time the button is pressed
-    if (isFeaturedGallery) {
-        gallery.classList.remove("featured");
-    } else {
-        gallery.classList.add("featured");
-    }
+    gallery.classList.toggle("featured");
 }
 
 // https://stackoverflow.com/questions/56279807/is-it-possible-to-automatically-have-the-last-updated-date-on-my-website-changed
