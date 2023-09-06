@@ -28,7 +28,7 @@ function toggleFeaturedGalleryItems(button) {
 // https://stackoverflow.com/questions/56279807/is-it-possible-to-automatically-have-the-last-updated-date-on-my-website-changed
 function updateFromGithub() {
     let xhttpDate = new XMLHttpRequest();
-    let xhttpVersion = new XMLHttpRequest();
+    // let xhttpVersion = new XMLHttpRequest();
 
     xhttpDate.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -49,18 +49,18 @@ function updateFromGithub() {
         }
     };
 
-    xhttpVersion.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let commit = JSON.parse(this.responseText)[0];
-            document.getElementById('github-version').innerHTML = `<a href="${commit.html_url}"><span>${commit.commit.message.split("\n\n")[0]}</span></a>`;
-        }
-    };
+    // xhttpVersion.onreadystatechange = function() {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         let commit = JSON.parse(this.responseText)[0];
+    //         document.getElementById('github-version').innerHTML = `<a href="${commit.html_url}"><span>${commit.commit.message.split("\n\n")[0]}</span></a>`;
+    //     }
+    // };
 
     xhttpDate.open("GET", "https://api.github.com/users/qusr08/repos", true);
-    xhttpVersion.open("GET", "https://api.github.com/repos/qusr08/qusr08.github.io/commits", true);
+    // xhttpVersion.open("GET", "https://api.github.com/repos/qusr08/qusr08.github.io/commits", true);
 
     xhttpDate.send();
-    xhttpVersion.send();
+    // xhttpVersion.send();
 }
 
 window.onload = function(event) {
