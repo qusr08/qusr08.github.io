@@ -429,7 +429,7 @@ class MouseMatterObject {
         this.mousePosition = { x: 0, y: 0 };
 
         // Create the body for the mouse
-        this.body = Matter.Bodies.circle(this.mousePosition.x, this.mousePosition.y, 50, {
+        this.body = Matter.Bodies.circle(this.mousePosition.x, this.mousePosition.y, 20, {
             render: { visible: false },
             collisionFilter: {
                 category: CATEGORY_GAME,
