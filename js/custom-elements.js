@@ -39,13 +39,13 @@ window.customElements.define('fa-gallery-item', class extends HTMLElement {
         this.style.display = (labelsHTML.indexOf("Featured") != -1 ? "unset" : "none");
 
         this.innerHTML = `
-            <a class="gallery-item vert-list" style="background-image: url('${image}');" href="${link}">
-                <div class="vert-list">
+            <a class="gallery-item v-list" style="background-image: url('${image}');" href="${link}">
+                <div class="v-list">
                     <h1 class="gallery-box">${name}</h1>
                     <h3>${dates}</h3>
                     <p>${desc}</p>
                 </div>
-                <div class="hori-list gallery-item-tags" style="flex-wrap: wrap;">${tagsHTML}</div>
+                <div class="h-list gallery-item-tags" style="flex-wrap: wrap;">${tagsHTML}</div>
                 ${labelsHTML}
             </a>
         `;
@@ -101,7 +101,7 @@ window.customElements.define('fa-header', class extends HTMLElement {
         this.innerHTML = `
             <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
             <div>
-                <div class="vert-list">
+                <div class="v-list">
                     ${titleHTML}
                     ${subtitleHTML}
                     ${buttonHTML}

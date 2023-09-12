@@ -1,5 +1,5 @@
 #wrapper {
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
 }
 
@@ -19,22 +19,6 @@ main {
     flex-flow: column;
     gap: var(--spacing);
     align-items: start;
-}
-
-.hori-list {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: start;
-    align-items: center;
-    gap: var(--spacing);
-}
-
-.vert-list {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: start;
-    gap: var(--spacing);
 }
 
 .section {
@@ -69,16 +53,6 @@ fa-footer {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-}
-
-.box-em {
-    background-color: var(--detail-color);
-    padding: var(--spacing);
-}
-
-.box-reg {
-    background-color: var(--panel-color);
-    padding: var(--spacing);
 }
 
 .button {
@@ -187,22 +161,6 @@ fa-game-music>h2 {
     font-size: 1.5em;
 }
 
-.gmtk-2021 {
-    /* font-weight: bold; */
-    background-image: linear-gradient(#03FFC7, #2BBEC3);
-}
-
-.gmtk-2022 {
-    /* font-weight: bold; */
-    background-image: linear-gradient(#FF9C00, #FF0900);
-}
-
-.special {
-    /* font-weight: bold; */
-    background-image: linear-gradient(#d6cd20, #d6cd20);
-}
-
-
 /* #endregion */
 
 
@@ -292,13 +250,7 @@ fa-game-music>h2 {
     text-align: center;
 }
 
-@media screen and (max-width: 800px) {
-    fa-header>div {
-        flex-flow: column-reverse nowrap;
-    }
-}
-
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 934px) {
     .gallery-item {
         aspect-ratio: unset;
         background-color: rgba(0, 0, 0, 0.7);
@@ -312,7 +264,7 @@ fa-game-music>h2 {
     .gallery-item:hover {
         border-width: 0px;
     }
-    .gallery-item:hover .gallery-item-labels {
+    .gallery-item:hover .gallery-item-labels {  
         top: calc(var(--border) * -1);
         right: calc(var(--border) * -1);
     }
@@ -325,7 +277,10 @@ fa-game-music>h2 {
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
+    fa-header>div {
+        flex-flow: column-reverse nowrap;
+    }
     .section {
         display: flex;
         flex-flow: column nowrap;
