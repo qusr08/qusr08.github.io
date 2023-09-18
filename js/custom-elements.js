@@ -28,7 +28,11 @@ window.customElements.define('fa-gallery-item', class extends HTMLElement {
                 } else if (item.indexOf("GMTK Game Jam 2022") != -1) {
                     labelsHTML += `<p class="gmtk-2022">${item.trim()}</p>`;
                 } else if (item.indexOf("Featured") != -1) {
-                    labelsHTML += `<p class="special">${item.trim()}</p>`;
+                    labelsHTML += `<p class="feature">${item.trim()}</p>`;
+                } else if (item.indexOf("In Development") != -1) {
+                    labelsHTML += `<p class="development">${item.trim()}</p>`;
+                } else if (item.indexOf("Playable") != -1) {
+                    labelsHTML += `<p class="playable">${item.trim()}</p>`;
                 } else {
                     labelsHTML += `<p>${item.trim()}</p>`;
                 }

@@ -66,9 +66,19 @@ p {
     background-image: linear-gradient(#FF9C00, #FF0900);
 }
 
-.special {
+.feature {
     /* font-weight: bold; */
-    background-image: linear-gradient(#d6cd20, #d6cd20);
+    background-image: linear-gradient(#D32344, #D32344);
+}
+
+.development {
+    /* font-weight: bold; */
+    background-image: linear-gradient(#444444, #444444);
+}
+
+.playable {
+    /* font-weight: bold; */
+    background-image: linear-gradient(#116C78, #116C78);
 }
 
 /* #region Links */
