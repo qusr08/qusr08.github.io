@@ -251,6 +251,10 @@ fa-game-music>h2 {
 }
 
 @media screen and (max-width: 934px) {
+    .gallery{
+        display: flex;
+        flex-flow: column nowrap;
+    }
     .gallery-item {
         aspect-ratio: unset;
         background-color: rgba(0, 0, 0, 0.7);
@@ -289,5 +293,11 @@ fa-game-music>h2 {
     .game-section {
         display: flex;
         flex-flow: column nowrap;
+    }
+    h1, .button {
+        font-size: 1.5em;
+    }
+    .gallery-item-labels { 
+        display: none;
     }
 }

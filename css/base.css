@@ -28,6 +28,7 @@ p {
 ::selection {
     color: var(--background-color);
     background: var(--text-color);
+    padding: 0px;
 }
 
 .h-list {
@@ -54,6 +55,12 @@ p {
 .box-reg {
     background-color: var(--panel-color);
     padding: var(--spacing);
+    text-align: justify;
+}
+
+.text-em {
+    background-color: var(--detail-color);
+    padding: 2px;
 }
 
 .gmtk-2021 {
