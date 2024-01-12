@@ -58,11 +58,6 @@ p {
     text-align: justify;
 }
 
-.text-em {
-    background-color: var(--detail-color);
-    padding: 2px;
-}
-
 .gmtk-2021 {
     /* font-weight: bold; */
     background-image: linear-gradient(#03FFC7, #2BBEC3);
