@@ -64,7 +64,7 @@ window.customElements.define('fa-footer', class extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <p><a href="https://github.com/qusr08/qusr08.github.io"><span>Website Github Repository</span></a></p>
-            <img style="filter: invert(1); width: max(10vw, 200px);" src="../media/signature.png">
+            <!-- <img style="filter: invert(1); width: max(10vw, 200px);" src="../media/signature.png"> -->
             <p>Created by Frank Alfano</p>
             <p>Last updated on: <strong><span id="github-date">XX/XX/XXXX</span></strong></p>
         `;
