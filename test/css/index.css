@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --background-color: #121212;
+    --panel-color: #444444;
+    --detail-color: #D32344;
+    --text-color: white;
+    --peg-color: #222222;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.proj-tag {
+    background-color: var(--detail-color);
+    color: var(--text-color);
+    max-width: fit-content;
+    padding: 5px;
+}
+
+.gmtk-2022 {
+    background-color: unset;
+    background-image: linear-gradient(to left, #FF9C00, #FF0900);
+    color: var(--background-color);
+}
+
+p {
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+* {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    padding: 5vw;
+    background-color: var(--background-color);
+}
+
+.proj-box-container {
+    display: flex;
+    flex-flow: row nowrap;
+    min-height: 45vh;
+    width: 42.5vw;
+    filter: drop-shadow(0px 0px 0px black);
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.proj-thumbnail {
+    aspect-ratio: 1;
+    background-position: center;
+    background-size: cover;
+}
+
+.proj-box {
+    cursor: pointer;
+    background-color: var(--panel-color);
+    display: flex;
+    flex-flow: row nowrap;
+    position: relative;
+}
+
+.proj-box-ext {
+    padding: 20px 20px 20px 0px;
+    position: absolute;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--panel-color);
+    /* overflow: hidden; */
+    z-index: -1;
+    transition: right 0.35s cubic-bezier(0.83, 0, 0.17, 1), width 0.35s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.proj-box-ext>* {
+    min-width: calc((90vw - 42.5vw) - 20px);
+}
+
+.proj-box-container:hover {
+    transform: translateY(-30px);
+    filter: drop-shadow(-15px 30px 0px black);
+}
+
+.proj-box-container:hover>.proj-box>.proj-box-ext {
+    right: calc(-90vw + 42.5vw);
+    width: calc(90vw - 42.5vw);
+}
+
+.proj-info {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    padding: 20px;
+    color: var(--text-color);
+}
+
+.proj-tags {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 5px;
+}
