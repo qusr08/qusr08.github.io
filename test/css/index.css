@@ -6,25 +6,18 @@
     --detail-color: #D32344;
     --text-color: white;
     --peg-color: #222222;
+    --proj-coll-width: 50vw;
+    --proj-ext-width: 350px;
+    --proj-height: 50vh;
+    --padding: 20px;
 }
 
 h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 .proj-tag {
     background-color: var(--detail-color);
     color: var(--text-color);
     max-width: fit-content;
     padding: 5px;
-}
-
-.gmtk-2022 {
-    background-color: unset;
-    background-image: linear-gradient(to left, #FF9C00, #FF0900);
-    color: var(--background-color);
 }
 
 p {
@@ -37,6 +30,7 @@ p {
     font-weight: 300;
     box-sizing: border-box;
     margin: 0;
+    color: var(--text-color);
 }
 
 body {
@@ -46,11 +40,27 @@ body {
 
 .proj-box-container {
     display: flex;
+    min-height: var(--proj-height);
+}
+
+.proj-box {
+    cursor: pointer;
+    background-color: var(--panel-color);
+    display: flex;
     flex-flow: row nowrap;
-    min-height: 45vh;
-    width: 42.5vw;
-    filter: drop-shadow(0px 0px 0px black);
+    filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.1));
     transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.proj-box:hover {
+    transform: translateY(calc(var(--padding) * -1));
+    filter: drop-shadow(calc(var(--padding) * -0.5) var(--padding) 0px black);
+}
+
+.proj-main {
+    display: flex;
+    flex-flow: row nowrap;
+    width: calc(var(--proj-coll-width) - var(--padding));
 }
 
 .proj-thumbnail {
@@ -59,51 +69,59 @@ body {
     background-size: cover;
 }
 
-.proj-box {
-    cursor: pointer;
-    background-color: var(--panel-color);
-    display: flex;
-    flex-flow: row nowrap;
-    position: relative;
-}
-
-.proj-box-ext {
-    padding: 20px 20px 20px 0px;
-    position: absolute;
-    right: 0;
-    width: 0;
-    height: 100%;
-    background-color: var(--panel-color);
-    /* overflow: hidden; */
-    z-index: -1;
-    transition: right 0.35s cubic-bezier(0.83, 0, 0.17, 1), width 0.35s cubic-bezier(0.83, 0, 0.17, 1);
-}
-
-.proj-box-ext>* {
-    min-width: calc((90vw - 42.5vw) - 20px);
-}
-
-.proj-box-container:hover {
-    transform: translateY(-30px);
-    filter: drop-shadow(-15px 30px 0px black);
-}
-
-.proj-box-container:hover>.proj-box>.proj-box-ext {
-    right: calc(-90vw + 42.5vw);
-    width: calc(90vw - 42.5vw);
+.proj-desc {
+    flex-grow: 1;
 }
 
 .proj-info {
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
-    gap: 20px;
-    padding: 20px;
-    color: var(--text-color);
+    gap: var(--padding);
+    padding: var(--padding) 0px var(--padding) var(--padding);
 }
 
 .proj-tags {
     display: flex;
     flex-flow: row wrap;
+    align-items: flex-end;
     gap: 5px;
+}
+
+.proj-ext {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--padding);
+    padding: var(--padding) 0px var(--padding) var(--padding);
+    overflow: hidden;
+    width: var(--padding);
+    transition: padding-right 0.35s cubic-bezier(0.83, 0, 0.17, 1), width 0.35s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.proj-box:hover>.proj-ext {
+    padding-right: var(--padding);
+    width: calc(var(--proj-ext-width) + var(--padding));
+}
+
+.proj-button {
+    font-size: 2em;
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    white-space: nowrap;
+    padding: 5px;
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.proj-button:hover {
+    color: var(--background-color);
+    background-color: var(--text-color);
+    transform: scale(1.05);
+}
+
+.gmtk-2022 {
+    background-color: unset;
+    background-image: linear-gradient(to left, #FF9C00, #FF0900);
+    color: var(--text-color);
 }
