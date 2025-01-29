@@ -8,7 +8,7 @@
     --peg-color: #222222;
     --proj-box-width: 45vw;
     --proj-box-height: 50vh;
-    --proj-box-link-width: 150px;
+    --proj-box-link-width: 225px;
     --padding: 20px;
     --small-padding: 5px;
 }
@@ -194,24 +194,22 @@ body {
     filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
 }
 
-/* .proj-button {
-    font-size: 2em;
-    text-decoration: none;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    white-space: nowrap;
-    padding: 5px;
-    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
-}
-
-.proj-button:hover {
-    color: var(--background-color);
-    background-color: var(--text-color);
-    transform: scale(1.05);
-} */
-
 .gmtk-2022 {
     background-color: unset;
     background-image: linear-gradient(to left, #FF9C00, #FF0900);
-    color: var(--text-color);
+}
+
+.gmtk-2021 {
+    background-color: unset;
+    background-image: linear-gradient(#03FFC7, #2BBEC3);
+}
+
+.rit-edge {
+    background-color: unset;
+    background-image: linear-gradient(to left, #F36917, #9f440f );
+}
+
+.in-development {
+    background-color: unset;
+    background-image: linear-gradient(to left, #FF9C00, #FF0900);
 }

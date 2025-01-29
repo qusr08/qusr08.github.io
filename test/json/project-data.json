@@ -18,12 +18,38 @@
                 "url": "https://qusr08.github.io/DOS/"
             },
             {
-                "name": "Github Repo",
+                "name": "Github Repository",
                 "url": "https://github.com/qusr08/DOS"
             },
             {
                 "name": "Itch.io Page",
                 "url": "https://qusr.itch.io/dos"
+            }
+        ]
+    },
+    "Breakthrough": {
+        "dates": "May 2022 - Present",
+        "desc": "Breakthrough is an arcade game where the player must use boom blocks to blow up other tiles. The goal is to get a piece under player's control all the way to the bottom of the game board, 'breaking through' the level. The game is endless and each level gets progressively harder to clear.",
+        "tags": [
+            "RIT EDGE Game Feel Winner 2023",
+            "Unity/C#",
+            "Arcade",
+            "Strategy",
+            "2D",
+            "In Development"
+        ],
+        "links": [
+            {
+                "name": "RIT EDGE Demo 2023",
+                "url": "https://youtu.be/2uN2DdvFM5k?list=PLNxi4Yxo1HtP9qWay3962V65gggHy9_ti"
+            },
+            {
+                "name": "Play Breakthrough",
+                "url": "https://qusr.itch.io/breakthrough"
+            },
+            {
+                "name": "Itch.io Page",
+                "url": "https://qusr.itch.io/breakthrough"
             }
         ]
     },
@@ -34,7 +60,7 @@
             "HTML/CSS/Javascript",
             "PixiJS",
             "Turn-Based Strategy",
-            "2D Top-Down"
+            "2D"
         ],
         "links": [
             {
@@ -42,7 +68,7 @@
                 "url": "https://qusr08.github.io/Prichi/"
             },
             {
-                "name": "Github Repo",
+                "name": "Github Repository",
                 "url": "https://github.com/qusr08/Prichi"
             }
         ]
@@ -58,8 +84,70 @@
         ],
         "links": [
             {
-                "name": "Github Repo",
+                "name": "Github Repository",
                 "url": "https://github.com/qusr08/Collab"
+            }
+        ]
+    },
+    "Blockchain": {
+        "dates": "Jun 2021 - Jul 2021",
+        "desc": "Blockchain is a puzzle game that revolves around chaining various blocks together. Each block has different properties that allow them to either stick to other blocks or slide past them. You must create different shapes in order to avoid falling into the abyss below. Navigate your way to the white button in each level to win!",
+        "tags": [
+            "Top 10% GMTK Game Jam 2021",
+            "Unity/C#",
+            "Puzzle",
+            "2D"
+        ],
+        "links": [
+            {
+                "name": "GMTK 2021",
+                "url": "https://itch.io/jam/gmtk-2021/rate/1077885"
+            },
+            {
+                "name": "Play Blockchain",
+                "url": "https://qusr08.github.io/Blockchain/"
+            },
+            {
+                "name": "Github Repository",
+                "url": "https://github.com/qusr08/Blockchain"
+            },
+            {
+                "name": "Itch.io Page",
+                "url": "https://trevoltestudios0.itch.io/blockchain"
+            }
+        ]
+    },
+    "gcmdesigns": {
+        "dates": "March 2022 - Sep 2024",
+        "desc": "A portfolio website made for Gabriela Colon-Melendez, an Industrial Design major at Virginia Polytechnic Institute and State University. It displays some of her school projects that she has finished, complete with images, design documents, CAD renderings, and sketches.",
+        "tags": [
+            "HTML/CSS/Javascript",
+            "Portfolio Website"
+        ],
+        "links": [
+            {
+                "name": "gcmdesigns.com",
+                "url": "https://www.gcmdesigns.com/"
+            },
+            {
+                "name": "Github Repository",
+                "url": "https://github.com/qusr08/gcmdesigns"
+            }
+        ]
+    },
+    "Wumpus": {
+        "dates": "Apr 2019 - Jun 2019",
+        "desc": "Wumpus is a dungeon crawler where you are tasked with killing the guardian of the dungeon, the Wumpus. Use various weapons and tools to locate the Wumpus while avoiding hazards and slay the beast!",
+        "tags": [
+            "Java",
+            "Turn-Based Strategy",
+            "Dungeon Crawler",
+            "2D"
+        ],
+        "links": [
+            {
+                "name": "Github Repository",
+                "url": "https://github.com/qusr08/Wumpus"
             }
         ]
     }

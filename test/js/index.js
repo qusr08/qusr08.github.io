@@ -27,7 +27,7 @@ function createProjectBox(projectName, isReversed) {
     // Create project thumbnail element
     let projectThumbnail = document.createElement("div");
     projectThumbnail.classList.add("proj-thumbnail");
-    projectThumbnail.style.backgroundImage = `url('png/${projectNameLowerCase}-thumbnail.png')`;
+    projectThumbnail.style.backgroundImage = `url('png/${projectNameLowerCase}/${projectNameLowerCase}-thumbnail.png')`;
     projectBox.appendChild(projectThumbnail);
 
     // Create project info element
@@ -59,7 +59,9 @@ function createProjectBox(projectName, isReversed) {
         // Create tag element
         let projectTag = document.createElement("p");
         projectTag.classList.add("proj-tag");
-        if (tag.includes("2022")) projectTag.classList.add("gmtk-2022");
+        if (tag.includes("GMTK Game Jam 2022")) projectTag.classList.add("gmtk-2022");
+        if (tag.includes("GMTK Game Jam 2021")) projectTag.classList.add("gmtk-2021");
+        if (tag.includes("RIT EDGE")) projectTag.classList.add("rit-edge");
         projectTag.innerHTML = tag;
         projectTags.appendChild(projectTag);
     });
@@ -69,8 +71,6 @@ function createProjectBox(projectName, isReversed) {
     let projectLinks = document.createElement("div");
     projectLinks.classList.add("proj-links");
     PROJECT_DATA[projectName].links.forEach(link => {
-        let linkNameLowerCase = link.name.toLowerCase();
-
         // Create link element
         let projectLink = document.createElement("a");
         projectLink.classList.add("proj-link");
@@ -79,12 +79,15 @@ function createProjectBox(projectName, isReversed) {
         // Create link icon element
         let projectLinkIcon = document.createElement("img");
         let iconType = "";
-        if (linkNameLowerCase.includes("play")) iconType = "play";
-        if (linkNameLowerCase.includes("github")) iconType = "github";
-        if (linkNameLowerCase.includes("itch.io")) iconType = "itchio";
-        if (linkNameLowerCase.includes("2022")) {
-            iconType = "itchio";
-            projectLink.classList.add("gmtk-2022");
+        if (link.name.includes("Play")) iconType = "play";
+        if (link.name.includes("Github")) iconType = "github";
+        if (link.name.includes("Itch.io") || link.name.includes("GMTK")) iconType = "itchio";
+        if (link.name.includes("GMTK 2022")) projectLink.classList.add("gmtk-2022");
+        if (link.name.includes("GMTK 2021")) projectLink.classList.add("gmtk-2021");
+        if (link.name.includes(".com")) iconType = "link";
+        if (link.name.includes("RIT EDGE")) {
+            iconType = "youtube";
+            projectLink.classList.add("rit-edge");
         }
         projectLinkIcon.src = `png/logos/${iconType}-logo.png`;
         projectLink.appendChild(projectLinkIcon);
