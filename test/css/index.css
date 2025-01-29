@@ -10,6 +10,7 @@
     --proj-ext-width: 350px;
     --proj-height: 50vh;
     --padding: 20px;
+    --small-padding: 5px;
 }
 
 h1,
@@ -17,7 +18,7 @@ h1,
     background-color: var(--detail-color);
     color: var(--text-color);
     max-width: fit-content;
-    padding: 5px;
+    padding: var(--small-padding);
 }
 
 p {
@@ -41,26 +42,25 @@ body {
 .proj-box-container {
     display: flex;
     min-height: var(--proj-height);
+    width: var(--proj-coll-width);
+}
+
+.proj-box-container:hover {
+    width: calc(var(--proj-coll-width) + 150px);
 }
 
 .proj-box {
     cursor: pointer;
-    background-color: var(--panel-color);
     display: flex;
     flex-flow: row nowrap;
+    width: var(--proj-coll-width);
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.1));
     transition: transform 0.5s ease, filter 0.5s ease;
 }
 
-.proj-box:hover {
+.proj-box-container:hover .proj-box {
     transform: translateY(calc(var(--padding) * -1));
     filter: drop-shadow(calc(var(--padding) * -0.5) var(--padding) 0px black);
-}
-
-.proj-main {
-    display: flex;
-    flex-flow: row nowrap;
-    width: calc(var(--proj-coll-width) - var(--padding));
 }
 
 .proj-thumbnail {
@@ -74,37 +74,88 @@ body {
 }
 
 .proj-info {
+    background-color: var(--panel-color);
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
     gap: var(--padding);
-    padding: var(--padding) 0px var(--padding) var(--padding);
+    padding: var(--padding);
 }
 
 .proj-tags {
     display: flex;
     flex-flow: row wrap;
     align-items: flex-end;
-    gap: 5px;
+    gap: var(--small-padding);
 }
 
-.proj-ext {
-    height: 100%;
+.proj-links {
+    position: absolute;
+    z-index: -1;
+    left: var(--proj-coll-width);
+}
+
+.proj-link {
+    position: absolute;
+    left: calc(-150px - var(--small-padding));
     display: flex;
-    flex-flow: column nowrap;
-    gap: var(--padding);
-    padding: var(--padding) 0px var(--padding) var(--padding);
-    overflow: hidden;
-    width: var(--padding);
-    transition: padding-right 0.35s cubic-bezier(0.83, 0, 0.17, 1), width 0.35s cubic-bezier(0.83, 0, 0.17, 1);
+    flex-flow: row nowrap;
+    gap: var(--small-padding);
+    padding: var(--small-padding);
+    align-items: center;
+    text-decoration: none;
+    background-color: var(--panel-color);
+    white-space: nowrap;
+    margin: 0px 0px var(--small-padding) var(--small-padding);
+    min-width: 150px;
 }
 
-.proj-box:hover>.proj-ext {
-    padding-right: var(--padding);
-    width: calc(var(--proj-ext-width) + var(--padding));
+.proj-box-container:hover .proj-link {
+    /* left: var(--small-padding); */
+    left: 0px;
 }
 
-.proj-button {
+.proj-link:nth-child(1) {
+    top: calc(0 * ((var(--small-padding) * 4) + 1.2em));
+    transition: background-color 0.2s ease, color 0.2s ease, left 0.75s cubic-bezier(0.83, 0, 0.17, 1) 0s;
+}
+
+.proj-link:nth-child(2) {
+    top: calc(1 * ((var(--small-padding) * 4) + 1.2em));
+    transition: background-color 0.2s ease, color 0.2s ease, left 0.75s cubic-bezier(0.83, 0, 0.17, 1) 0.1s;
+}
+
+.proj-link:nth-child(3) {
+    top: calc(2 * ((var(--small-padding) * 4) + 1.2em));
+    transition: background-color 0.2s ease, color 0.2s ease, left 0.75s cubic-bezier(0.83, 0, 0.17, 1) 0.2s;
+}
+
+.proj-link:nth-child(4) {
+    top: calc(3 * ((var(--small-padding) * 4) + 1.2em));
+    transition: background-color 0.2s ease, color 0.2s ease, left 0.75s cubic-bezier(0.83, 0, 0.17, 1) 0.3s;
+}
+
+.proj-link:hover {
+    background-color: var(--text-color);
+}
+
+.proj-link:hover>p {
+    color: var(--panel-color);
+}
+
+.proj-link>img {
+    filter: none;
+    height: 1.2em;
+    aspect-ratio: 1;
+    transition: filter 0.2s ease;
+}
+
+.proj-link:hover>img {
+    /* --panel-color */
+    filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
+}
+
+/* .proj-button {
     font-size: 2em;
     text-decoration: none;
     color: var(--text-color);
@@ -118,7 +169,7 @@ body {
     color: var(--background-color);
     background-color: var(--text-color);
     transform: scale(1.05);
-}
+} */
 
 .gmtk-2022 {
     background-color: unset;

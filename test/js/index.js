@@ -8,3 +8,7 @@ window.onload = () => {
     //     }
     // });
 }
+
+function createProjectBox(projectName) {
+    
+}
