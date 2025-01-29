@@ -6,9 +6,9 @@
     --detail-color: #D32344;
     --text-color: white;
     --peg-color: #222222;
-    --proj-coll-width: 50vw;
-    --proj-ext-width: 350px;
-    --proj-height: 50vh;
+    --proj-box-width: 45vw;
+    --proj-box-height: 50vh;
+    --proj-box-link-width: 150px;
     --padding: 20px;
     --small-padding: 5px;
 }
@@ -35,27 +35,39 @@ p {
 }
 
 body {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 30vh;
     padding: 5vw;
     background-color: var(--background-color);
 }
 
 .proj-box-container {
     display: flex;
-    min-height: var(--proj-height);
-    width: var(--proj-coll-width);
+    min-height: var(--proj-box-height);
+    width: var(--proj-box-width);
+}
+
+.proj-box-container.reversed {
+    align-self: flex-end;
+    justify-content: flex-end;
 }
 
 .proj-box-container:hover {
-    width: calc(var(--proj-coll-width) + 150px);
+    width: calc(var(--proj-box-width) + var(--proj-box-link-width));
 }
 
 .proj-box {
-    cursor: pointer;
+    text-decoration: none;
     display: flex;
     flex-flow: row nowrap;
-    width: var(--proj-coll-width);
+    width: var(--proj-box-width);
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.1));
     transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.proj-box-container.reversed .proj-box {
+    flex-flow: row-reverse nowrap;
 }
 
 .proj-box-container:hover .proj-box {
@@ -67,7 +79,15 @@ body {
     aspect-ratio: 1;
     background-position: center;
     background-size: cover;
+    /* border-color: var(--detail-color); */
+    /* border-style: solid; */
+    /* border-width: 0px; */
+    /* transition: border-width 0.2s ease; */
 }
+
+/* .proj-box-container:hover .proj-thumbnail {
+    border-width: 5px 0px 5px 5px;
+} */
 
 .proj-desc {
     flex-grow: 1;
@@ -80,7 +100,15 @@ body {
     flex-flow: column nowrap;
     gap: var(--padding);
     padding: var(--padding);
+    /* border-color: var(--detail-color); */
+    /* border-style: solid; */
+    /* border-width: 0px; */
+    /* transition: border-width 0.2s ease; */
 }
+
+/* .proj-box-container:hover .proj-info {
+    border-width: 5px 5px 5px 0px;
+} */
 
 .proj-tags {
     display: flex;
@@ -92,12 +120,17 @@ body {
 .proj-links {
     position: absolute;
     z-index: -1;
-    left: var(--proj-coll-width);
+    top: 0px;
+    left: var(--proj-box-width);
+}
+
+.proj-box-container.reversed .proj-links {
+    left: 0px;
 }
 
 .proj-link {
     position: absolute;
-    left: calc(-150px - var(--small-padding));
+    left: calc(var(--proj-box-link-width) * -1);
     display: flex;
     flex-flow: row nowrap;
     gap: var(--small-padding);
@@ -106,33 +139,39 @@ body {
     text-decoration: none;
     background-color: var(--panel-color);
     white-space: nowrap;
-    margin: 0px 0px var(--small-padding) var(--small-padding);
-    min-width: 150px;
+    min-width: var(--proj-box-link-width);
+}
+
+.proj-box-container.reversed .proj-link {
+    left: 0px;
 }
 
 .proj-box-container:hover .proj-link {
-    /* left: var(--small-padding); */
-    left: 0px;
+    left: var(--small-padding);
+}
+
+.proj-box-container.reversed:hover .proj-link {
+    left: calc((var(--proj-box-link-width) + var(--small-padding)) * -1);
 }
 
 .proj-link:nth-child(1) {
     top: calc(0 * ((var(--small-padding) * 4) + 1.2em));
-    transition: background-color 0.2s ease, color 0.2s ease, left 0.75s cubic-bezier(0.83, 0, 0.17, 1) 0s;
+    transition: background-color 0.2s ease, color 0.2s ease, left 0.6s cubic-bezier(0.83, 0, 0.17, 1) 0s;
 }
 
 .proj-link:nth-child(2) {
     top: calc(1 * ((var(--small-padding) * 4) + 1.2em));
-    transition: background-color 0.2s ease, color 0.2s ease, left 0.75s cubic-bezier(0.83, 0, 0.17, 1) 0.1s;
+    transition: background-color 0.2s ease, color 0.2s ease, left 0.6s cubic-bezier(0.83, 0, 0.17, 1) 0.1s;
 }
 
 .proj-link:nth-child(3) {
     top: calc(2 * ((var(--small-padding) * 4) + 1.2em));
-    transition: background-color 0.2s ease, color 0.2s ease, left 0.75s cubic-bezier(0.83, 0, 0.17, 1) 0.2s;
+    transition: background-color 0.2s ease, color 0.2s ease, left 0.6s cubic-bezier(0.83, 0, 0.17, 1) 0.2s;
 }
 
 .proj-link:nth-child(4) {
     top: calc(3 * ((var(--small-padding) * 4) + 1.2em));
-    transition: background-color 0.2s ease, color 0.2s ease, left 0.75s cubic-bezier(0.83, 0, 0.17, 1) 0.3s;
+    transition: background-color 0.2s ease, color 0.2s ease, left 0.6s cubic-bezier(0.83, 0, 0.17, 1) 0.3s;
 }
 
 .proj-link:hover {

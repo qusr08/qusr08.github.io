@@ -1,0 +1,66 @@
+{
+    "DOS": {
+        "dates": "Jul 2022 - Aug 2022",
+        "desc": "DOS (two in Spanish) is a single-player puzzle game where the objective is to strategically roll the die to get the two face on top! Use the various tiles that make up each level which can move or rotate the die to achieve the goal.",
+        "tags": [
+            "Top 5% GMTK Game Jam 2022",
+            "Unity/C#",
+            "Puzzle",
+            "3D Isometric"
+        ],
+        "links": [
+            {
+                "name": "GMTK 2022",
+                "url": "https://itch.io/jam/gmtk-jam-2022/rate/1623540"
+            },
+            {
+                "name": "Play DOS",
+                "url": "https://qusr08.github.io/DOS/"
+            },
+            {
+                "name": "Github Repo",
+                "url": "https://github.com/qusr08/DOS"
+            },
+            {
+                "name": "Itch.io Page",
+                "url": "https://qusr.itch.io/dos"
+            }
+        ]
+    },
+    "Prichi": {
+        "dates": "Oct 2021 - Dec 2021",
+        "desc": "Prichi is an infinite 'dungeon crawler'-esque game where you play as a queen chess piece and try to eliminate all opposing black chess pieces. Each level is randomly generated and goal is to get as far as possible without blundering your queen!",
+        "tags": [
+            "HTML/CSS/Javascript",
+            "PixiJS",
+            "Turn-Based Strategy",
+            "2D Top-Down"
+        ],
+        "links": [
+            {
+                "name": "Play Prichi",
+                "url": "https://qusr08.github.io/Prichi/"
+            },
+            {
+                "name": "Github Repo",
+                "url": "https://github.com/qusr08/Prichi"
+            }
+        ]
+    },
+    "Collab": {
+        "dates": "Oct 2019 - Dec 2019",
+        "desc": "Collab is a 2-player puzzle platforming game where you need to work together to solve various puzzles. Each player can switch between four unique character abilities to aid their navigation through each level. Have each player reach the goal to beat each level!",
+        "tags": [
+            "Unity/C#",
+            "2-Player",
+            "Puzzle Platformer",
+            "2D"
+        ],
+        "links": [
+            {
+                "name": "Github Repo",
+                "url": "https://github.com/qusr08/Collab"
+            }
+        ]
+    }
+}
