@@ -105,5 +105,5 @@ function createProjectBox(projectName, isReversed) {
     // Append the project box to the html document
     projectBox.appendChild(projectInfo);
     projectBoxContainer.appendChild(projectBox);
-    document.body.appendChild(projectBoxContainer);
+    document.querySelector("div.proj-container").appendChild(projectBoxContainer);
 }

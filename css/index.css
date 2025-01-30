@@ -14,6 +14,8 @@
 }
 
 h1,
+h2,
+h3,
 .proj-tag {
     background-color: var(--detail-color);
     color: var(--text-color);
@@ -35,12 +37,49 @@ p {
 }
 
 body {
+    padding: 0vw 5vw;
+    background-color: var(--background-color);
+}
+
+.proj-container {
     display: flex;
     flex-flow: column nowrap;
     gap: 30vh;
-    padding: 5vw;
-    background-color: var(--background-color);
 }
+
+.main-header {
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .main-title {
+    font-size: 8em;
+    padding: var(--padding);
+} */
+
+.main-title {
+    width: 100%;
+    font-size: 12em;
+    display: flex;
+    flex-flow: row nowrap;
+    font-weight: 900;
+    justify-content: space-evenly;
+}
+
+.main-title>p {
+    color: var(--detail-color);
+}
+
+.main-subtitle {
+    font-size: 4em;
+    font-style: italic;
+    padding: var(--padding);
+}
+
+/* #region Project Box */
 
 .proj-box-container {
     display: flex;
@@ -194,6 +233,8 @@ body {
     filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
 }
 
+/* #endregion */
+
 .gmtk-2022 {
     background-color: unset;
     background-image: linear-gradient(to left, #FF9C00, #FF0900);
@@ -206,7 +247,7 @@ body {
 
 .rit-edge {
     background-color: unset;
-    background-image: linear-gradient(to left, #F36917, #9f440f );
+    background-image: linear-gradient(to left, #F36917, #9f440f);
 }
 
 .in-development {
