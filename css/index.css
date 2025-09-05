@@ -6,7 +6,7 @@
     --background-color: #121212;
     --panel-color: #444444;
     --detail-color: #D32344;
-    --text-color: #b3b3b3;
+    --text-color: #f5f5f5;
     --peg-color: #222222;
     --proj-box-size: 60vh;
     --rounding: 5px;
@@ -66,7 +66,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     gap: var(--resize-padding);
-    width: var(--proj-box-size);
+    width: calc(0.5 * var(--proj-box-size));
     aspect-ratio: 1;
 }
 
