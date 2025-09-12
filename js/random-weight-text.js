@@ -27,7 +27,7 @@ export default class VariableText {
             let charWeight = this.charWeights[i];
 
             // Update the font weight
-            charWeight.p += (1 / 60) * 0.5;
+            charWeight.p += (1 / 60) * 0.2;
             this.charSpanElements[i].style.fontWeight = Math.round(scale(easeInOut(charWeight.p), 0, 1, charWeight.f, charWeight.t));
 
             // Get a new random weight if the current span element has reached it

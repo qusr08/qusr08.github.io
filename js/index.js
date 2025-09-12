@@ -1,7 +1,8 @@
 'use strict';
 
 import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
-import VariableText from './variable-text.js';
+import RandomWeightText from './random-weight-text.js';
+import MousePushText from './mouse-push-text.js';
 
 window.onload = () => {
     // Create all project box elements
@@ -15,7 +16,8 @@ window.onload = () => {
         isProjectReversed = !isProjectReversed;
     }
 
-    let variableText = new VariableText(document.querySelector(".variable-text>p"));
+    // let textEffect = new RandomWeightText(document.querySelector(".text-effect"));
+    let textEffect = new MousePushText(document.querySelector(".text-effect"));
 }
 
 function createProjectBox(projectName, isReversed) {
