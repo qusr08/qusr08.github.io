@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Badeen+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap');
 
 :root {
     --background-color: #121212;
@@ -8,7 +10,8 @@
     --detail-color: #D32344;
     --text-color: #f5f5f5;
     --peg-color: #222222;
-    --proj-box-size: 60vh;
+    --proj-gif-size: 60vh;
+    --proj-text-size: 20vw;
     --rounding: 5px;
     --gap: 10px;
     --resize-padding: max(2vw, 2vh);
@@ -21,7 +24,9 @@ p {
 
 * {
     /* font-family: 'Barlow', sans-serif; */
-    font-family: "Aldrich", sans-serif;
+    font-family: 'Inter', sans-serif;
+    /* font-family: "Aldrich", sans-serif; */
+    /* font-family: "Badeen Display", sans-serif; */
     font-weight: 300;
     box-sizing: border-box;
     margin: 0;
@@ -32,20 +37,40 @@ p {
 body {
     min-height: 100vh;
     background-color: var(--background-color);
+    padding: 0 10vw;
 }
 
 .projects {
     display: flex;
     flex-flow: column nowrap;
+    padding: calc(0.5 * var(--proj-gif-size)) 0;
+    gap: calc(0.5 * var(--proj-gif-size));
+}
+
+.proj-container:nth-child(even) {
+    align-self: flex-end;
+}
+
+.variable-text {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
     align-items: center;
-    padding: calc(0.5 * var(--proj-box-size)) 0vh;
-    gap: calc(0.5 * var(--proj-box-size));
+    white-space: nowrap;
+}
+
+.variable-text>p {
+    font-weight: unset;
+    font-size: 15em;
+    letter-spacing: -10px;
+    color: var(--detail-color);
 }
 
 /* #region Project Box */
 
 .proj-container {
-    height: var(--proj-box-size);
+    height: var(--proj-gif-size);
     display: flex;
     flex-flow: row nowrap;
     width: min-content;
@@ -58,7 +83,7 @@ body {
 
 .proj-button {
     background-color: #C3D8DD;
-    width: var(--proj-box-size);
+    width: var(--proj-gif-size);
     aspect-ratio: 1;
 }
 
@@ -66,7 +91,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     gap: var(--resize-padding);
-    width: calc(0.5 * var(--proj-box-size));
+    width: var(--proj-text-size);
     aspect-ratio: 1;
 }
 
@@ -88,8 +113,8 @@ body {
 
 .proj-tag,
 .proj-award {
-    background-color: var(--text-color);
-    color: black;
+    background-color: var(--detail-color);
+    color: white;
     mix-blend-mode: screen;
     padding: 0.25em;
     height: min-content;

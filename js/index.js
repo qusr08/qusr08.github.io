@@ -1,14 +1,21 @@
 'use strict';
 
 import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
+import VariableText from './variable-text.js';
 
 window.onload = () => {
     // Create all project box elements
     let isProjectReversed = false;
-    for (let project in PROJECT_DATA) {
-        createProjectBox(project, isProjectReversed);
+    for (let projectName in PROJECT_DATA) {
+        if (PROJECT_DATA[projectName].hidden) {
+            continue;
+        }
+
+        createProjectBox(projectName, isProjectReversed);
         isProjectReversed = !isProjectReversed;
     }
+
+    let variableText = new VariableText(document.querySelector(".variable-text>p"));
 }
 
 function createProjectBox(projectName, isReversed) {
@@ -64,7 +71,7 @@ function createProjectBox(projectName, isReversed) {
         projectTags.appendChild(projectTag);
     });
     projectInfo.appendChild(projectTags);
-    
+
     // Append the project box to the html document
     projectContainer.appendChild(projectInfo);
     document.querySelector("div.projects").appendChild(projectContainer);
