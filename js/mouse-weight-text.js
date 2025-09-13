@@ -1,19 +1,15 @@
-export default class MousePushText {
+export default class MouseWeightText {
     constructor(textElement) {
         this.textElement = textElement;
         this.text = textElement.innerHTML.trim();
         this.charSpanElements = [];
-        this.radius = 500;
-        this.maxOffset = 40;
+        this.rangeSettings = { sqRadius: 500 * 500, min: 100, max: 900 };
 
         this.textElement.innerHTML = "";
         for (let i = 0; i < this.text.length; i++) {
             let spanElement = document.createElement("span");
             spanElement.innerHTML = this.text.at(i);
-            spanElement.style.display = "inline-block";
-            spanElement.style.minWidth = "0.1em";
             this.charSpanElements.push(spanElement);
-
             this.textElement.appendChild(spanElement);
         }
 
@@ -26,19 +22,19 @@ export default class MousePushText {
         for (let i = 0; i < this.charSpanElements.length; i++) {
             let spanElement = this.charSpanElements[i];
 
-            let distanceVector = {
+            let distVector = {
                 x: mousePosition.x - (spanElement.offsetLeft + (spanElement.offsetWidth / 2)),
                 y: mousePosition.y - (spanElement.offsetTop + (spanElement.offsetHeight / 2))
             };
-            let distanceMagnitude = Math.sqrt((distanceVector.x * distanceVector.x) + (distanceVector.y * distanceVector.y));
+            let sqMag = (distVector.x * distVector.x) + (distVector.y * distVector.y);
 
-            let offsetAmount = -scale(Math.max(0, this.radius - distanceMagnitude), 0, this.radius, 0, this.maxOffset);
-            let spanOffset = {
-                x: distanceVector.x / distanceMagnitude * offsetAmount,
-                y: distanceVector.y / distanceMagnitude * offsetAmount
-            };
+            let areaOfEffect = Math.max(0, this.rangeSettings.sqRadius - sqMag);
+            if (areaOfEffect == 0 && spanElement.style.fontWeight == this.rangeSettings.min) {
+                continue;
+            }
 
-            this.charSpanElements[i].style.transform = `translate(${spanOffset.x}px, ${spanOffset.y}px)`;
+            let fontWeight = scale(areaOfEffect, 0, this.rangeSettings.sqRadius, this.rangeSettings.min, this.rangeSettings.max);
+            spanElement.style.fontWeight = fontWeight;
         }
     }
 }

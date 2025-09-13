@@ -27,8 +27,8 @@ p {
     /* font-family: 'Inter', sans-serif; */
     /* font-family: "Aldrich", sans-serif; */
     /* font-family: "Badeen Display", sans-serif; */
-    font-family: "Vina Sans", sans-serif;
-    /* font-family: 'Inter', sans-serif; */
+    /* font-family: "Vina Sans", sans-serif; */
+    font-family: 'Inter', sans-serif;
     box-sizing: border-box;
     margin: 0;
     border-radius: var(--rounding);

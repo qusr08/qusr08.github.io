@@ -13,7 +13,7 @@ export default class VariableText {
 
             let spanWeight = randInt(100, 900);
             spanElement.style.fontWeight = spanWeight;
-            this.charWeights.push({ f: spanWeight, t: spanWeight, p: 1 });
+            this.charWeights.push({ f: spanWeight, t: spanWeight, p: 1, s: randFloat(0.1, 0.3) });
 
             this.textElement.appendChild(spanElement);
         }
@@ -27,7 +27,7 @@ export default class VariableText {
             let charWeight = this.charWeights[i];
 
             // Update the font weight
-            charWeight.p += (1 / 60) * 0.2;
+            charWeight.p += (1 / 60) * charWeight.s;
             this.charSpanElements[i].style.fontWeight = Math.round(scale(easeInOut(charWeight.p), 0, 1, charWeight.f, charWeight.t));
 
             // Get a new random weight if the current span element has reached it
@@ -35,6 +35,7 @@ export default class VariableText {
                 charWeight.f = charWeight.t;
                 charWeight.t = randInt(100, 900);
                 charWeight.p = 0;
+                charWeight.s = randFloat(0.1, 0.3);
             }
 
             this.charWeights[i] = charWeight;
@@ -46,12 +47,16 @@ function scale(value, inMin, inMax, outMin, outMax) {
     return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 }
 
-function easeInOut(t){
-  return t > 0.5 ? 4*Math.pow((t-1),3)+1 : 4*Math.pow(t,3);
+function easeInOut(t) {
+    return t > 0.5 ? 4 * Math.pow((t - 1), 3) + 1 : 4 * Math.pow(t, 3);
 }
 
 function randInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randFloat(min, max) {
+    return (Math.random() * (max - min)) + min;
 }
