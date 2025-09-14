@@ -1,9 +1,10 @@
 export default class MouseWeightText {
-    constructor(textElement) {
+    constructor(textElement, minWeight, maxWeight) {
         this.textElement = textElement;
         this.text = textElement.innerHTML.trim();
         this.charSpanElements = [];
-        this.rangeSettings = { sqRadius: 500 * 500, min: 100, max: 900 };
+        this.rangeSettings = { sqRadius: 500 * 500, min: minWeight, max: maxWeight };
+        this.mousePosition = { x: 0, y: 0 };
 
         this.textElement.innerHTML = "";
         for (let i = 0; i < this.text.length; i++) {
@@ -13,18 +14,23 @@ export default class MouseWeightText {
             this.textElement.appendChild(spanElement);
         }
 
-        document.addEventListener('mousemove', (e) => { this.onMouseMove(e); });
+        document.addEventListener('mousemove', (e) => {
+            this.mousePosition = { x: e.clientX, y: e.clientY };
+            this.onMouseMove();
+        });
+        document.addEventListener('scroll', (e) => {
+            this.onMouseMove();
+        });
     }
 
-    onMouseMove(e) {
-        let mousePosition = { x: e.pageX, y: e.pageY };
-
+    onMouseMove() {
         for (let i = 0; i < this.charSpanElements.length; i++) {
             let spanElement = this.charSpanElements[i];
+            let spanRect = spanElement.getBoundingClientRect();
 
             let distVector = {
-                x: mousePosition.x - (spanElement.offsetLeft + (spanElement.offsetWidth / 2)),
-                y: mousePosition.y - (spanElement.offsetTop + (spanElement.offsetHeight / 2))
+                x: this.mousePosition.x - (spanRect.x + (spanRect.width / 2)),
+                y: this.mousePosition.y - (spanRect.y + (spanRect.height / 2))
             };
             let sqMag = (distVector.x * distVector.x) + (distVector.y * distVector.y);
 
@@ -33,6 +39,7 @@ export default class MouseWeightText {
                 continue;
             }
 
+            spanElement.style.minWidth = spanRect.width;
             let fontWeight = scale(areaOfEffect, 0, this.rangeSettings.sqRadius, this.rangeSettings.min, this.rangeSettings.max);
             spanElement.style.fontWeight = fontWeight;
         }

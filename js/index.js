@@ -7,19 +7,17 @@ import MouseWeightText from './mouse-weight-text.js';
 
 window.onload = () => {
     // Create all project box elements
-    let isProjectReversed = false;
-    for (let projectName in PROJECT_DATA) {
-        if (PROJECT_DATA[projectName].hidden) {
-            continue;
-        }
+    // for (let projectName in PROJECT_DATA) {
+    //     if (PROJECT_DATA[projectName].hidden) {
+    //         continue;
+    //     }
 
-        createProjectBox(projectName, isProjectReversed);
-        isProjectReversed = !isProjectReversed;
-    }
+    //     createProjectBox(projectName);
+    // }
 
-    // let textEffect = new RandomWeightText(document.querySelector(".text-effect"));
-    // let textEffect = new MousePushText(document.querySelector(".text-effect"));
-    let textEffect = new MouseWeightText(document.querySelector(".text-effect"));
+    document.querySelectorAll(".text-effect").forEach(e => {
+        new MouseWeightText(e, parseInt(e.getAttribute('minWeight')), parseInt(e.getAttribute('maxWeight')));
+    })
 }
 
 function createProjectBox(projectName, isReversed) {
