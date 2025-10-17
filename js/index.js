@@ -17,6 +17,8 @@ window.onload = () => {
 
     document.querySelectorAll(".text-effect").forEach(e => {
         new MouseWeightText(e, parseInt(e.getAttribute('minWeight')), parseInt(e.getAttribute('maxWeight')));
+        // new MousePushText(e, parseInt(e.getAttribute('minWeight')), parseInt(e.getAttribute('maxWeight')));
+        // new RandomWeightText(e);
     })
 }
 

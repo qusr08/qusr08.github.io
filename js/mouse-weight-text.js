@@ -29,8 +29,8 @@ export default class MouseWeightText {
             let spanRect = spanElement.getBoundingClientRect();
 
             let distVector = {
-                x: this.mousePosition.x - (spanRect.x + (spanRect.width / 2)),
-                y: this.mousePosition.y - (spanRect.y + (spanRect.height / 2))
+                x: this.mousePosition.x - (spanRect.x + (spanRect.width * 0.5)),
+                y: this.mousePosition.y - (spanRect.y + (spanRect.height * 0.5))
             };
             let sqMag = (distVector.x * distVector.x) + (distVector.y * distVector.y);
 
