@@ -41,7 +41,7 @@ export default class MouseWeightText {
 
             spanElement.style.minWidth = spanRect.width;
             let fontWeight = scale(areaOfEffect, 0, this.rangeSettings.sqRadius, this.rangeSettings.min, this.rangeSettings.max);
-            spanElement.style.fontWeight = fontWeight;
+            spanElement.style.fontWeight = Math.round(fontWeight);
         }
     }
 }

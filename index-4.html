@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frank Alfano | Home Page</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #121212;
+            padding: 20px 5vw;
+            padding-bottom: 20vh;
+        }
+
+        .project-list {
+            display: flex;
+            flex-flow: column;
+            gap: 10vh;
+            align-items: center;
+        }
+
+        .project {
+            position: relative;
+            display: flex;
+            flex-flow: column;
+            height: 90vh;
+            width: 100%;
+        }
+
+        .project-video {
+            position: absolute;
+            background-color: #6fc4c7;
+            width: 65%;
+            height: 75%;
+            left: 17.5%;
+            top: 12.5%;
+            z-index: -1;
+        }
+
+        .project-title {
+            color: #FAFAFA;
+            font-size: 10em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -8px;
+            max-height: 1em;
+        }
+
+        .project-description {
+            color: #FAFAFA;
+            font-size: 2em;
+            width: 25%;
+            font-weight: 700;
+        }
+
+        .polygon-with-image {
+            width: 400px;
+            height: 300px;
+            background-image: url('png/dos/dos-thumbnail.png');
+            background-size: cover;
+            background-position: center;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="project-list">
+        <div class="project">
+            <div class="project-video"></div>
+            <p class="project-title">Breakthrough</p>
+            <p class="project-description">A Tetris-inspired arcade puzzle game where you destroy blocks to earn points</p>
+        </div>
+        <div class="polygon-with-image"></div>
+    </div>
+</body>
+
+</html>
