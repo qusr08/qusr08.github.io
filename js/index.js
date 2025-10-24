@@ -4,6 +4,7 @@ import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
 import RandomWeightText from './random-weight-text.js';
 import MousePushText from './mouse-push-text.js';
 import MouseWeightText from './mouse-weight-text.js';
+import WobbleEffect from './wobble-effect.js';
 
 window.onload = () => {
     // Create all project box elements
@@ -19,6 +20,10 @@ window.onload = () => {
         new MouseWeightText(e, parseInt(e.getAttribute('minWeight')), parseInt(e.getAttribute('maxWeight')));
         // new MousePushText(e, parseInt(e.getAttribute('minWeight')), parseInt(e.getAttribute('maxWeight')));
         // new RandomWeightText(e);
+    })
+
+    document.querySelectorAll(".wobble-effect").forEach(e => {
+        new WobbleEffect(e);
     })
 }
 
