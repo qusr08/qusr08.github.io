@@ -1,170 +1,80 @@
 {
+    "Breakthrough": {
+        "hidden": false,
+        "dates": "May 2022 - Present",
+        "desc": "A Tetris-inspired arcade puzzle game where you destroy blocks to clear boards",
+        "tags": [
+            "Unity",
+            "C#",
+            "Arcade",
+            "Puzzle"
+        ],
+        "awards": [
+            {
+                "eventName": "RIT EDGE 2023",
+                "awardList": ["Game Feel Award"]
+            }
+        ]
+    },
+    "Smath": {
+        "hidden": false,
+        "dates": "Feb 2025",
+        "desc": "A simple puzzle game aimed to teach elementary-aged children basic arithmetic",
+        "tags": [
+            "Unity",
+            "C#",
+            "Puzzle",
+            "Educational"
+        ],
+        "awards": [
+            {
+                "eventName": "RIT Brickhack 11",
+                "awardList": ["Best Game Hack", "Best Solo Hack"]
+            }
+        ]
+    },
+    "Semi The Droid": {
+        "hidden": false,
+        "dates": "Apr 2024",
+        "desc": "Move Semi out of harms way by manipulating sections of the world",
+        "tags": [
+            "Unity",
+            "C#",
+            "Puzzle",
+            "Turn-Based"
+        ],
+        "awards": [
+            {
+                "eventName": "1-BIT JAM #3",
+                "awardList": ["10th Overall"]
+            }
+        ]
+    },
     "DOS": {
         "hidden": false,
         "dates": "Jul 2022 - Aug 2022",
-        "desc": "DOS (two in Spanish) is a single-player puzzle game where the objective is to strategically roll the die to get the two face on top! Use the various tiles that make up each level which can move or rotate the die to achieve the goal.",
+        "desc": "Get the two-face of a die facing up by rolling across various tiles",
         "tags": [
             "Unity",
             "C#",
             "Puzzle"
         ],
         "awards": [
-            "Top 5% GMTK Game Jam 2022"
-        ],
-        "links": [
             {
-                "name": "GMTK 2022",
-                "url": "https://itch.io/jam/gmtk-jam-2022/rate/1623540"
-            },
-            {
-                "name": "Play DOS",
-                "url": "https://qusr08.github.io/DOS/"
-            },
-            {
-                "name": "Github Repository",
-                "url": "https://github.com/qusr08/DOS"
-            },
-            {
-                "name": "Itch.io Page",
-                "url": "https://qusr.itch.io/dos"
-            }
-        ]
-    },
-    "Breakthrough": {
-        "hidden": false,
-        "dates": "May 2022 - Present",
-        "desc": "Breakthrough is an arcade game where the player must use boom blocks to blow up other tiles. The goal is to get a piece under player's control all the way to the bottom of the game board, 'breaking through' the level. The game is endless and each level gets progressively harder to clear.",
-        "tags": [
-            "Unity",
-            "C#",
-            "Arcade",
-            "Strategy"
-        ],
-        "awards": [
-            "RIT EDGE 2023 Game Feel Winner"
-        ],
-        "links": [
-            {
-                "name": "RIT EDGE Demo 2023",
-                "url": "https://youtu.be/2uN2DdvFM5k?list=PLNxi4Yxo1HtP9qWay3962V65gggHy9_ti"
-            },
-            {
-                "name": "Play Breakthrough",
-                "url": "https://qusr.itch.io/breakthrough"
-            },
-            {
-                "name": "Itch.io Page",
-                "url": "https://qusr.itch.io/breakthrough"
+                "eventName": "GMTK Game Jam 2022",
+                "awardList": ["#292 (Top 5%) Overall"]
             }
         ]
     },
     "Prichi": {
         "hidden": false,
         "dates": "Oct 2021 - Dec 2021",
-        "desc": "Prichi is an infinite 'dungeon crawler'-esque game where you play as a queen chess piece and try to eliminate all opposing black chess pieces. Each level is randomly generated and goal is to get as far as possible without blundering your queen!",
+        "desc": "Play as a queen to eliminate opposing chess pieces across randomly generated levels",
         "tags": [
-            "HTML",
-            "CSS",
             "Javascript",
-            "PixiJS",
-            "Turn-Based Strategy"
+            "Puzzle",
+            "Turn-Based"
         ],
-        "awards": [],
-        "links": [
-            {
-                "name": "Play Prichi",
-                "url": "https://qusr08.github.io/Prichi/"
-            },
-            {
-                "name": "Github Repository",
-                "url": "https://github.com/qusr08/Prichi"
-            }
-        ]
-    },
-    "Collab": {
-        "hidden": false,
-        "dates": "Oct 2019 - Dec 2019",
-        "desc": "Collab is a 2-player puzzle platforming game where you need to work together to solve various puzzles. Each player can switch between four unique character abilities to aid their navigation through each level. Have each player reach the goal to beat each level!",
-        "tags": [
-            "Unity",
-            "C#",
-            "2-Player",
-            "Puzzle Platformer"
-        ],
-        "awards": [],
-        "links": [
-            {
-                "name": "Github Repository",
-                "url": "https://github.com/qusr08/Collab"
-            }
-        ]
-    },
-    "Blockchain": {
-        "hidden": false,
-        "dates": "Jun 2021 - Jul 2021",
-        "desc": "Blockchain is a puzzle game that revolves around chaining various blocks together. Each block has different properties that allow them to either stick to other blocks or slide past them. You must create different shapes in order to avoid falling into the abyss below. Navigate your way to the white button in each level to win!",
-        "tags": [
-            "Unity",
-            "C#",
-            "Puzzle"
-        ],
-        "awards": [
-            "Top 10% GMTK Game Jam 2021"
-        ],
-        "links": [
-            {
-                "name": "GMTK 2021",
-                "url": "https://itch.io/jam/gmtk-2021/rate/1077885"
-            },
-            {
-                "name": "Play Blockchain",
-                "url": "https://qusr08.github.io/Blockchain/"
-            },
-            {
-                "name": "Github Repository",
-                "url": "https://github.com/qusr08/Blockchain"
-            },
-            {
-                "name": "Itch.io Page",
-                "url": "https://trevoltestudios0.itch.io/blockchain"
-            }
-        ]
-    },
-    "gcmdesigns": {
-        "hidden": false,
-        "dates": "March 2022 - Sep 2024",
-        "desc": "A portfolio website made for Gabriela Colon-Melendez, an Industrial Design major at Virginia Polytechnic Institute and State University. It displays some of her school projects that she has finished, complete with images, design documents, CAD renderings, and sketches.",
-        "tags": [
-            "HTML",
-            "CSS",
-            "Javascript"
-        ],
-        "awards": [],
-        "links": [
-            {
-                "name": "gcmdesigns.com",
-                "url": "https://www.gcmdesigns.com/"
-            },
-            {
-                "name": "Github Repository",
-                "url": "https://github.com/qusr08/gcmdesigns"
-            }
-        ]
-    },
-    "Wumpus": {
-        "hidden": true,
-        "dates": "Apr 2019 - Jun 2019",
-        "desc": "Wumpus is a dungeon crawler where you are tasked with killing the guardian of the dungeon, the Wumpus. Use various weapons and tools to locate the Wumpus while avoiding hazards and slay the beast!",
-        "tags": [
-            "Java",
-            "Turn-Based Strategy"
-        ],
-        "awards": [],
-        "links": [
-            {
-                "name": "Github Repository",
-                "url": "https://github.com/qusr08/Wumpus"
-            }
-        ]
+        "awards": []
     }
 }

@@ -4,6 +4,8 @@ export default class VariableText {
         this.text = textElement.innerHTML.trim();
         this.charSpanElements = [];
         this.charWeights = [];
+        this.minWeight = parseInt(textElement.getAttribute('min-weight')) || 100;
+        this.maxWeight = parseInt(textElement.getAttribute('max-weight')) || 900;
 
         this.textElement.innerHTML = "";
         for (let i = 0; i < this.text.length; i++) {
@@ -11,7 +13,7 @@ export default class VariableText {
             spanElement.innerHTML = this.text.at(i);
             this.charSpanElements.push(spanElement);
 
-            let spanWeight = randInt(100, 900);
+            let spanWeight = randInt(this.minWeight, this.maxWeight);
             spanElement.style.fontWeight = spanWeight;
             this.charWeights.push({ f: spanWeight, t: spanWeight, p: 1, s: randFloat(0.1, 0.3) });
 
@@ -33,7 +35,7 @@ export default class VariableText {
             // Get a new random weight if the current span element has reached it
             if (charWeight.p >= 1) {
                 charWeight.f = charWeight.t;
-                charWeight.t = randInt(100, 900);
+                charWeight.t = randInt(this.minWeight, this.maxWeight);
                 charWeight.p = 0;
                 charWeight.s = randFloat(0.1, 0.3);
             }

@@ -1,9 +1,11 @@
 export default class MouseWeightText {
-    constructor(textElement, minWeight, maxWeight) {
+    constructor(textElement) {
         this.textElement = textElement;
         this.text = textElement.innerHTML.trim();
         this.charSpanElements = [];
-        this.rangeSettings = { sqRadius: 500 * 500, min: minWeight, max: maxWeight };
+        this.minWeight = parseInt(textElement.getAttribute('minWeight')) || 100;
+        this.maxWeight = parseInt(textElement.getAttribute('maxWeight')) || 900;
+        this.rangeSettings = { sqRadius: 500 * 500, min: this.minWeight, max: this.maxWeight };
         this.mousePosition = { x: 0, y: 0 };
 
         this.textElement.innerHTML = "";

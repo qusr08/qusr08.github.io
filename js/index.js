@@ -6,82 +6,79 @@ import MousePushText from './mouse-push-text.js';
 import MouseWeightText from './mouse-weight-text.js';
 import WobbleEffect from './wobble-effect.js';
 
+let wobbleEffects = [];
+
 window.onload = () => {
     // Create all project box elements
-    // for (let projectName in PROJECT_DATA) {
-    //     if (PROJECT_DATA[projectName].hidden) {
-    //         continue;
-    //     }
+    for (let projectName in PROJECT_DATA) {
+        if (PROJECT_DATA[projectName].hidden) {
+            continue;
+        }
 
-    //     createProjectBox(projectName);
-    // }
+        createProjectHTML(projectName);
+    }
 
     document.querySelectorAll(".text-effect").forEach(e => {
-        new MouseWeightText(e, parseInt(e.getAttribute('minWeight')), parseInt(e.getAttribute('maxWeight')));
+        // new MouseWeightText(e);
         // new MousePushText(e, parseInt(e.getAttribute('minWeight')), parseInt(e.getAttribute('maxWeight')));
-        // new RandomWeightText(e);
+        new RandomWeightText(e);
     })
 
-    document.querySelectorAll(".wobble-effect").forEach(e => {
-        new WobbleEffect(e);
-    })
+    document.querySelectorAll(".wobble-effect").forEach(e => { wobbleEffects.push(new WobbleEffect(e)); })
 }
 
-function createProjectBox(projectName, isReversed) {
-    // Create project box container element
+function createProjectHTML(name) {
+    // Create project container
     let projectContainer = document.createElement("div");
     projectContainer.classList.add("proj-container");
-    if (isReversed) projectContainer.classList.add("reversed");
 
-    // Create project button element
-    let projectButton = document.createElement("div");
-    projectButton.classList.add("proj-button");
-    projectContainer.appendChild(projectButton);
+    // Create project background
+    let projectBackground = document.createElement("div");
+    projectBackground.classList.add("proj-background", "wobble-effect");
+    projectBackground.style.backgroundImage = `url("../png/${name.toLowerCase()}/${name.toLowerCase()}-thumbnail.png")`;
+    projectContainer.appendChild(projectBackground);
 
-    // Create project info element
-    let projectInfo = document.createElement("div");
-    projectInfo.classList.add("proj-info");
+    let projectTitle = document.createElement("p");
+    projectTitle.classList.add("proj-title", "text-effect");
+    projectTitle.setAttribute("min-weight", 500);
+    projectTitle.innerHTML = name;
+    projectContainer.appendChild(projectTitle);
 
-    // Create project title element
-    let projectTitle = document.createElement("h1");
-    projectTitle.classList.add("proj-title");
-    projectTitle.innerHTML = projectName;
-    projectInfo.appendChild(projectTitle);
+    let projectDates = document.createElement("p");
+    projectDates.classList.add("proj-dates");
+    projectDates.innerHTML = PROJECT_DATA[name].dates;
+    projectContainer.appendChild(projectDates);
 
-    // Create project description element
     let projectDescription = document.createElement("p");
     projectDescription.classList.add("proj-desc");
-    projectDescription.innerHTML = PROJECT_DATA[projectName].desc;
-    projectInfo.appendChild(projectDescription);
+    projectDescription.innerHTML = PROJECT_DATA[name].desc;
+    projectContainer.appendChild(projectDescription);
 
-    // Create project awards element
+    let projectSpacer = document.createElement("div");
+    projectSpacer.style.flexGrow = 1;
+    projectContainer.appendChild(projectSpacer);
+
     let projectAwards = document.createElement("div");
-    projectAwards.classList.add("proj-tags");
-    PROJECT_DATA[projectName].awards.forEach(award => {
-        // Create tag element
+    projectAwards.classList.add("proj-awards");
+    PROJECT_DATA[name].awards.forEach(award => {
         let projectAward = document.createElement("p");
         projectAward.classList.add("proj-award");
-        if (award.includes("GMTK Game Jam 2022")) projectAward.classList.add("gmtk-2022");
-        if (award.includes("GMTK Game Jam 2021")) projectAward.classList.add("gmtk-2021");
-        if (award.includes("RIT EDGE")) projectAward.classList.add("rit-edge");
-        projectAward.innerHTML = award;
+        projectAward.innerHTML = `${award.eventName}<br><span style="color: var(--award-color);">${award.awardList.join("<br>")}</span>`;
+
         projectAwards.appendChild(projectAward);
     });
-    projectInfo.appendChild(projectAwards);
+    projectContainer.appendChild(projectAwards);
 
-    // Create project tags element
     let projectTags = document.createElement("div");
     projectTags.classList.add("proj-tags");
-    PROJECT_DATA[projectName].tags.forEach(tag => {
-        // Create tag element
+    PROJECT_DATA[name].tags.forEach(tag => {
         let projectTag = document.createElement("p");
-        projectTag.classList.add("proj-tag");
-        projectTag.innerHTML = tag;
+        projectTag.classList.add("proj-tag", "wobble-effect");
+        projectTag.innerHTML = `${tag}`;
+
         projectTags.appendChild(projectTag);
     });
-    projectInfo.appendChild(projectTags);
+    projectContainer.appendChild(projectTags);
 
-    // Append the project box to the html document
-    projectContainer.appendChild(projectInfo);
     document.querySelector("div.projects").appendChild(projectContainer);
 }
