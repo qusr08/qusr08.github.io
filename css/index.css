@@ -19,8 +19,8 @@
 body {
     min-height: 100vh;
     background-color: var(--back-color);
-    padding: 20px 5vw;
-    padding-bottom: 20vh;
+    /* padding: 20px 5vw; */
+    padding: 100vh 5vw;
 }
 
 .projects {

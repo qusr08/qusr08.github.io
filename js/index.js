@@ -5,6 +5,7 @@ import RandomWeightText from './random-weight-text.js';
 import MousePushText from './mouse-push-text.js';
 import MouseWeightText from './mouse-weight-text.js';
 import WobbleEffect from './wobble-effect.js';
+import OffsetScrollEffect from './offset-scroll-effect.js';
 
 let wobbleEffects = [];
 
@@ -18,13 +19,9 @@ window.onload = () => {
         createProjectHTML(projectName);
     }
 
-    document.querySelectorAll(".text-effect").forEach(e => {
-        // new MouseWeightText(e);
-        // new MousePushText(e, parseInt(e.getAttribute('minWeight')), parseInt(e.getAttribute('maxWeight')));
-        new RandomWeightText(e);
-    })
-
-    document.querySelectorAll(".wobble-effect").forEach(e => { wobbleEffects.push(new WobbleEffect(e)); })
+    document.querySelectorAll(".text-effect").forEach(e => { new RandomWeightText(e); });
+    document.querySelectorAll(".wobble-effect").forEach(e => { wobbleEffects.push(new WobbleEffect(e)); });
+    document.querySelectorAll(".offset-scroll-effect").forEach(e => { new OffsetScrollEffect(e); });
 }
 
 function createProjectHTML(name) {
