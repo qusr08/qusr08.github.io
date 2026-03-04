@@ -1,26 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-:root{
-    --text-color: #FAFAFA;
-    --back-color: #121212;
-    --award-color: #eeee03;
-    --proj-height: 90vh;
-    --proj-back-width: 70%;
-    --proj-back-height: 80%;
-    --proj-desc-width: 25%;
-}
-
-* {
-    font-family: 'Inter', sans-serif;
-    box-sizing: border-box;
-    margin: 0;
-}
-
 body {
-    min-height: 100vh;
-    background-color: var(--back-color);
-    /* padding: 20px 5vw; */
-    padding: 100vh 5vw;
+    padding: 0 5vw;
 }
 
 .projects {
@@ -42,13 +21,13 @@ body {
 
 .proj-background {
     position: absolute;
-    /* background-color: #6fc4c7; */
+    background-color: var(--detail-color);
     background-position: center;
     background-size: cover;
-    width: var(--proj-back-width);
-    height: var(--proj-back-height);
-    left: calc((100% - var(--proj-back-width)) / 2);
-    top: calc((100% - var(--proj-back-height)) / 2);
+    width: var(--proj-display-width);
+    height: var(--proj-display-height);
+    left: calc((100% - var(--proj-display-width)) / 2);
+    top: calc((100% - var(--proj-display-height)) / 2);
     z-index: -1;
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }

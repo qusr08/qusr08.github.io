@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+    --text-color: #FAFAFA;
+    --back-color: #121212;
+    --back-detail-color: #333333;
+    --award-color: #eeee03;
+    --detail-color: #D32344;
+    --proj-height: 90vh;
+    --proj-display-width: 70%;
+    --proj-display-height: 80%;
+    --proj-desc-width: 25%;
+}
+
+* {
+    /* font-family: 'Inter', sans-serif; */
+    font-family: 'Outfit', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--back-color);
+}
+
+/* #region Scrollbar */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--text-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--detail-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+}
+
+/* #endregion */

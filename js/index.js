@@ -35,26 +35,31 @@ function createProjectHTML(name) {
     projectBackground.style.backgroundImage = `url("../png/${name.toLowerCase()}/${name.toLowerCase()}-thumbnail.png")`;
     projectContainer.appendChild(projectBackground);
 
+    // Create project title
     let projectTitle = document.createElement("p");
     projectTitle.classList.add("proj-title", "text-effect");
-    projectTitle.setAttribute("min-weight", 500);
+    projectTitle.setAttribute("min-weight", 600);
     projectTitle.innerHTML = name;
     projectContainer.appendChild(projectTitle);
 
+    // Create project date
     let projectDates = document.createElement("p");
     projectDates.classList.add("proj-dates");
     projectDates.innerHTML = PROJECT_DATA[name].dates;
     projectContainer.appendChild(projectDates);
 
+    // Create project description
     let projectDescription = document.createElement("p");
     projectDescription.classList.add("proj-desc");
     projectDescription.innerHTML = PROJECT_DATA[name].desc;
     projectContainer.appendChild(projectDescription);
 
+    // Create a spacer so the rest of the elements are at the bottom of the project container
     let projectSpacer = document.createElement("div");
     projectSpacer.style.flexGrow = 1;
     projectContainer.appendChild(projectSpacer);
 
+    // Create all awards for the project
     let projectAwards = document.createElement("div");
     projectAwards.classList.add("proj-awards");
     PROJECT_DATA[name].awards.forEach(award => {
@@ -66,6 +71,7 @@ function createProjectHTML(name) {
     });
     projectContainer.appendChild(projectAwards);
 
+    // Create all tags for the project
     let projectTags = document.createElement("div");
     projectTags.classList.add("proj-tags");
     PROJECT_DATA[name].tags.forEach(tag => {
@@ -77,5 +83,6 @@ function createProjectHTML(name) {
     });
     projectContainer.appendChild(projectTags);
 
+    // Append the final project element to the website
     document.querySelector("div.projects").appendChild(projectContainer);
 }
