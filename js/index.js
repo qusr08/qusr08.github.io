@@ -1,15 +1,9 @@
 'use strict';
 
 import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
-import RandomWeightText from './random-weight-text.js';
-import MousePushText from './mouse-push-text.js';
-import MouseWeightText from './mouse-weight-text.js';
-import WobbleEffect from './wobble-effect.js';
-import OffsetScrollEffect from './offset-scroll-effect.js';
+import { addEffects } from './base.js';
 
-let wobbleEffects = [];
-
-window.onload = () => {
+window.onload = (e) => {
     // Create all project box elements
     for (let projectName in PROJECT_DATA) {
         if (PROJECT_DATA[projectName].hidden) {
@@ -19,14 +13,16 @@ window.onload = () => {
         createProjectHTML(projectName);
     }
 
-    document.querySelectorAll(".text-effect").forEach(e => { new RandomWeightText(e); });
-    document.querySelectorAll(".wobble-effect").forEach(e => { wobbleEffects.push(new WobbleEffect(e)); });
-    document.querySelectorAll(".offset-scroll-effect").forEach(e => { new OffsetScrollEffect(e); });
+    addEffects();
 }
 
 function createProjectHTML(name) {
     // Create project container
     let projectContainer = document.createElement("div");
+    projectContainer.onclick = (e) => {
+        localStorage.setItem("project", name);
+        window.location.href = "project.html";
+    }
     projectContainer.classList.add("proj-container");
 
     // Create project background
