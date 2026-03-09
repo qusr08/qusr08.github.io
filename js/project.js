@@ -14,16 +14,18 @@ window.onload = (e) => {
 }
 
 function createInfoHTML(name) {
-    // Set the header images
     let projectHeader = document.querySelector(".proj-header");
-    projectHeader.style.backgroundImage = `url(./png/${name.toLowerCase()}/${name.toLowerCase()}-title-background.png)`;
     let projectHeaderTitle = document.querySelector(".proj-header-title");
+    let projectDetails = document.querySelector(".proj-details");
+    let projectImages = document.querySelector(".proj-media");
+
+    // Set the header images
+    projectHeader.style.backgroundImage = `url(./png/${name.toLowerCase()}/${name.toLowerCase()}-title-background.png)`;
     projectHeaderTitle.src = `./png/${name.toLowerCase()}/${name.toLowerCase()}-title-art.png`;
 
-    let projectDetails = document.querySelector(".proj-details");
-
     // Display project info
-    PROJECT_DATA[name].info.forEach(section => {
+    let projectInfo = PROJECT_DATA[name].info || [];
+    projectInfo.forEach(section => {
         // Create project section element
         let projectSection = document.createElement("div");
         projectSection.classList.add("proj-info-section");
@@ -46,25 +48,18 @@ function createInfoHTML(name) {
         projectDetails.appendChild(projectSection);
     });
 
-    let projectImages = document.querySelector(".proj-media");
-
-    // Add project video if it exists
-    let projectVideoURL = PROJECT_DATA[name].video;
-    if (projectVideoURL != undefined) {
-        let projectVideo = document.createElement("iframe");
-        projectVideo.allowFullscreen = true;
-        projectVideo.style.aspectRatio = 1920 / 1080;
-        projectVideo.src = projectVideoURL;
-        projectImages.appendChild(projectVideo);
-    }
-
-    // Add project screenshots if they exist
-    let projectScreenshotCount = PROJECT_DATA[name].screenshotCount;
-    if (projectScreenshotCount != undefined) {
-        for (let i = 1; i <= projectScreenshotCount; i++) {
+    let projectMedia = PROJECT_DATA[name].media || [];
+    projectMedia.forEach(media => {
+        if (media.video) {
+            let projectVideo = document.createElement("iframe");
+            projectVideo.allowFullscreen = true;
+            projectVideo.style.aspectRatio = 1920 / 1080;
+            projectVideo.src = media.video;
+            projectImages.appendChild(projectVideo);
+        } else if (media.picture) {
             let projectScreenshot = document.createElement("img");
-            projectScreenshot.src = `./png/${name.toLowerCase()}/screenshots/${name.toLowerCase()}-screenshot-${i}.png`;
+            projectScreenshot.src = media.picture;
             projectImages.appendChild(projectScreenshot);
         }
-    }
+    });
 }

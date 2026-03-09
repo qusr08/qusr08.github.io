@@ -40,7 +40,7 @@
 .proj-info-title {
     font-size: 2em;
     color: var(--back-color);
-    padding: 10px;
+    padding: 10px 20px;
     width: min-content;
     font-weight: 900;
     background-color: var(--detail-color);
