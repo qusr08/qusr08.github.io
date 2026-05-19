@@ -2,6 +2,7 @@
 
 import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
 import { addEffects } from './base.js';
+import { InteractiveBackground } from './background/interactive-background.js';
 
 window.onload = (e) => {
     // Create all project box elements
@@ -14,6 +15,9 @@ window.onload = (e) => {
     }
 
     addEffects();
+
+    let background = new InteractiveBackground(document.querySelector("div.projects"));
+    background.initialize();
 }
 
 function createProjectHTML(name) {
