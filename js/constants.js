@@ -18,3 +18,4 @@ export const HTML_CONSTRAINT_DISTANCE_MODIFIER = 12;
 export const CATEGORY_GAME = 2;
 export const CATEGORY_HTML = 4;
 export const CATEGORY_CONSTRAINT = 8;
+export const CATEGORY_PEG = 16;

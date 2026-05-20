@@ -20,6 +20,14 @@
     margin: 0;
 }
 
+header {
+    min-height: 100vh;
+}
+
+footer {
+    
+}
+
 body {
     min-height: 100vh;
     background-color: var(--back-color);

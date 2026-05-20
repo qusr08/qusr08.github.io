@@ -7,9 +7,9 @@ import WobbleEffect from './effects/wobble-effect.js';
 import OffsetScrollEffect from './effects/offset-scroll-effect.js';
 
 export function addEffects() {
-    document.querySelectorAll(".text-effect").forEach(e => { new RandomWeightText(e); });
+    // document.querySelectorAll(".text-effect").forEach(e => { new RandomWeightText(e); });
     document.querySelectorAll(".wobble-effect").forEach(e => { new WobbleEffect(e); });
-    document.querySelectorAll(".offset-scroll-effect").forEach(e => { new OffsetScrollEffect(e); });
+    // document.querySelectorAll(".offset-scroll-effect").forEach(e => { new OffsetScrollEffect(e); });
 }
 
 // https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers

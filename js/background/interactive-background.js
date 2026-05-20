@@ -99,8 +99,7 @@ export class InteractiveBackground {
     }
 
     spawnRandomGameObject() {
-        // Could use document.hasFocus() to prevent shapes from spawning while the user is not looking at it
-        if (this.gameObjects.length <= Constants.SHAPE_MAX_COUNT) {
+        if (document.hasFocus() && this.gameObjects.length <= Constants.SHAPE_MAX_COUNT) {
             this.createGameObject();
         }
     }
@@ -126,11 +125,11 @@ export class InteractiveBackground {
 
     createHTMLMatterObjects() {
         Array.from(document.querySelectorAll(".matter-rect-html")).forEach(element => {
-            this.HTMLMatterObjects.push(new HTMLMatterRectObject(element));
+            this.HTMLMatterObjects.push(new HTMLMatterRectObject(element, this));
         });
 
         Array.from(document.querySelectorAll(".matter-logo-html")).forEach(element => {
-            this.HTMLMatterObjects.push(new HTMLMatterPolyObject(element, LOGO_IMAGE_COORDS, LOGO_IMAGE_WIDTH, LOGO_IMAGE_HEIGHT));
+            this.HTMLMatterObjects.push(new HTMLMatterPolyObject(element, this, LOGO_IMAGE_COORDS, LOGO_IMAGE_WIDTH, LOGO_IMAGE_HEIGHT));
         });
     }
 
@@ -188,7 +187,7 @@ export class InteractiveBackground {
             render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--detail-color') },
             collisionFilter: {
                 category: Constants.CATEGORY_GAME,
-                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML
+                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML | Constants.CATEGORY_PEG
             },
             label: 'GameObject'
         };
@@ -236,7 +235,7 @@ export class InteractiveBackground {
                 let pegBody = Matter.Bodies.circle(x, y, size, {
                     render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--back-detail-color') },
                     collisionFilter: {
-                        category: Constants.CATEGORY_HTML,
+                        category: Constants.CATEGORY_PEG,
                         mask: Constants.CATEGORY_GAME
                     },
                     isStatic: true,

@@ -2,8 +2,9 @@ import * as Constants from "../constants.js";
 
 // Abstract class
 export class HTMLMatterObject {
-    constructor(HTMLElement) {
+    constructor(HTMLElement, simulation) {
         this.HTMLElement = HTMLElement;
+        this.simulation = simulation;
         this.HTMLElementOffsetX = 0;
         this.HTMLElementOffsetY = 0;
 
@@ -31,28 +32,28 @@ export class HTMLMatterObject {
 
         // If the body has been created before, we are going to replace it here with new dimensions
         if (this.body != undefined) {
-            Matter.Composite.remove(engine.world, this.body);
+            Matter.Composite.remove(this.simulation.engine.world, this.body);
         }
 
         // Create a matter body
         this.body = this.createBody();
-        Matter.Composite.add(engine.world, this.body);
+        Matter.Composite.add(this.simulation.engine.world, this.body);
 
         // Calculate the peg void from the body
         // this.pegVoid = [{ x: this.x, y: this.y, w: this.width + (shapeSize * 2), h: (this.height * 1.5) + (shapeSize * 2) }];
-        this.pegVoid = { x: this.x, y: this.y, r: (Math.max(this.width, this.height) / 2) + (shapeSize * 2) };
+        this.pegVoid = { x: this.x, y: this.y, r: (Math.max(this.width, this.height) / 2) + (this.simulation.shapeSize * 2) };
 
         // Remove old constraints
-        this.constraints.forEach(constraint => { if (constraint != undefined) { Matter.Composite.remove(engine.world, constraint); } });
-        this.constraintBodies.forEach(constraintBody => { if (constraintBody != undefined) { Matter.Composite.remove(engine.world, constraintBody); } });
+        this.constraints.forEach(constraint => { if (constraint != undefined) { Matter.Composite.remove(this.simulation.engine.world, constraint); } });
+        this.constraintBodies.forEach(constraintBody => { if (constraintBody != undefined) { Matter.Composite.remove(this.simulation.engine.world, constraintBody); } });
 
         // Create constraints
-        this.constraintBodies[0] = createConstraintBody({ x: this.x - (this.width / Constants.HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
-        this.constraintBodies[1] = createConstraintBody({ x: this.x + (this.width / Constants.HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
-        Matter.Composite.add(engine.world, this.constraintBodies);
-        this.constraints[0] = createConstraint(Constants.HTML_CONSTRAINT_STIFFNESS, Constants.HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[0]);
-        this.constraints[1] = createConstraint(Constants.HTML_CONSTRAINT_STIFFNESS, Constants.HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[1]);
-        Matter.Composite.add(engine.world, this.constraints);
+        this.constraintBodies[0] = this.simulation.createConstraintBody({ x: this.x - (this.width / Constants.HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
+        this.constraintBodies[1] = this.simulation.createConstraintBody({ x: this.x + (this.width / Constants.HTML_CONSTRAINT_DISTANCE_MODIFIER), y: this.y });
+        Matter.Composite.add(this.simulation.engine.world, this.constraintBodies);
+        this.constraints[0] = this.simulation.createConstraint(Constants.HTML_CONSTRAINT_STIFFNESS, Constants.HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[0]);
+        this.constraints[1] = this.simulation.createConstraint(Constants.HTML_CONSTRAINT_STIFFNESS, Constants.HTML_CONSTRAINT_DAMPING, 0, this.body, this.constraintBodies[1]);
+        Matter.Composite.add(this.simulation.engine.world, this.constraints);
 
         this.isInitialized = true;
     }
@@ -74,8 +75,8 @@ export class HTMLMatterObject {
 }
 
 export class HTMLMatterRectObject extends HTMLMatterObject {
-    constructor(HTMLElement) {
-        super(HTMLElement);
+    constructor(HTMLElement, simulation) {
+        super(HTMLElement, simulation);
 
         this.initialize();
     }
@@ -85,7 +86,7 @@ export class HTMLMatterRectObject extends HTMLMatterObject {
             render: { fillStyle: 'transparent' },
             collisionFilter: {
                 category: Constants.CATEGORY_HTML,
-                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML
+                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML & Constants.CATEGORY_PEG
             },
             label: 'HTMLMatterRectObject'
         });
@@ -93,8 +94,8 @@ export class HTMLMatterRectObject extends HTMLMatterObject {
 }
 
 export class HTMLMatterPolyObject extends HTMLMatterObject {
-    constructor(HTMLElement, imageCoords, imageWidth, imageHeight) {
-        super(HTMLElement);
+    constructor(HTMLElement, simulation, imageCoords, imageWidth, imageHeight) {
+        super(HTMLElement, simulation);
 
         this.imageCoords = imageCoords;
         this.imageWidth = imageWidth;
@@ -123,7 +124,7 @@ export class HTMLMatterPolyObject extends HTMLMatterObject {
             },
             collisionFilter: {
                 category: Constants.CATEGORY_HTML,
-                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML
+                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML & Constants.CATEGORY_PEG
             },
             label: 'HTMLMatterPolyObject'
         });
@@ -131,8 +132,8 @@ export class HTMLMatterPolyObject extends HTMLMatterObject {
 }
 
 export class MouseMatterObject {
-    constructor(interactiveBackground) {
-        this.interactiveBackground = interactiveBackground;
+    constructor(simulation) {
+        this.simulation = simulation;
         this.mousePosition = { x: 0, y: 0 };
 
         // Create the body for the mouse
@@ -147,11 +148,11 @@ export class MouseMatterObject {
         });
 
         // Create the constraint to connect the body to the mouse position
-        this.constraintBody = this.interactiveBackground.createConstraintBody(this.mousePosition);
-        this.constraint = this.interactiveBackground.createConstraint(Constants.MOUSE_CONSTRAINT_STIFFNESS, Constants.MOUSE_CONSTRAINT_DAMPING, 0, this.body, this.constraintBody);
+        this.constraintBody = this.simulation.createConstraintBody(this.mousePosition);
+        this.constraint = this.simulation.createConstraint(Constants.MOUSE_CONSTRAINT_STIFFNESS, Constants.MOUSE_CONSTRAINT_DAMPING, 0, this.body, this.constraintBody);
 
         // Add the body and constraints to the world
-        Matter.Composite.add(this.interactiveBackground.engine.world, [this.body, this.constraintBody, this.constraint]);
+        Matter.Composite.add(this.simulation.engine.world, [this.body, this.constraintBody, this.constraint]);
     }
 
     update(mousePosition) {
