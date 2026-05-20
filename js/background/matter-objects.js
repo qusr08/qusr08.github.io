@@ -1,4 +1,4 @@
-import * as Constants from "./constants.js";
+import * as Constants from "../constants.js";
 
 // Abstract class
 export class HTMLMatterObject {
@@ -131,7 +131,8 @@ export class HTMLMatterPolyObject extends HTMLMatterObject {
 }
 
 export class MouseMatterObject {
-    constructor() {
+    constructor(interactiveBackground) {
+        this.interactiveBackground = interactiveBackground;
         this.mousePosition = { x: 0, y: 0 };
 
         // Create the body for the mouse
@@ -146,11 +147,11 @@ export class MouseMatterObject {
         });
 
         // Create the constraint to connect the body to the mouse position
-        this.constraintBody = createConstraintBody(this.mousePosition);
-        this.constraint = createConstraint(Constants.MOUSE_CONSTRAINT_STIFFNESS, Constants.MOUSE_CONSTRAINT_DAMPING, 0, this.body, this.constraintBody);
+        this.constraintBody = this.interactiveBackground.createConstraintBody(this.mousePosition);
+        this.constraint = this.interactiveBackground.createConstraint(Constants.MOUSE_CONSTRAINT_STIFFNESS, Constants.MOUSE_CONSTRAINT_DAMPING, 0, this.body, this.constraintBody);
 
         // Add the body and constraints to the world
-        Matter.Composite.add(engine.world, [this.body, this.constraintBody, this.constraint]);
+        Matter.Composite.add(this.interactiveBackground.engine.world, [this.body, this.constraintBody, this.constraint]);
     }
 
     update(mousePosition) {

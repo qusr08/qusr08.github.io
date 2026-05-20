@@ -1,11 +1,9 @@
-body {
-    padding: 0 5vw;
-}
 
 .projects {
     display: flex;
     flex-flow: column;
     gap: 30vh;
+    padding: 0 5vw;
     align-items: center;
 }
 

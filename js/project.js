@@ -1,7 +1,7 @@
 'use strict';
 
 import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
-import { addEffects } from './base.js';
+import { addEffects } from './utils.js';
 
 window.onload = (e) => {
     // Create all project elements
