@@ -33,7 +33,7 @@
 .proj-title {
     color: var(--text-color);
     font-size: 10em;
-    /* font-weight: 900; */
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: -8px;
     max-height: 1em;

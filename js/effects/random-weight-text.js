@@ -6,6 +6,8 @@ export default class VariableText {
         this.charWeights = [];
         this.minWeight = parseInt(textElement.getAttribute('min-weight')) || 100;
         this.maxWeight = parseInt(textElement.getAttribute('max-weight')) || 900;
+        this.updateSpeed = parseFloat(textElement.getAttribute("update-speed")) || 1;
+        this.lastUpdateTime = 0;
 
         this.textElement.innerHTML = "";
         for (let i = 0; i < this.text.length; i++) {
@@ -20,16 +22,21 @@ export default class VariableText {
             this.textElement.appendChild(spanElement);
         }
 
-        setInterval(() => { this.update(); }, 1 / 60);
+        window.requestAnimationFrame(this.update.bind(this));
     }
 
-    update() {
+    update(currentTime) {
+        // Calculate delta time for smooth animation
+        if (this.lastUpdateTime === 0) this.lastUpdateTime = currentTime;
+        const deltaTime = (currentTime - this.lastUpdateTime) / 1000;
+        this.lastUpdateTime = currentTime;
+
         // Loop through all span elements
         for (let i = 0; i < this.charSpanElements.length; i++) {
             let charWeight = this.charWeights[i];
 
             // Update the font weight
-            charWeight.p += (1 / 60) * charWeight.s;
+            charWeight.p += deltaTime * this.updateSpeed * charWeight.s;
             this.charSpanElements[i].style.fontWeight = Math.round(scale(easeInOut(charWeight.p), 0, 1, charWeight.f, charWeight.t));
 
             // Get a new random weight if the current span element has reached it
@@ -42,6 +49,8 @@ export default class VariableText {
 
             this.charWeights[i] = charWeight;
         }
+
+        window.requestAnimationFrame(this.update.bind(this));
     }
 }
 

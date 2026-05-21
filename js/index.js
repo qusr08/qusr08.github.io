@@ -50,7 +50,7 @@ function createProjectHTML(name) {
     // Create project title
     let projectTitle = document.createElement("p");
     projectTitle.classList.add("proj-title", "text-effect");
-    projectTitle.setAttribute("min-weight", 600);
+    projectTitle.setAttribute("min-weight", 400);
     projectTitle.innerHTML = name;
     projectContainer.appendChild(projectTitle);
 

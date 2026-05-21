@@ -10,6 +10,8 @@ export class InteractiveBackground {
         this.matterElement.style.position = "absolute";
         this.matterElement.style.zIndex = -100;
         document.body.insertBefore(this.matterElement, document.body.firstChild);
+
+        this.lastUpdateTime = 0;
         this.isInitialized = false;
 
         this.widthRatio = 0;
@@ -134,10 +136,7 @@ export class InteractiveBackground {
     }
 
     updateHTMLMatterObjects(timestamp) {
-        this.HTMLMatterObjects.forEach(matterObject => {
-            matterObject.update();
-        });
-
+        this.HTMLMatterObjects.forEach(matterObject => matterObject.update());
         window.requestAnimationFrame(this.updateHTMLMatterObjects.bind(this));
     }
 
@@ -226,11 +225,6 @@ export class InteractiveBackground {
                     continue;
                 }
 
-                // If the peg is trying to spawn in a position too close to an html element, do not let it spawn
-                if (this.isPegInVoid({ x: x, y: y })) {
-                    continue;
-                }
-
                 // Create the peg object
                 let pegBody = Matter.Bodies.circle(x, y, size, {
                     render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--back-detail-color') },
@@ -251,18 +245,5 @@ export class InteractiveBackground {
     removeAllPegObjects() {
         this.pegObjects.forEach(pegObject => { Matter.Composite.remove(this.engine.world, pegObject); });
         this.pegObjects = [];
-    }
-
-    isPegInVoid(point) {
-        let isVoid = false;
-
-        // Check to see if the peg is in range of an html element
-        this.HTMLMatterObjects.forEach(HTMLMatterObject => {
-            if (Math.hypot(point.x - HTMLMatterObject.pegVoid.x, point.y - HTMLMatterObject.pegVoid.y) <= HTMLMatterObject.pegVoid.r) {
-                isVoid = true;
-            }
-        });
-
-        return isVoid;
     }
 }
