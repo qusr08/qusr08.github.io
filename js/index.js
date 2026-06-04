@@ -44,6 +44,7 @@ function createProjectHTML(name) {
     // Create project background
     let projectBackground = document.createElement("div");
     projectBackground.classList.add("proj-background", "wobble-effect");
+    projectBackground.setAttribute("wobble-amount", 2.5);
     projectBackground.style.backgroundImage = `url("../png/${name.toLowerCase()}/${name.toLowerCase()}-thumbnail.png")`;
     projectContainer.appendChild(projectBackground);
 

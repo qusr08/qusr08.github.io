@@ -24,42 +24,42 @@ function createInfoHTML(name) {
     projectHeaderTitle.src = `./png/${name.toLowerCase()}/${name.toLowerCase()}-title-art.png`;
 
     // Display project info
-    let projectInfo = PROJECT_DATA[name].info || [];
-    projectInfo.forEach(section => {
-        // Create project section element
-        let projectSection = document.createElement("div");
-        projectSection.classList.add("proj-info-section");
+    // let projectInfo = PROJECT_DATA[name].info || [];
+    // projectInfo.forEach(section => {
+    //     // Create project section element
+    //     let projectSection = document.createElement("div");
+    //     projectSection.classList.add("proj-info-section");
 
-        // Create title element
-        let projectSectionTitle = document.createElement("p");
-        projectSectionTitle.classList.add("proj-info-title", "wobble-effect");
-        projectSectionTitle.innerHTML = section.title;
-        projectSection.appendChild(projectSectionTitle);
+    //     // Create title element
+    //     let projectSectionTitle = document.createElement("p");
+    //     projectSectionTitle.classList.add("proj-info-title", "wobble-effect");
+    //     projectSectionTitle.innerHTML = section.title;
+    //     projectSection.appendChild(projectSectionTitle);
 
-        // Create text elements
-        section.text.forEach(paragraph => {
-            let paragraphElement = document.createElement("p");
-            paragraphElement.classList.add("proj-info-text");
-            paragraphElement.innerHTML = paragraph;
-            projectSection.appendChild(paragraphElement);
-        });
+    //     // Create text elements
+    //     section.text.forEach(paragraph => {
+    //         let paragraphElement = document.createElement("p");
+    //         paragraphElement.classList.add("proj-info-text");
+    //         paragraphElement.innerHTML = paragraph;
+    //         projectSection.appendChild(paragraphElement);
+    //     });
 
-        // Append the final section to the details element
-        projectDetails.appendChild(projectSection);
-    });
+    //     // Append the final section to the details element
+    //     projectDetails.appendChild(projectSection);
+    // });
 
-    let projectMedia = PROJECT_DATA[name].media || [];
-    projectMedia.forEach(media => {
-        if (media.video) {
-            let projectVideo = document.createElement("iframe");
-            projectVideo.allowFullscreen = true;
-            projectVideo.style.aspectRatio = 1920 / 1080;
-            projectVideo.src = media.video;
-            projectImages.appendChild(projectVideo);
-        } else if (media.picture) {
-            let projectScreenshot = document.createElement("img");
-            projectScreenshot.src = media.picture;
-            projectImages.appendChild(projectScreenshot);
-        }
-    });
+    // let projectMedia = PROJECT_DATA[name].media || [];
+    // projectMedia.forEach(media => {
+    //     if (media.video) {
+    //         let projectVideo = document.createElement("iframe");
+    //         projectVideo.allowFullscreen = true;
+    //         projectVideo.style.aspectRatio = 1920 / 1080;
+    //         projectVideo.src = media.video;
+    //         projectImages.appendChild(projectVideo);
+    //     } else if (media.picture) {
+    //         let projectScreenshot = document.createElement("img");
+    //         projectScreenshot.src = media.picture;
+    //         projectImages.appendChild(projectScreenshot);
+    //     }
+    // });
 }

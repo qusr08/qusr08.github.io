@@ -1,6 +1,6 @@
 export const BASE_WINDOW_WIDTH = 1920;
 export const BASE_WINDOW_HEIGHT = 1080;
-export const BASE_SHAPE_SIZE = 40;
+export const BASE_SHAPE_SIZE = 50;
 export const BASE_SHAPE_VELOCITY = 0.01;
 export const BASE_SHAPE_VELOCITY_ANGULAR = 0.05;
 

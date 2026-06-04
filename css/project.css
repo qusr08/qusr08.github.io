@@ -19,47 +19,13 @@
 
 .proj-info {
     display: flex;
-    flex-flow: row;
-    min-height: 50vh;
+    flex-flow: column;
     padding: 5vh 15vw;
-    gap: 2.5vw;
+    gap: 10px;
 }
 
 .proj-details {
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     gap: 50px;
-}
-
-.proj-info-section {
-    display: flex;
-    flex-flow: column;
-    gap: 10px;
-}
-
-.proj-info-title {
-    font-size: 2em;
-    color: var(--back-color);
-    padding: 10px 20px;
-    width: min-content;
-    font-weight: 900;
-    background-color: var(--detail-color);
-    white-space: nowrap;
-}
-
-.proj-info-text {
-    font-size: 1.25em;
-    text-align: justify;
-    color: var(--text-color);
-}
-
-.proj-media {
-    display:flex;
-    flex-flow: column;
-    gap: 20px;
-    width: 40%;
-}
-
-.proj-media>* {
-    border-width: 0px;
 }

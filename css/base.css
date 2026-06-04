@@ -8,7 +8,7 @@
     --award-color: #eeee03;
     --detail-color: #D32344;
     --proj-height: 90vh;
-    --proj-display-width: 70%;
+    --proj-display-width: 75%;
     --proj-display-height: 80%;
     --proj-desc-width: 25%;
 }
@@ -31,6 +31,11 @@ footer {
 body {
     min-height: 100vh;
     background-color: var(--back-color);
+}
+
+p {
+    color: var(--text-color);
+    font-size: 1.25em;
 }
 
 /* #region Scrollbar */
