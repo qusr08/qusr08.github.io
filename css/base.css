@@ -11,6 +11,7 @@
     --proj-display-width: 75%;
     --proj-display-height: 80%;
     --proj-desc-width: 25%;
+    --screen-ratio: calc(16 / 9);
 }
 
 * {
@@ -24,9 +25,7 @@ header {
     min-height: 100vh;
 }
 
-footer {
-    
-}
+footer {}
 
 body {
     min-height: 100vh;
@@ -52,7 +51,6 @@ p {
     background: var(--detail-color);
 }
 
-::-webkit-scrollbar-thumb:hover {
-}
+::-webkit-scrollbar-thumb:hover {}
 
 /* #endregion */
