@@ -3,6 +3,7 @@
 
 :root {
     --text-color: #FAFAFA;
+    --text-alt-color: #d3d3d3;
     --back-color: #121212;
     --back-detail-color: #333333;
     --award-color: #eeee03;
@@ -35,6 +36,54 @@ body {
 p {
     color: var(--text-color);
     font-size: 1.25em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    max-height: 1em;
+}
+
+h4, h5, h6 {
+    color: var(--text-alt-color);
+}
+
+h1 {
+    color: var(--detail-color);
+    font-size: 10em;
+    letter-spacing: -8px;
+}
+
+h2 {
+    font-size: 8em;
+    letter-spacing: -7px;
+}
+
+h3 {
+    font-size: 6em;
+    letter-spacing: -6px;
+}
+
+h4 {
+    color: var(--detail-color);
+    font-size: 4em;
+    letter-spacing: -5px;
+}
+
+h5 {
+    font-size: 3em;
+    letter-spacing: -4px;
+}
+
+h6 {
+    font-size: 2em;
+    /* letter-spacing: -3px; */
 }
 
 /* #region Scrollbar */

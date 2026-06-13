@@ -49,7 +49,7 @@ function createProjectHTML(name) {
     projectContainer.appendChild(projectBackground);
 
     // Create project title
-    let projectTitle = document.createElement("p");
+    let projectTitle = document.createElement("h1");
     projectTitle.classList.add("proj-title", "text-effect");
     projectTitle.setAttribute("min-weight", 400);
     projectTitle.innerHTML = name;
