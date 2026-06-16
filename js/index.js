@@ -48,6 +48,12 @@ function createProjectHTML(name) {
     projectBackground.style.backgroundImage = `url("../png/${name.toLowerCase()}/${name.toLowerCase()}-thumbnail.png")`;
     projectContainer.appendChild(projectBackground);
 
+    // Create highlight element
+    let projectHighlight = document.createElement("div");
+    projectHighlight.classList.add("proj-highlight", "wobble-effect");
+    projectHighlight.setAttribute("wobble-amount", 2.5);
+    projectContainer.appendChild(projectHighlight);
+
     // Create project title
     let projectTitle = document.createElement("h1");
     projectTitle.classList.add("proj-title", "text-effect");

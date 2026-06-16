@@ -83,7 +83,7 @@ h5 {
 
 h6 {
     font-size: 2em;
-    /* letter-spacing: -3px; */
+    letter-spacing: -3px;
 }
 
 /* #region Scrollbar */
@@ -103,3 +103,8 @@ h6 {
 ::-webkit-scrollbar-thumb:hover {}
 
 /* #endregion */
+
+.text-effect {
+    font-kerning: none;
+    user-select: none;
+}
