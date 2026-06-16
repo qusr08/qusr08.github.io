@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --background-color: #121212;
-    --panel-color: #444444;
+    --back-color: #121212;
+    --back-detail-color: #444444;
     --detail-color: #D32344;
     --text-color: white;
     --peg-color: #222222;
+
+    --proj-box-width: 45vw;
+    --proj-box-height: 50vh;
+    --proj-box-link-width: 150px;
+    --padding: 20px;
+    --small-padding: 5px;
+
     --tint-color: rgba(0, 0, 0, 0.7);
     --spacing: max(1vw, 1vh, 10px);
     --spacing-small: max(0.5vw, 0.5vh, 5px);
@@ -16,17 +23,24 @@
 
 * {
     font-family: 'Barlow', sans-serif;
-    color: var(--text-color);
-    margin: 0px;
     font-weight: 300;
+    box-sizing: border-box;
+    margin: 0;
+    color: var(--text-color);
+}
+
+#wrapper {
+    width: 100vw;
+    min-height: 100vh;
 }
 
 p {
-    font-size: 1.15rem;
+    font-size: 1.2em;
+    text-align: justify;
 }
 
 ::selection {
-    color: var(--background-color);
+    color: var(--back-color);
     background: var(--text-color);
     padding: 0px;
 }
@@ -53,34 +67,23 @@ p {
 }
 
 .box-reg {
-    background-color: var(--panel-color);
+    background-color: var(--back-detail-color);
     padding: var(--spacing);
     text-align: justify;
 }
 
 .gmtk-2021 {
     /* font-weight: bold; */
+    background-color: unset;
     background-image: linear-gradient(#03FFC7, #2BBEC3);
+    color: var(--text-color);
 }
 
 .gmtk-2022 {
     /* font-weight: bold; */
-    background-image: linear-gradient(#FF9C00, #FF0900);
-}
-
-.feature {
-    /* font-weight: bold; */
-    background-image: linear-gradient(#D32344, #D32344);
-}
-
-.development {
-    /* font-weight: bold; */
-    background-image: linear-gradient(#444444, #444444);
-}
-
-.playable {
-    /* font-weight: bold; */
-    background-image: linear-gradient(#116C78, #116C78);
+    background-color: unset;
+    background-image: linear-gradient(to left, #FF9C00, #FF0900);
+    color: var(--text-color);
 }
 
 /* #region Links */
@@ -99,12 +102,12 @@ a:focus>span {
 }
 
 a:hover>span {
-    color: var(--background-color);
+    color: var(--back-color);
     background: var(--text-color);
 }
 
 a:active>span {
-    color: var(--background-color);
+    color: var(--back-color);
     background: var(--text-color);
 }
 
@@ -118,7 +121,7 @@ a:active>span {
 
 ::-webkit-scrollbar-track {
     /* border-radius: var(--border); */
-    background: var(--background-color);
+    background: var(--back-color);
 }
 
 ::-webkit-scrollbar-thumb {

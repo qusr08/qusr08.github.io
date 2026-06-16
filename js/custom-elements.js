@@ -65,8 +65,8 @@ window.customElements.define('fa-footer', class extends HTMLElement {
         this.innerHTML = `
             <p><a href="https://github.com/qusr08/qusr08.github.io"><span>Website Github Repository</span></a></p>
             <!-- <img style="filter: invert(1); width: max(10vw, 200px);" src="../media/signature.png"> -->
-            <p>Created by Frank Alfano</p>
             <p>Last updated on: <strong><span id="github-date">XX/XX/XXXX</span></strong></p>
+            <p>Created by Frank Alfano</p>
         `;
     }
 });
@@ -93,22 +93,33 @@ window.customElements.define('fa-header', class extends HTMLElement {
             subtitleHTML = `<h2 class="box-em matter-rect-html" style="font-size: max(3vw, 1.5em);"><em>${subtitle}</em></h2>`;
         }
 
-        let buttonHTML = ``;
-        if (buttonText != undefined) {
-            if (buttonLink != undefined) {
-                buttonHTML = `<a class="box-em button matter-rect-html" style="font-size: max(2vw, 1em);" href="${buttonLink}">${buttonText}</a>`;
-            } else if (buttonOnClick != undefined) {
-                buttonHTML = `<a class="box-em button matter-rect-html" style="font-size: max(2vw, 1em);" onclick="${buttonOnClick}">${buttonText}</a>`;
-            }
-        }
+        // let buttonHTML = ``;
+        // if (buttonText != undefined) {
+        //     if (buttonLink != undefined) {
+        //         buttonHTML = `<a class="box-em button matter-rect-html" style="font-size: max(2vw, 1em);" href="${buttonLink}">${buttonText}</a>`;
+        //     } else if (buttonOnClick != undefined) {
+        //         buttonHTML = `<a class="box-em button matter-rect-html" style="font-size: max(2vw, 1em);" onclick="${buttonOnClick}">${buttonText}</a>`;
+        //     }
+        // }
 
+        // this.innerHTML = `
+        //     <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
+        //     <div>
+        //         <div class="v-list">
+        //             ${titleHTML}
+        //             ${subtitleHTML}
+        //             ${buttonHTML}
+        //         </div>
+        //         <img class="matter-logo-html" style="width: 30vw;" src="media/logo-squared.png">
+        //     </div>
+        // `;
+        
         this.innerHTML = `
             <h3 class="screen-warning box-em">Hey! This website is best viewed on a wider screen!</h3>
             <div>
                 <div class="v-list">
                     ${titleHTML}
                     ${subtitleHTML}
-                    ${buttonHTML}
                 </div>
                 <img class="matter-logo-html" style="width: 30vw;" src="media/logo-squared.png">
             </div>

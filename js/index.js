@@ -1,13 +1,34 @@
 'use strict';
 
 import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
+import { InteractiveBackground } from "./background/interactive-background.js";
+
+let PROJECT_GRID = undefined;
+let BACKGROUND = undefined;
 
 window.onload = () => {
+    PROJECT_GRID = document.querySelector(".proj-grid");
+
     // Create all project box elements
-    let isProjectReversed = false;
+    let isProjectReversed = true;
     for (let project in PROJECT_DATA) {
         createProjectBox(project, isProjectReversed);
         isProjectReversed = !isProjectReversed;
+    }
+
+    BACKGROUND = new InteractiveBackground(document.querySelector(".wrapper"));
+    BACKGROUND.initialize();
+    
+    updateFromGithub();
+}
+
+window.onresize = (e) => {
+    BACKGROUND.updateResolution();
+}
+
+window.onmousemove = (e) => {
+    if (BACKGROUND && BACKGROUND.isInitialized) {
+        BACKGROUND.mouseMatterObject.update({ x: e.clientX + window.scrollX, y: e.clientY + window.scrollY });
     }
 }
 
@@ -16,7 +37,7 @@ function createProjectBox(projectName, isReversed) {
 
     // Create project box container element
     let projectBoxContainer = document.createElement("div");
-    projectBoxContainer.classList.add("proj-box-container");
+    projectBoxContainer.classList.add("proj-box-container", "matter-rect-html");
     if (isReversed) projectBoxContainer.classList.add("reversed");
 
     // Create project box element
@@ -27,7 +48,7 @@ function createProjectBox(projectName, isReversed) {
     // Create project thumbnail element
     let projectThumbnail = document.createElement("div");
     projectThumbnail.classList.add("proj-thumbnail");
-    projectThumbnail.style.backgroundImage = `url('png/${projectNameLowerCase}-thumbnail.png')`;
+    projectThumbnail.style.backgroundImage = `url('media/${projectNameLowerCase}/${projectNameLowerCase}-thumbnail.png')`;
     projectBox.appendChild(projectThumbnail);
 
     // Create project info element
@@ -86,7 +107,7 @@ function createProjectBox(projectName, isReversed) {
             iconType = "itchio";
             projectLink.classList.add("gmtk-2022");
         }
-        projectLinkIcon.src = `png/logos/${iconType}-logo.png`;
+        projectLinkIcon.src = `media/logos/${iconType}-logo.png`;
         projectLink.appendChild(projectLinkIcon);
 
         // Create link name element
@@ -102,5 +123,43 @@ function createProjectBox(projectName, isReversed) {
     // Append the project box to the html document
     projectBox.appendChild(projectInfo);
     projectBoxContainer.appendChild(projectBox);
-    document.body.appendChild(projectBoxContainer);
+    PROJECT_GRID.appendChild(projectBoxContainer);
+}
+
+// https://stackoverflow.com/questions/56279807/is-it-possible-to-automatically-have-the-last-updated-date-on-my-website-changed
+function updateFromGithub() {
+    let xhttpDate = new XMLHttpRequest();
+    // let xhttpVersion = new XMLHttpRequest();
+
+    xhttpDate.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let repos = JSON.parse(this.responseText);
+
+            repos.forEach((repo) => {
+                if (repo.name == "qusr08.github.io") {
+                    let lastUpdated = new Date(repo.updated_at);
+                    let day = lastUpdated.getUTCDate();
+                    let month = lastUpdated.getUTCMonth();
+                    let year = lastUpdated.getUTCFullYear();
+
+                    document.getElementById('github-date').innerHTML = `${month + 1}/${day}/${year}`;
+
+                    return;
+                }
+            });
+        }
+    };
+
+    // xhttpVersion.onreadystatechange = function() {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         let commit = JSON.parse(this.responseText)[0];
+    //         document.getElementById('github-version').innerHTML = `<a href="${commit.html_url}"><span>${commit.commit.message.split("\n\n")[0]}</span></a>`;
+    //     }
+    // };
+
+    xhttpDate.open("GET", "https://api.github.com/users/qusr08/repos", true);
+    // xhttpVersion.open("GET", "https://api.github.com/repos/qusr08/qusr08.github.io/commits", true);
+
+    xhttpDate.send();
+    // xhttpVersion.send();
 }
