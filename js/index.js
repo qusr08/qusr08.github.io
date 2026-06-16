@@ -4,10 +4,12 @@ import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
 import { InteractiveBackground } from "./background/interactive-background.js";
 
 let PROJECT_GRID = undefined;
+let WRAPPER = undefined;
 let BACKGROUND = undefined;
 
 window.onload = () => {
     PROJECT_GRID = document.querySelector(".proj-grid");
+    WRAPPER = document.querySelector(".wrapper");
 
     // Create all project box elements
     let isProjectReversed = true;
@@ -16,7 +18,7 @@ window.onload = () => {
         isProjectReversed = !isProjectReversed;
     }
 
-    BACKGROUND = new InteractiveBackground(document.querySelector(".wrapper"));
+    BACKGROUND = new InteractiveBackground(WRAPPER);
     BACKGROUND.initialize();
     
     updateFromGithub();
@@ -89,6 +91,12 @@ function createProjectBox(projectName, isReversed) {
     // Create project links element
     let projectLinks = document.createElement("div");
     projectLinks.classList.add("proj-links");
+
+    let viewLink = document.createElement("a");
+    viewLink.classList.add("proj-link");
+    viewLink.innerHTML = `<p>View Project</p>`;
+    projectLinks.appendChild(viewLink);
+
     PROJECT_DATA[projectName].links.forEach(link => {
         let linkNameLowerCase = link.name.toLowerCase();
 
@@ -124,42 +132,4 @@ function createProjectBox(projectName, isReversed) {
     projectBox.appendChild(projectInfo);
     projectBoxContainer.appendChild(projectBox);
     PROJECT_GRID.appendChild(projectBoxContainer);
-}
-
-// https://stackoverflow.com/questions/56279807/is-it-possible-to-automatically-have-the-last-updated-date-on-my-website-changed
-function updateFromGithub() {
-    let xhttpDate = new XMLHttpRequest();
-    // let xhttpVersion = new XMLHttpRequest();
-
-    xhttpDate.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let repos = JSON.parse(this.responseText);
-
-            repos.forEach((repo) => {
-                if (repo.name == "qusr08.github.io") {
-                    let lastUpdated = new Date(repo.updated_at);
-                    let day = lastUpdated.getUTCDate();
-                    let month = lastUpdated.getUTCMonth();
-                    let year = lastUpdated.getUTCFullYear();
-
-                    document.getElementById('github-date').innerHTML = `${month + 1}/${day}/${year}`;
-
-                    return;
-                }
-            });
-        }
-    };
-
-    // xhttpVersion.onreadystatechange = function() {
-    //     if (this.readyState == 4 && this.status == 200) {
-    //         let commit = JSON.parse(this.responseText)[0];
-    //         document.getElementById('github-version').innerHTML = `<a href="${commit.html_url}"><span>${commit.commit.message.split("\n\n")[0]}</span></a>`;
-    //     }
-    // };
-
-    xhttpDate.open("GET", "https://api.github.com/users/qusr08/repos", true);
-    // xhttpVersion.open("GET", "https://api.github.com/repos/qusr08/qusr08.github.io/commits", true);
-
-    xhttpDate.send();
-    // xhttpVersion.send();
 }

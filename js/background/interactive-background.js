@@ -226,7 +226,7 @@ export class InteractiveBackground {
                 }
 
                 // Create the peg object
-                let pegBody = Matter.Bodies.circle(x, y, size, {
+                let pegBody = this.createRandomBody({x: x, y: y}, size * 2, {
                     render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--peg-color') },
                     collisionFilter: {
                         category: Constants.CATEGORY_PEG,
@@ -235,6 +235,16 @@ export class InteractiveBackground {
                     isStatic: true,
                     label: 'PegObject'
                 });
+                Matter.Body.rotate(pegBody, Math.random() * 360, {x: x, y: y})
+                // let pegBody = Matter.Bodies.circle(x, y, size, {
+                //     render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--peg-color') },
+                //     collisionFilter: {
+                //         category: Constants.CATEGORY_PEG,
+                //         mask: Constants.CATEGORY_GAME
+                //     },
+                //     isStatic: true,
+                //     label: 'PegObject'
+                // });
 
                 Matter.Composite.add(this.engine.world, pegBody);
                 this.pegObjects.push(pegBody);
