@@ -44,8 +44,7 @@ function createProjectBox(projectName, isReversed) {
     if (isReversed) projectBoxContainer.classList.add("reversed");
 
     // Create project box element
-    let projectBox = document.createElement("a");
-    projectBox.href = `html/${projectNameLowerCase}.html`;
+    let projectBox = document.createElement("div");
     projectBox.classList.add("proj-box");
 
     // Create project thumbnail element
@@ -93,9 +92,11 @@ function createProjectBox(projectName, isReversed) {
     let projectLinks = document.createElement("div");
     projectLinks.classList.add("proj-links");
 
+    // Create the first link to view the project
     let viewLink = document.createElement("a");
     viewLink.classList.add("proj-link");
     viewLink.innerHTML = `<p>View Project</p>`;
+    viewLink.href = `html/${projectNameLowerCase}.html`;
     projectLinks.appendChild(viewLink);
 
     PROJECT_DATA[projectName].links.forEach(link => {

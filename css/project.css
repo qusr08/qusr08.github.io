@@ -34,7 +34,7 @@ fa-game-header>div {
     width: 100%;
     max-width: 100%;
     border-width: 0px;
-    background-color: var(--back-detail-color);
+    background-color: var(--background-alt-color);
     text-align: center;
 }
 
@@ -48,7 +48,7 @@ fa-game-header>div {
 
 fa-game-credit,
 fa-game-music {
-    background-color: var(--back-detail-color);
+    background-color: var(--background-alt-color);
     padding: var(--spacing);
     display: flex;
     flex-flow: column nowrap;
@@ -81,7 +81,7 @@ fa-game-music>h2 {
     background-position: center;
     background-size: cover;
     background-blend-mode: multiply;
-    border: 0px solid var(--back-detail-color);
+    border: 0px solid var(--background-alt-color);
     padding: var(--spacing);
     justify-content: space-between;
     cursor: pointer;
@@ -107,13 +107,13 @@ fa-game-music>h2 {
 }
 
 .gallery-item-labels>p {
-    background-color: var(--back-detail-color);
+    background-color: var(--background-alt-color);
     padding: var(--border);
     width: fit-content;
 }
 
 .gallery-box {
-    background-color: var(--detail-color);
+    background-color: var(--accent-color);
     padding: var(--border);
 }
 

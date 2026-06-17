@@ -85,7 +85,7 @@ window.customElements.define('fa-header', class extends HTMLElement {
 
         let titleHTML = ``;
         if (title != undefined) {
-            titleHTML = `<h1 class="box-em matter-rect-html" style="font-size: max(7vw, 2.5em); font-weight: 700; color: var(--back-detail-color);">${title}</h1>`;
+            titleHTML = `<h1 class="box-em matter-rect-html" style="font-size: max(7vw, 2.5em); font-weight: 700; color: var(--background-alt-color);">${title}</h1>`;
         }
 
         let subtitleHTML = ``;

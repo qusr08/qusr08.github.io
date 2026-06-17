@@ -42,7 +42,7 @@ export class InteractiveBackground {
                 width: this.parentElement.offsetWidth,
                 height: this.parentElement.offsetHeight,
                 wireframes: false,
-                background: getComputedStyle(document.documentElement).getPropertyValue('--back-color'),
+                background: getComputedStyle(document.documentElement).getPropertyValue('--background-color'),
                 hasBounds: true
             },
             element: this.matterElement,
@@ -187,7 +187,7 @@ export class InteractiveBackground {
         let x = Math.random() * this.parentElement.offsetWidth;
         let y = -this.shapeSize * 2;
         let options = {
-            render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--detail-color') },
+            render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--shape-color') },
             collisionFilter: {
                 category: Constants.CATEGORY_GAME,
                 mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML | Constants.CATEGORY_PEG
