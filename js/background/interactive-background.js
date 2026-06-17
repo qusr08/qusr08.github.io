@@ -1,7 +1,7 @@
 import { HTMLMatterObject, MouseMatterObject, HTMLMatterPolyObject, HTMLMatterRectObject } from "./matter-objects.js";
 import { SimplexNoise } from "./simplex-noise.js";
 import * as Utils from "../utils.js";
-import * as Constants from "../constants.js";
+import * as Constants from "./constants.js";
 
 export class InteractiveBackground {
     constructor(parentElement) {

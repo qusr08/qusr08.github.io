@@ -1,4 +1,4 @@
-import * as Constants from "../constants.js";
+import * as Constants from "./constants.js";
 
 // Abstract class
 export class HTMLMatterObject {
@@ -138,7 +138,7 @@ export class MouseMatterObject {
         this.mousePosition = { x: 0, y: 0 };
 
         // Create the body for the mouse
-        this.body = Matter.Bodies.circle(this.mousePosition.x, this.mousePosition.y, 20, {
+        this.body = Matter.Bodies.circle(this.mousePosition.x, this.mousePosition.y, Constants.MOUSE_SHAPE_SIZE, {
             render: { visible: false },
             collisionFilter: {
                 category: Constants.CATEGORY_GAME,

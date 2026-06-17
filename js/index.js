@@ -2,6 +2,7 @@
 
 import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
 import { InteractiveBackground } from "./background/interactive-background.js";
+import * as ConstElements from './const-elements.js';
 import * as Utils from './utils.js';
 
 let PROJECT_GRID = undefined;
@@ -10,7 +11,7 @@ let BACKGROUND = undefined;
 
 window.onload = () => {
     PROJECT_GRID = document.querySelector(".proj-grid");
-    WRAPPER = document.querySelector(".wrapper");
+    WRAPPER = document.querySelector("#wrapper");
 
     // Create all project box elements
     let isProjectReversed = true;
@@ -18,11 +19,12 @@ window.onload = () => {
         createProjectBox(project, isProjectReversed);
         isProjectReversed = !isProjectReversed;
     }
+    
+    ConstElements.createFooter(document.querySelector("footer"));
+    Utils.updateFromGithub();
 
     BACKGROUND = new InteractiveBackground(WRAPPER);
     BACKGROUND.initialize();
-    
-    Utils.updateFromGithub();
 }
 
 window.onresize = (e) => {

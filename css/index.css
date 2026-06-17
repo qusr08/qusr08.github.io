@@ -3,12 +3,20 @@ body {
     overflow-x: hidden;
 }
 
+#wrapper {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0vh 5vw;
+    gap: 5vh;
+}
+
 /* Project Grid */
 .proj-grid {
     display: flex;
     flex-flow: column nowrap;
     gap: 30vh;
-    padding: 5vw;
 }
 
 /* Project Box Container */
@@ -32,6 +40,7 @@ body {
     text-decoration: none;
     display: flex;
     flex-flow: row nowrap;
+    min-height: min-content;
     width: var(--proj-box-base-width);
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.1));
     transition: transform 0.5s ease, filter 0.5s ease;
@@ -67,6 +76,7 @@ body {
 .proj-info {
     background-color: var(--background-alt-color);
     height: 100%;
+    min-height: min-content;
     display: flex;
     flex-flow: column nowrap;
     gap: var(--padding);
@@ -86,7 +96,6 @@ body {
 /* Project Title */
 .proj-title {
     color: var(--accent-color);
-    font-weight: 900;
     font-size: 4em;
     max-height: 1em;
     text-transform: uppercase;
@@ -212,51 +221,71 @@ body {
     filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
 }
 
-/* Need to organize/remove vvvvv */
-
-fa-header {
-    height: 100vh;
+/* Header */
+header {
+    height: max(500px, 100vh);
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    padding-left: calc(var(--spacing) * 6);
-    padding-right: calc(var(--spacing) * 6);
-}
-
-fa-header>div {
-    display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    gap: var(--spacing);
 }
 
-fa-footer {
-    height: 20vh;
+.header-text {
     display: flex;
-    padding: var(--spacing);
+    flex-flow: column nowrap;
+    justify-content: center;
+    gap: var(--variable-small-padding);
+}
+
+.header-title {
+    font-size: max(6vw, 2.5em);
+    color: var(--background-alt-color);
+    width: fit-content;
+}
+
+.header-subtitle {
+    font-size: max(2vw, 1em);
+    width: fit-content;
+}
+
+.header-logo {
+    height: min-content;
+    width: 30vw;
+}
+
+/* Footer */
+footer {
+    height: max(200px, 20vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-text {
+    display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    gap: var(--variable-small-padding);
 }
 
 .button {
     display: flex;
     font-size: 2em;
     align-items: center;
-    gap: var(--spacing);
+    gap: var(--variable-padding);
     text-decoration: none;
     cursor: pointer;
     letter-spacing: unset;
     font-weight: 100;
     background-color: var(--background-alt-color);
     color: var(--text-color);
-    transition: letter-spacing var(--transition-time) ease, font-weight var(--transition-time) ease, background-color var(--transition-time) ease, color var(--transition-time) ease;
+    transition: letter-spacing var(--button-fade-time) ease, font-weight var(--button-fade-time) ease, background-color var(--button-fade-time) ease, color var(--button-fade-time) ease;
 }
 
 .button>img {
     width: 1.5em;
-    transition: filter var(--transition-time) ease;
+    transition: filter var(--button-fade-time) ease;
 }
 
 .button:hover {
@@ -280,18 +309,6 @@ audio {
 audio::-webkit-media-controls-panel {
     background-color: var(--text-color);
     align-self: stretch;
-}
-
-.screen-warning {
-    position: fixed;
-    z-index: 100;
-    top: 0px;
-    background-color: var(--text-color);
-    color: var(--accent-color);
-    align-self: center;
-    visibility: hidden;
-    margin: var(--spacing);
-    text-align: center;
 }
 
 @media screen and (max-width: 934px) {
@@ -318,8 +335,8 @@ audio::-webkit-media-controls-panel {
     }
 
     .gallery-item:hover .gallery-item-labels {
-        top: calc(var(--border) * -1);
-        right: calc(var(--border) * -1);
+        top: calc(var(--small-padding) * -1);
+        right: calc(var(--small-padding) * -1);
     }
 
     .screen-warning {

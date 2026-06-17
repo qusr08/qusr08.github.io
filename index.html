@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
 
-    <script src="js/custom-elements.js"></script>
     <script src="https://brm.io/matter-js/build/matter.min.js"></script>
     <script src="https://schteppe.github.io/poly-decomp.js/build/decomp.min.js"></script>
     <script type="module" src="js/index.js"></script>
@@ -25,8 +24,14 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <fa-header title="Frank Alfano" subtitle="Game Programmer"></fa-header>
+    <div id="wrapper">
+        <header>
+            <div class="header-text">
+                <h1 class="header-title box-em matter-rect-html">Frank Alfano</h1>
+                <h1 class="header-subtitle box-reg matter-rect-html">Game Developer</h1>
+            </div>
+            <img class="header-logo matter-logo-html" src="media/logo-squared.png">
+        </header>
         <div class="proj-grid">
             <!-- <div class="proj-box-container">
                 <a href="html/dos.html" class="proj-box">
@@ -54,7 +59,7 @@
                 </a>
             </div> -->
         </div>
-        <fa-footer></fa-footer>
+        <footer></footer>
     </div>
 </body>
 
