@@ -31,6 +31,8 @@ export class InteractiveBackground {
     }
 
     initialize() {
+        let startTime = Date.now();
+
         // Create an engine
         this.engine = Matter.Engine.create();
 
@@ -71,6 +73,8 @@ export class InteractiveBackground {
         window.requestAnimationFrame(this.updateHTMLMatterObjects.bind(this));
 
         this.isInitialized = true;
+
+        console.log(`Initialized in ${Date.now() - startTime}ms`);
     }
 
     updateResolution() {
@@ -210,8 +214,8 @@ export class InteractiveBackground {
     createPegObjects() {
         // Create variables for how to start the peg generation
         let perlinNoise = new SimplexNoise();
-        let gap = this.shapeSize * 2.5;
-        let size = this.shapeSize / 4;
+        let gap = this.shapeSize * 2;
+        let size = this.shapeSize * 0.25;
         let row = 0;
 
         // Pegs are set on a shifted grid
@@ -225,8 +229,20 @@ export class InteractiveBackground {
                     continue;
                 }
 
+                // Check to see if the peg point is too close to other matter objects
+                let isNearbyMatterObject = false;
+                for (let i = 0; i < this.HTMLMatterObjects.length; i++) {
+                    if (this.HTMLMatterObjects[i].isPointInside({ x: x, y: y }, this.shapeSize * 2)) {
+                        isNearbyMatterObject = true;
+                        break;
+                    }
+                }
+                if (isNearbyMatterObject) {
+                    continue;
+                }
+
                 // Create the peg object
-                let pegBody = this.createRandomBody({x: x, y: y}, size * 2, {
+                let pegBody = this.createRandomBody({ x: x, y: y }, size * 2, {
                     render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--peg-color') },
                     collisionFilter: {
                         category: Constants.CATEGORY_PEG,
@@ -235,7 +251,7 @@ export class InteractiveBackground {
                     isStatic: true,
                     label: 'PegObject'
                 });
-                Matter.Body.rotate(pegBody, Math.random() * 360, {x: x, y: y})
+                Matter.Body.rotate(pegBody, Math.random() * 360, { x: x, y: y })
                 // let pegBody = Matter.Bodies.circle(x, y, size, {
                 //     render: { fillStyle: getComputedStyle(document.documentElement).getPropertyValue('--peg-color') },
                 //     collisionFilter: {

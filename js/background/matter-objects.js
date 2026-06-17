@@ -15,7 +15,6 @@ export class HTMLMatterObject {
         this.y = 0;
 
         this.body = undefined;
-        this.pegVoid = undefined;
         this.constraintBodies = [undefined, undefined];
         this.constraints = [undefined, undefined];
 
@@ -38,10 +37,6 @@ export class HTMLMatterObject {
         // Create a matter body
         this.body = this.createBody();
         Matter.Composite.add(this.simulation.engine.world, this.body);
-
-        // Calculate the peg void from the body
-        // this.pegVoid = [{ x: this.x, y: this.y, w: this.width + (shapeSize * 2), h: (this.height * 1.5) + (shapeSize * 2) }];
-        this.pegVoid = { x: this.x, y: this.y, r: (Math.max(this.width, this.height) / 2) + (this.simulation.shapeSize * 2) };
 
         // Remove old constraints
         this.constraints.forEach(constraint => { if (constraint != undefined) { Matter.Composite.remove(this.simulation.engine.world, constraint); } });
@@ -69,6 +64,12 @@ export class HTMLMatterObject {
         let translatePosition = this.body.position;
         let translateAngle = this.body.angle * (180 / Math.PI);
         this.HTMLElement.style.transform = "translate(" + (translatePosition.x - this.x + this.HTMLElementOffsetX) + "px, " + (translatePosition.y - this.y + this.HTMLElementOffsetY) + "px) rotate(" + translateAngle + "deg)";
+    }
+
+    isPointInside(point, borderThickness = 0) {
+        let inX = point.x >= this.x - (this.width / 2) - borderThickness && point.x <= this.x + (this.width / 2) + borderThickness;
+        let inY = point.y >= this.y - (this.height / 2) - borderThickness && point.y <= this.y + (this.height / 2) + borderThickness;
+        return (inX && inY);
     }
 
     createBody() {}
