@@ -2,8 +2,12 @@
     "DOS": {
         "dates": "Jul 2022 - Aug 2022",
         "desc": "DOS (two in Spanish) is a single-player puzzle game where the objective is to strategically roll the die to get the two face on top! Use the various tiles that make up each level which can move or rotate the die to achieve the goal.",
+        "awards": [
+            {
+                "award": "Top 5% GMTK Game Jam 2022"
+            }
+        ],
         "tags": [
-            "Top 5% GMTK Game Jam 2022",
             "Unity/C#",
             "Puzzle",
             "3D Isometric"

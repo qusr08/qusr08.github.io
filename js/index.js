@@ -19,7 +19,7 @@ window.onload = () => {
         createProjectBox(project, isProjectReversed);
         isProjectReversed = !isProjectReversed;
     }
-    
+
     ConstElements.createFooter(document.querySelector("footer"));
     Utils.updateFromGithub();
 
@@ -77,18 +77,47 @@ function createProjectBox(projectName, isReversed) {
     projectDescription.innerHTML = PROJECT_DATA[projectName].desc;
     projectInfo.appendChild(projectDescription);
 
+    // Create project awards element
+    if (PROJECT_DATA[projectName].awards != undefined) {
+        let projectAwards = document.createElement("div");
+        projectAwards.classList.add("proj-awards");
+        PROJECT_DATA[projectName].awards.forEach(award => {
+            // Create award element
+            let projectAward = document.createElement("p");
+            projectAward.classList.add("proj-award");
+
+            if (award.event == undefined) {
+                projectAward.innerHTML = award.award;
+            } else {
+                projectAward.innerHTML = `${award.award} @ ${award.event}`;
+            }
+
+            if (projectAward.innerHTML.includes("GMTK Game Jam 2022")) {
+                projectAward.classList.add("gmtk-2022");
+            }
+
+            projectAwards.appendChild(projectAward);
+        });
+        projectInfo.appendChild(projectAwards);
+    }
+
+    let spacer = document.createElement("div");
+    spacer.style.flexGrow = 1;
+    projectInfo.appendChild(spacer);
+
     // Create project tags element
-    let projectTags = document.createElement("div");
-    projectTags.classList.add("proj-tags");
-    PROJECT_DATA[projectName].tags.forEach(tag => {
-        // Create tag element
-        let projectTag = document.createElement("p");
-        projectTag.classList.add("proj-tag");
-        if (tag.includes("2022")) projectTag.classList.add("gmtk-2022");
-        projectTag.innerHTML = tag;
-        projectTags.appendChild(projectTag);
-    });
-    projectInfo.appendChild(projectTags);
+    if (PROJECT_DATA[projectName].tags != undefined) {
+        let projectTags = document.createElement("div");
+        projectTags.classList.add("proj-tags");
+        PROJECT_DATA[projectName].tags.forEach(tag => {
+            // Create tag element
+            let projectTag = document.createElement("p");
+            projectTag.classList.add("proj-tag");
+            projectTag.innerHTML = tag;
+            projectTags.appendChild(projectTag);
+        });
+        projectInfo.appendChild(projectTags);
+    }
 
     // Create project links element
     let projectLinks = document.createElement("div");
@@ -101,35 +130,37 @@ function createProjectBox(projectName, isReversed) {
     viewLink.href = `html/${projectNameLowerCase}.html`;
     projectLinks.appendChild(viewLink);
 
-    PROJECT_DATA[projectName].links.forEach(link => {
-        let linkNameLowerCase = link.name.toLowerCase();
+    if (PROJECT_DATA[projectName].links != undefined) {
+        PROJECT_DATA[projectName].links.forEach(link => {
+            let linkNameLowerCase = link.name.toLowerCase();
 
-        // Create link element
-        let projectLink = document.createElement("a");
-        projectLink.classList.add("proj-link");
-        projectLink.href = link.url;
+            // Create link element
+            let projectLink = document.createElement("a");
+            projectLink.classList.add("proj-link");
+            projectLink.href = link.url;
 
-        // Create link icon element
-        let projectLinkIcon = document.createElement("img");
-        let iconType = "";
-        if (linkNameLowerCase.includes("play")) iconType = "play";
-        if (linkNameLowerCase.includes("github")) iconType = "github";
-        if (linkNameLowerCase.includes("itch.io")) iconType = "itchio";
-        if (linkNameLowerCase.includes("2022")) {
-            iconType = "itchio";
-            projectLink.classList.add("gmtk-2022");
-        }
-        projectLinkIcon.src = `media/logos/${iconType}-logo.png`;
-        projectLink.appendChild(projectLinkIcon);
+            // Create link icon element
+            let projectLinkIcon = document.createElement("img");
+            let iconType = "";
+            if (linkNameLowerCase.includes("play")) iconType = "play";
+            if (linkNameLowerCase.includes("github")) iconType = "github";
+            if (linkNameLowerCase.includes("itch.io")) iconType = "itchio";
+            if (linkNameLowerCase.includes("2022")) {
+                iconType = "itchio";
+                projectLink.classList.add("gmtk-2022");
+            }
+            projectLinkIcon.src = `media/logos/${iconType}-logo.png`;
+            projectLink.appendChild(projectLinkIcon);
 
-        // Create link name element
-        let projectLinkName = document.createElement("p");
-        projectLinkName.innerHTML = link.name;
-        projectLink.appendChild(projectLinkName);
+            // Create link name element
+            let projectLinkName = document.createElement("p");
+            projectLinkName.innerHTML = link.name;
+            projectLink.appendChild(projectLinkName);
 
-        // Append the final link element to the links list
-        projectLinks.appendChild(projectLink);
-    });
+            // Append the final link element to the links list
+            projectLinks.appendChild(projectLink);
+        });
+    }
     projectInfo.appendChild(projectLinks);
 
     // Append the project box to the html document

@@ -136,3 +136,109 @@ fa-game-music>h2 {
 }
 
 /* #endregion */
+
+.button {
+    display: flex;
+    font-size: 2em;
+    align-items: center;
+    gap: var(--variable-padding);
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: unset;
+    font-weight: 100;
+    background-color: var(--background-alt-color);
+    color: var(--text-color);
+    transition: letter-spacing var(--button-fade-time) ease, font-weight var(--button-fade-time) ease, background-color var(--button-fade-time) ease, color var(--button-fade-time) ease;
+}
+
+.button>img {
+    width: 1.5em;
+    transition: filter var(--button-fade-time) ease;
+}
+
+.button:hover {
+    letter-spacing: 0.1em;
+    font-weight: unset;
+    /* background-color: var(--accent-color); */
+    background-color: var(--text-color);
+    /* color: var(--text-color); */
+    color: var(--background-alt-color);
+}
+
+.button:hover>img {
+    filter: invert(1);
+}
+
+audio {
+    background-color: var(--text-color);
+    width: 100%;
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: var(--text-color);
+    align-self: stretch;
+}
+
+@media screen and (max-width: 934px) {
+    .gallery {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    .gallery-item {
+        aspect-ratio: unset;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .gallery-item>* {
+        opacity: 1;
+    }
+
+    .gallery-item .gallery-item-labels>p {
+        background-color: var(--accent-color);
+    }
+
+    .gallery-item:hover {
+        border-width: 0px;
+    }
+
+    .gallery-item:hover .gallery-item-labels {
+        top: calc(var(--small-padding) * -1);
+        right: calc(var(--small-padding) * -1);
+    }
+
+    .screen-warning {
+        visibility: visible;
+    }
+
+    .game-grid {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    fa-header>div {
+        flex-flow: column-reverse nowrap;
+    }
+
+    .section {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+    }
+
+    .game-section {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    h1,
+    .button {
+        font-size: 1.5em;
+    }
+
+    .gallery-item-labels {
+        display: none;
+    }
+}

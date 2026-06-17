@@ -67,7 +67,7 @@ export function createFooter(footerElement) {
         <div class="footer-text box-reg matter-rect-html">
             <p>Last updated on: <strong><span id="github-date">XX/XX/XXXX</span></strong></p>
             <p>Created by Frank Alfano</p>
-            <a href="https://github.com/qusr08/qusr08.github.io">Website Github Repository</a>
+            <p><a href="https://github.com/qusr08/qusr08.github.io">Website Github Repository</a></p>
         </div>
     `;
 }
