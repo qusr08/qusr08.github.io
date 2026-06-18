@@ -127,7 +127,7 @@ function createProjectBox(projectName, isReversed) {
     let viewLink = document.createElement("a");
     viewLink.classList.add("proj-link");
     viewLink.innerHTML = `<p>View Project</p>`;
-    viewLink.href = `html/${projectNameLowerCase}.html`;
+    viewLink.href = `./${projectNameLowerCase}.html`;
     projectLinks.appendChild(viewLink);
 
     if (PROJECT_DATA[projectName].links != undefined) {
