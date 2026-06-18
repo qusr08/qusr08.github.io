@@ -8,8 +8,43 @@ body {
     min-height: 100vh;
     display: flex;
     flex-flow: column nowrap;
-    padding: 0vh 5vw;
-    gap: 5vh;
+}
+
+/* Header */
+header {
+    height: max(500px, 100vh);
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px var(--variable-padding);
+}
+
+.header-text {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    gap: var(--padding);
+}
+
+.header-title {
+    font-size: 8em;
+    color: var(--background-alt-color);
+    width: fit-content;
+    background-color: var(--accent-color);
+    padding: var(--large-padding);
+}
+
+.header-subtitle {
+    font-size: 2em;
+    width: fit-content;
+    background-color: var(--background-alt-color);
+    padding: var(--padding);
+}
+
+.header-logo {
+    height: min-content;
+    width: 30vw;
 }
 
 /* Project Grid */
@@ -17,6 +52,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     gap: 30vh;
+    padding: 0vh var(--variable-padding);
 }
 
 /* Project Box Container */
@@ -252,52 +288,4 @@ body {
 .proj-link:hover>img {
     /* --background-alt-color */
     filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
-}
-
-/* Header */
-header {
-    height: max(500px, 100vh);
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header-text {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    gap: var(--variable-small-padding);
-}
-
-.header-title {
-    font-size: max(6vw, 2.5em);
-    color: var(--background-alt-color);
-    width: fit-content;
-}
-
-.header-subtitle {
-    font-size: max(2vw, 1em);
-    width: fit-content;
-}
-
-.header-logo {
-    height: min-content;
-    width: 30vw;
-}
-
-/* Footer */
-footer {
-    height: max(250px, 20vh);
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
-.footer-text {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: var(--variable-small-padding);
 }

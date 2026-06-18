@@ -87,7 +87,7 @@ export class HTMLMatterRectObject extends HTMLMatterObject {
             render: { fillStyle: 'transparent' },
             collisionFilter: {
                 category: Constants.CATEGORY_HTML,
-                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML & Constants.CATEGORY_PEG
+                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML
             },
             label: 'HTMLMatterRectObject'
         });
@@ -125,7 +125,7 @@ export class HTMLMatterPolyObject extends HTMLMatterObject {
             },
             collisionFilter: {
                 category: Constants.CATEGORY_HTML,
-                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML & Constants.CATEGORY_PEG
+                mask: Constants.CATEGORY_GAME | Constants.CATEGORY_HTML
             },
             label: 'HTMLMatterPolyObject'
         });

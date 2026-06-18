@@ -5,6 +5,7 @@ import { InteractiveBackground } from "./background/interactive-background.js";
 import * as ConstElements from './const-elements.js';
 import * as Utils from './utils.js';
 
+let NAVBAR = undefined;
 let PROJECT_GRID = undefined;
 let WRAPPER = undefined;
 let BACKGROUND = undefined;
@@ -19,8 +20,11 @@ window.onload = () => {
         createProjectBox(project, isProjectReversed);
         isProjectReversed = !isProjectReversed;
     }
+    
+    NAVBAR = document.querySelector("#navbar");
+    ConstElements.populateNavbar(NAVBAR);
 
-    ConstElements.createFooter(document.querySelector("footer"));
+    ConstElements.populateFooter(document.querySelector("footer"));
     Utils.updateFromGithub();
 
     BACKGROUND = new InteractiveBackground(WRAPPER);
@@ -35,6 +39,10 @@ window.onmousemove = (e) => {
     if (BACKGROUND && BACKGROUND.isInitialized) {
         BACKGROUND.mouseMatterObject.update({ x: e.clientX + window.scrollX, y: e.clientY + window.scrollY });
     }
+}
+
+window.onscroll = (e) => {
+    NAVBAR.classList.toggle("visible", window.scrollY > 0);
 }
 
 function createProjectBox(projectName, isReversed) {
@@ -127,7 +135,7 @@ function createProjectBox(projectName, isReversed) {
     let viewLink = document.createElement("a");
     viewLink.classList.add("proj-link");
     viewLink.innerHTML = `<p>View Project</p>`;
-    viewLink.href = `./${projectNameLowerCase}.html`;
+    viewLink.href = `project.html?name=${projectName}`;
     projectLinks.appendChild(viewLink);
 
     if (PROJECT_DATA[projectName].links != undefined) {

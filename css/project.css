@@ -1,6 +1,9 @@
-/* #region Game Pages */
+body {
+    background-color: var(--background-color);
+    overflow-x: hidden;
+}
 
-fa-game-header>div {
+header {
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -9,162 +12,74 @@ fa-game-header>div {
     align-items: center;
 }
 
-.game-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    padding: var(--variable-padding);
-    gap: var(--variable-padding);
+.header-title-art {
+    max-width: 75vw;
+    max-height: 50vh;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-.game-info,
-.game-screenshots {
-    justify-content: start;
+.game-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    padding: var(--large-padding) var(--variable-padding);
+    padding-bottom: 0px;
+    gap: var(--large-padding);
 }
 
 .game-info {
-    gap: calc(var(--variable-padding) * 4);
-}
-
-.game-info>* {
-    align-self: stretch;
-}
-
-.game-screenshots>* {
-    object-fit: contain;
-    width: 100%;
-    max-width: 100%;
-    border-width: 0px;
-    background-color: var(--background-alt-color);
-    text-align: center;
-}
-
-.game-section {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 1fr;
-    gap: var(--variable-padding);
-    align-self: stretch;
-}
-
-fa-game-credit,
-fa-game-music {
-    background-color: var(--background-alt-color);
-    padding: var(--variable-padding);
     display: flex;
     flex-flow: column nowrap;
-    gap: var(--variable-padding);
-    position: relative;
+    gap: var(--padding);
 }
 
-fa-game-credit>h2,
-fa-game-music>h2 {
-    font-size: 1.5em;
-}
-
-/* #endregion */
-
-.button {
+section {
     display: flex;
-    font-size: 2em;
-    align-items: center;
-    gap: var(--variable-padding);
-    text-decoration: none;
-    cursor: pointer;
-    letter-spacing: unset;
-    font-weight: 100;
+    flex-flow: column nowrap;
+    gap: var(--large-padding);
+    padding: var(--padding);
     background-color: var(--background-alt-color);
-    color: var(--text-color);
-    transition: letter-spacing var(--button-fade-time) ease, font-weight var(--button-fade-time) ease, background-color var(--button-fade-time) ease, color var(--button-fade-time) ease;
 }
 
-.button>img {
-    width: 1.5em;
-    transition: filter var(--button-fade-time) ease;
+.section-title {
+    color: var(--accent-color);
+    font-size: 4em;
+    max-height: 1em;
 }
 
-.button:hover {
-    letter-spacing: 0.1em;
-    font-weight: unset;
-    /* background-color: var(--accent-color); */
-    background-color: var(--text-color);
-    /* color: var(--text-color); */
-    color: var(--background-alt-color);
+.section-subgrid,
+.section-subgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--padding);
 }
 
-.button:hover>img {
-    filter: invert(1);
+.section-sublist {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--padding);
+}
+
+.section-subelement {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--small-padding);
 }
 
 audio {
-    background-color: var(--text-color);
     width: 100%;
 }
 
-audio::-webkit-media-controls-panel {
-    background-color: var(--text-color);
-    align-self: stretch;
+.game-visuals {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--small-padding);
 }
 
-@media screen and (max-width: 934px) {
-    .gallery {
-        display: flex;
-        flex-flow: column nowrap;
-    }
-
-    .gallery-item {
-        aspect-ratio: unset;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .gallery-item>* {
-        opacity: 1;
-    }
-
-    .gallery-item .gallery-item-labels>p {
-        background-color: var(--accent-color);
-    }
-
-    .gallery-item:hover {
-        border-width: 0px;
-    }
-
-    .gallery-item:hover .gallery-item-labels {
-        top: calc(var(--small-padding) * -1);
-        right: calc(var(--small-padding) * -1);
-    }
-
-    .screen-warning {
-        visibility: visible;
-    }
-
-    .game-grid {
-        display: flex;
-        flex-flow: column nowrap;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    fa-header>div {
-        flex-flow: column-reverse nowrap;
-    }
-
-    .section {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: stretch;
-    }
-
-    .game-section {
-        display: flex;
-        flex-flow: column nowrap;
-    }
-
-    h1,
-    .button {
-        font-size: 1.5em;
-    }
-
-    .gallery-item-labels {
-        display: none;
-    }
+.game-visuals>* {
+    object-fit: contain;
+    width: 100%;
+    border-width: 0px;
+    background-color: var(--background-alt-color);
 }

@@ -13,15 +13,18 @@
 
     --proj-box-base-width: 45vw;
     --proj-box-base-height: 50vh;
-    --padding: 20px;
+    --padding: 25px;
+    --large-padding: 50px;
     --small-padding: 5px;
-    --variable-padding: max(1vw, 1vh, 10px);
+    --variable-padding: max(5vw, 10px);
     --variable-small-padding: max(0.5vw, 0.5vh, 5px);
 
     --proj-link-width: 175px;
     --proj-link-calc-height: calc((var(--small-padding) * 4) + var(--text-base-size));
     --proj-link-move-time: 0.5s;
     --proj-link-delay-stagger: 0.05s;
+
+    --navbar-height: calc(var(--padding) * 2 + var(--text-base-size));
 
     --button-fade-time: 0.2s;
     --text-base-size: 1.2em;
@@ -37,6 +40,7 @@
 
 h1 {
     font-weight: 900;
+    text-transform: uppercase;
 }
 
 p {
@@ -76,14 +80,12 @@ p {
 }
 
 .gmtk-2021 {
-    /* font-weight: bold; */
     background-color: unset;
     background-image: linear-gradient(#03FFC7, #2BBEC3);
     color: var(--text-color);
 }
 
 .gmtk-2022 {
-    /* font-weight: bold; */
     background-color: unset;
     background-image: linear-gradient(to left, #FF9C00, #FF0900);
     color: var(--text-color);
@@ -139,3 +141,78 @@ a:active {
 }
 
 /* #endregion */
+
+/* Footer */
+footer {
+    height: max(250px, 20vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--variable-padding);
+}
+
+.footer-text {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--small-padding);
+    padding: var(--padding);
+}
+
+/* Navbar */
+#navbar {
+    position: fixed;
+    z-index: 100;
+    top: calc(var(--navbar-height) * -1);
+    display: flex;
+    flex-flow: row nowrap;
+    gap: var(--small-padding);
+    padding: var(--padding);
+    background-color: var(--background-alt-color);
+    width: 100%;
+    height: max(fit-content, var(--navbar-height));
+    transition: top var(--proj-link-move-time) ease;
+}
+
+#navbar.visible {
+    top: 0px;
+}
+
+.navbar-link {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: var(--small-padding);
+    padding: var(--small-padding);
+    align-items: center;
+    height: fit-content;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--background-alt-color);
+    transition: background-color var(--button-fade-time) ease;
+}
+
+.navbar-link>p {
+    transition: color var(--button-fade-time) ease;
+}
+
+.navbar-link:hover {
+    background-color: var(--text-color);
+}
+
+.navbar-link:hover>p {
+    color: var(--background-alt-color);
+}
+
+.navbar-link>img {
+    filter: none;
+    height: var(--text-base-size);
+    aspect-ratio: 1;
+    transition: filter var(--button-fade-time) ease;
+}
+
+.navbar-link:hover>img {
+    /* --background-alt-color */
+    filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
+}

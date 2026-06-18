@@ -43,3 +43,5 @@ export function updateFromGithub() {
     xhttpDate.send();
     // xhttpVersion.send();
 }
+
+export const getURLSearchParameter = (parameterName) => new URLSearchParams(window.location.search).get(parameterName);
