@@ -182,6 +182,8 @@ footer {
     font-weight: 900;
     font-size: 2em;
     text-transform: uppercase;
+    text-decoration: none;
+    padding: 0px var(--small-padding);
 }
 
 .navbar-link {
@@ -197,16 +199,8 @@ footer {
     transition: background-color var(--button-fade-time) ease;
 }
 
-.navbar-link>p {
-    transition: color var(--button-fade-time) ease;
-}
-
 .navbar-link:hover {
     background-color: var(--text-color);
-}
-
-.navbar-link:hover>p {
-    color: var(--background-alt-color);
 }
 
 .navbar-link>img {

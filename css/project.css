@@ -23,8 +23,7 @@ header {
 .game-grid {
     display: grid;
     grid-template-columns: 3fr 2fr;
-    padding: var(--large-padding) var(--variable-padding);
-    padding-bottom: 0px;
+    padding: 0px var(--variable-padding);
     gap: var(--large-padding);
 }
 
@@ -42,20 +41,24 @@ section {
     background-color: var(--background-alt-color);
 }
 
+section.clear {
+    background-color: unset;
+    padding: unset;
+}
+
 .section-title {
     color: var(--accent-color);
     font-size: 4em;
     max-height: 1em;
 }
 
-.section-subgrid,
 .section-subgrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--padding);
 }
 
-.section-sublist {
+.section-sublist-vertical {
     display: flex;
     flex-flow: column nowrap;
     gap: var(--padding);
@@ -82,4 +85,49 @@ audio {
     width: 100%;
     border-width: 0px;
     background-color: var(--background-alt-color);
+}
+
+.game-links {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: var(--small-padding);
+    padding: var(--large-padding) var(--variable-padding) var(--padding) var(--variable-padding);
+}
+
+.game-link {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: var(--small-padding);
+    padding: var(--small-padding);
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left;
+    background-color: var(--background-alt-color);
+    transition: background-color var(--button-fade-time) ease;
+}
+
+.game-link>p {
+    transition: color var(--button-fade-time) ease;
+}
+
+.game-link:hover {
+    background-color: var(--text-color);
+}
+
+.game-link:hover>p {
+    color: var(--background-alt-color);
+}
+
+.game-link>img {
+    filter: none;
+    height: var(--text-base-size);
+    aspect-ratio: 1;
+    transition: filter var(--button-fade-time) ease;
+}
+
+.game-link:hover>img {
+    /* --background-alt-color */
+    filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
 }

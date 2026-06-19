@@ -10,7 +10,7 @@ export function populateFooter(footerElement) {
 
 export function populateNavbar(navbarElement) {
     navbarElement.innerHTML = `
-        <p class="navbar-title">Frank Alfano</p>
+        <a class="navbar-title" href="index.html">Frank Alfano</a>
         <div style="flex-grow: 1;"></div>
         <a class="navbar-link" href="https://github.com/qusr08">
             <img src="../media/logos/github-logo.png">

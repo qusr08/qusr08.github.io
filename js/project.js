@@ -5,6 +5,7 @@ import * as Utils from './utils.js';
 let NAVBAR = undefined;
 let GAME_INFO = undefined;
 let GAME_VISUALS = undefined;
+let GAME_LINKS = undefined;
 let WRAPPER = undefined;
 
 let PROJECT_NAME = undefined;
@@ -15,11 +16,15 @@ window.onload = () => {
 
     PROJECT_NAME = Utils.getURLSearchParameter("name");
     PROJECT_NAME_LOWER = PROJECT_NAME.toLowerCase();
+    document.title = `Frank Alfano | ${PROJECT_NAME}`;
 
     NAVBAR = document.querySelector("#navbar");
     ConstElements.populateNavbar(NAVBAR);
 
     populateGameHeader();
+
+    GAME_LINKS = document.querySelector(".game-links");
+    populateGameLinks();
 
     GAME_INFO = document.querySelector(".game-info");
     populateGameText();
@@ -29,8 +34,6 @@ window.onload = () => {
     GAME_VISUALS = document.querySelector(".game-visuals");
     populateGameVisuals();
 
-    document.title = `Frank Alfano | ${PROJECT_NAME}`;
-
     ConstElements.populateFooter(document.querySelector("footer"));
     Utils.updateFromGithub();
 }
@@ -39,125 +42,173 @@ window.onscroll = (e) => {
     NAVBAR.classList.toggle("visible", window.scrollY > 0);
 }
 
+function populateGameLinks() {
+    let projectLinksData = PROJECT_DATA[PROJECT_NAME].links;
+    if (projectLinksData == undefined) return;
+
+    projectLinksData.forEach(linkData => {
+        let linkNameLowerCase = linkData.name.toLowerCase();
+
+        // Create link element
+        let gameLinkElement = document.createElement("a");
+        gameLinkElement.classList.add("game-link");
+        gameLinkElement.href = linkData.url;
+
+        // Create link icon element
+        let gameLinkIconElement = document.createElement("img");
+        let iconType = "";
+        if (linkNameLowerCase.includes("play")) iconType = "play";
+        if (linkNameLowerCase.includes("github")) iconType = "github";
+        if (linkNameLowerCase.includes("itch.io")) iconType = "itchio";
+        if (linkNameLowerCase.includes("2022")) {
+            iconType = "itchio";
+            gameLinkElement.classList.add("gmtk-2022");
+        }
+        gameLinkIconElement.src = `../media/logos/${iconType}-logo.png`;
+        gameLinkElement.appendChild(gameLinkIconElement);
+
+        // Create link name element
+        let gameLinkNameElement = document.createElement("p");
+        gameLinkNameElement.innerHTML = linkData.name;
+        gameLinkElement.appendChild(gameLinkNameElement);
+
+        // Append the final link element to the links list
+        GAME_LINKS.appendChild(gameLinkElement);
+    });
+}
+
 function populateGameText() {
     let projectTextData = PROJECT_DATA[PROJECT_NAME].text;
+    if (projectTextData == undefined) return;
 
-    if (PROJECT_DATA[PROJECT_NAME].text != undefined) {
-        PROJECT_DATA[PROJECT_NAME].text.forEach(textContent => {
-            let textSectionElement = createGameSection(textContent.title);
-            let textSectionListElement = document.createElement("div");
-            textSectionListElement.classList.add("section-sublist");
+    projectTextData.forEach(textData => {
+        let textSectionElement = createGameSection(textData.title);
+        let textSectionListElement = document.createElement("div");
+        textSectionListElement.classList.add("section-sublist-vertical");
 
-            textContent.content.forEach(paragraph => {
-                let paragraphElement = document.createElement("p");
-                paragraphElement.innerText = paragraph;
-                textSectionListElement.appendChild(paragraphElement);
-            });
-
-            textSectionElement.appendChild(textSectionListElement);
-            GAME_INFO.appendChild(textSectionElement);
+        textData.content.forEach(paragraphData => {
+            let paragraphElement = document.createElement("p");
+            paragraphElement.innerText = paragraphData;
+            textSectionListElement.appendChild(paragraphElement);
         });
-    }
 
-
+        textSectionElement.appendChild(textSectionListElement);
+        GAME_INFO.appendChild(textSectionElement);
+    });
 }
 
 function populateGameAudio() {
-    if (PROJECT_DATA[PROJECT_NAME].audio != undefined) {
-        let audioSectionElement = createGameSection("Audio");
-        let audioGridElement = document.createElement("div");
-        audioGridElement.classList.add("section-subgrid");
+    let projectAudioData = PROJECT_DATA[PROJECT_NAME].audio;
+    if (projectAudioData == undefined) return;
 
-        // Create each audio content section
-        PROJECT_DATA[PROJECT_NAME].audio.forEach(audio => {
-            let audioElement = document.createElement("div");
-            audioElement.classList.add("section-subelement");
+    let audioSectionElement = createGameSection("Audio");
+    let audioGridElement = document.createElement("div");
+    audioGridElement.classList.add("section-subgrid");
 
-            let audioTitleElement = document.createElement("h1");
-            audioTitleElement.classList.add("section-subelement-title");
-            let audioTitle = `${audio.name} - ${audio.creator}`;
-            if (audio.link != undefined) {
-                audioTitleElement.innerHTML = `<a href="${audio.link}">${audioTitle}</a>`;
-            } else {
-                audioTitleElement.innerText = audioTitle;
-            }
-            audioElement.appendChild(audioTitleElement);
+    // Create each audio content section
+    projectAudioData.forEach(audioData => {
+        let audioElement = document.createElement("div");
+        audioElement.classList.add("section-subelement");
 
-            let audioPlayerElement = document.createElement("audio");
-            audioPlayerElement.setAttribute("controls", "");
-            audioPlayerElement.setAttribute("loop", "");
-            if (audio.wav != undefined) {
-                audioPlayerElement.type = "audio/wav";
-                audioPlayerElement.src = `media/${PROJECT_NAME_LOWER}/audio/${audio.wav}`;
-            }
-            audioElement.appendChild(audioPlayerElement);
+        // Create the audio title element
+        // If a link is specified, have the title also be a link
+        let audioTitleElement = document.createElement("h1");
+        audioTitleElement.classList.add("section-subelement-title");
+        let audioTitle = `${audioData.name} - ${audioData.creator}`;
+        if (audioData.link != undefined) {
+            audioTitleElement.innerHTML = `<a href="${audioData.link}">${audioTitle}</a>`;
+        } else {
+            audioTitleElement.innerText = audioTitle;
+        }
+        audioElement.appendChild(audioTitleElement);
 
-            audioGridElement.appendChild(audioElement);
-        });
+        // Create the audio player element
+        let audioPlayerElement = document.createElement("audio");
+        audioPlayerElement.setAttribute("controls", "");
+        audioPlayerElement.setAttribute("loop", "");
+        if (audioData.wav != undefined) {
+            audioPlayerElement.type = "audio/wav";
+            audioPlayerElement.src = `media/${PROJECT_NAME_LOWER}/audio/${audioData.wav}`;
+        }
+        audioElement.appendChild(audioPlayerElement);
 
-        audioSectionElement.appendChild(audioGridElement);
-        GAME_INFO.appendChild(audioSectionElement);
-    }
+        audioGridElement.appendChild(audioElement);
+    });
+
+    audioSectionElement.appendChild(audioGridElement);
+    GAME_INFO.appendChild(audioSectionElement);
 }
 
 function populateGameCredits() {
-    if (PROJECT_DATA[PROJECT_NAME].credits != undefined) {
-        let creditSectionElement = createGameSection("Credits");
-        let creditGridElement = document.createElement("div");
-        creditGridElement.classList.add("section-subgrid");
+    let projectCreditData = PROJECT_DATA[PROJECT_NAME].credits;
+    if (projectCreditData == undefined) return;
 
-        // Create each credit content section
-        PROJECT_DATA[PROJECT_NAME].credits.forEach(credit => {
-            let creditElement = document.createElement("div");
-            creditElement.classList.add("section-subelement");
+    let creditSectionElement = createGameSection("Credits");
+    let creditGridElement = document.createElement("div");
+    creditGridElement.classList.add("section-subgrid");
 
-            let creditTitleElement = document.createElement("h1");
-            creditTitleElement.innerText = credit.category;
-            creditElement.appendChild(creditTitleElement);
+    // Create each credit content section
+    projectCreditData.forEach(creditData => {
+        let creditElement = document.createElement("div");
+        creditElement.classList.add("section-subelement");
 
-            let creditMembersElement = document.createElement("p");
-            creditMembersElement.innerHTML = `<strong>${credit.members.join(", ")}</strong>`;
-            creditElement.appendChild(creditMembersElement);
+        // Create the credit title (category) element
+        let creditTitleElement = document.createElement("h1");
+        creditTitleElement.innerText = creditData.category;
+        creditElement.appendChild(creditTitleElement);
 
-            if (credit.tools != undefined) {
-                let creditToolsElement = document.createElement("p");
-                creditToolsElement.innerHTML = `<em>Using ${credit.tools.join(", ")}</em>`;
-                creditElement.appendChild(creditToolsElement);
-            }
+        // Create the members of the credit category element
+        let creditMembersElement = document.createElement("p");
+        creditMembersElement.innerHTML = `<strong>${creditData.members.join(", ")}</strong>`;
+        creditElement.appendChild(creditMembersElement);
 
-            creditGridElement.appendChild(creditElement);
-        });
+        // If tools are specified, create a list of used tools element
+        if (creditData.tools != undefined) {
+            let creditToolsElement = document.createElement("p");
+            creditToolsElement.innerHTML = `<em>Using ${creditData.tools.join(", ")}</em>`;
+            creditElement.appendChild(creditToolsElement);
+        }
 
-        creditSectionElement.appendChild(creditGridElement);
-        GAME_INFO.appendChild(creditSectionElement);
-    }
+        creditGridElement.appendChild(creditElement);
+    });
+
+    creditSectionElement.appendChild(creditGridElement);
+    GAME_INFO.appendChild(creditSectionElement);
 }
 
 function populateGameVisuals() {
-    if (PROJECT_DATA[PROJECT_NAME].visuals != undefined) {
-        PROJECT_DATA[PROJECT_NAME].visuals.forEach(visual => {
-            let visualElement = undefined;
+    let projectVisualsData = PROJECT_DATA[PROJECT_NAME].visuals;
+    if (projectVisualsData == undefined) return;
 
-            if (visual.youtube != undefined) {
-                visualElement = document.createElement("iframe");
-                visualElement.style.aspectRatio = 1920 / 1080;
-                visualElement.src = `${visual.youtube}?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0`;
-            } else if (visual.png != undefined) {
-                visualElement = document.createElement("img");
-                visualElement.src = `media/${PROJECT_NAME_LOWER}/screenshots/${visual.png}`;
-            }
+    projectVisualsData.forEach(visual => {
+        let visualElement = undefined;
 
-            GAME_VISUALS.appendChild(visualElement);
-        });
-    }
+        // Check to see what type of visual element needs to be created
+        if (visual.youtube != undefined) {
+            visualElement = document.createElement("iframe");
+            visualElement.style.aspectRatio = 1920 / 1080;
+            visualElement.src = `${visual.youtube}?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0`;
+        } else if (visual.png != undefined) {
+            visualElement = document.createElement("img");
+            visualElement.src = `media/${PROJECT_NAME_LOWER}/screenshots/${visual.png}`;
+        }
+
+        GAME_VISUALS.appendChild(visualElement);
+    });
 }
 
-function createGameSection(sectionTitle) {
+function createGameSection(sectionTitle = "", isClear = false) {
+    // Create a general section element with a title
+    // If there is no title specified, then do not add a title
     let sectionElement = document.createElement("section");
+    sectionElement.classList.toggle("clear", isClear);
+    if (sectionTitle == "") return sectionElement;
+
     let sectionTitleElement = document.createElement("h1");
     sectionTitleElement.classList.add("section-title");
     sectionTitleElement.innerText = sectionTitle;
     sectionElement.appendChild(sectionTitleElement);
+
     return sectionElement;
 }
 
