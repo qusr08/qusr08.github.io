@@ -20,7 +20,7 @@ window.onload = () => {
         createProjectBox(project, isProjectReversed);
         isProjectReversed = !isProjectReversed;
     }
-    
+
     NAVBAR = document.querySelector("#navbar");
     ConstElements.populateNavbar(NAVBAR);
 

@@ -2,6 +2,7 @@ import PROJECT_DATA from '../json/project-data.json' with { type: 'json' };
 import * as ConstElements from './const-elements.js';
 import * as Utils from './utils.js';
 
+let NAVBAR = undefined;
 let GAME_INFO = undefined;
 let GAME_VISUALS = undefined;
 let WRAPPER = undefined;
@@ -14,6 +15,9 @@ window.onload = () => {
 
     PROJECT_NAME = Utils.getURLSearchParameter("name");
     PROJECT_NAME_LOWER = PROJECT_NAME.toLowerCase();
+
+    NAVBAR = document.querySelector("#navbar");
+    ConstElements.populateNavbar(NAVBAR);
 
     populateGameHeader();
 
@@ -31,7 +35,13 @@ window.onload = () => {
     Utils.updateFromGithub();
 }
 
+window.onscroll = (e) => {
+    NAVBAR.classList.toggle("visible", window.scrollY > 0);
+}
+
 function populateGameText() {
+    let projectTextData = PROJECT_DATA[PROJECT_NAME].text;
+
     if (PROJECT_DATA[PROJECT_NAME].text != undefined) {
         PROJECT_DATA[PROJECT_NAME].text.forEach(textContent => {
             let textSectionElement = createGameSection(textContent.title);
@@ -48,6 +58,8 @@ function populateGameText() {
             GAME_INFO.appendChild(textSectionElement);
         });
     }
+
+
 }
 
 function populateGameAudio() {
