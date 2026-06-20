@@ -95,7 +95,8 @@ header {
 
 /* Project Thumbnail */
 .proj-thumbnail {
-    aspect-ratio: 1;
+    /* aspect-ratio: 1; */
+    width: 100%;
     background-position: center;
     background-size: cover;
     /* border-color: var(--accent-color); */
@@ -112,7 +113,9 @@ header {
 .proj-info {
     background-color: var(--background-alt-color);
     height: 100%;
+    width: var(--proj-info-min-width);
     min-height: min-content;
+    min-width: min-content;
     display: flex;
     flex-flow: column nowrap;
     gap: var(--padding);
@@ -167,6 +170,7 @@ header {
     width: fit-content;
     font-weight: bold;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .proj-award.gmtk-2022 {
@@ -188,6 +192,7 @@ header {
     max-width: fit-content;
     padding: var(--small-padding);
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .proj-box-container.reversed .proj-tags {
@@ -200,6 +205,7 @@ header {
     z-index: -1;
     top: 0px;
     left: var(--proj-box-base-width);
+    width: fit-content;
 }
 
 .proj-box-container.reversed .proj-links {
@@ -221,7 +227,7 @@ header {
     text-align: left;
     background-color: var(--background-alt-color);
     transition: background-color var(--button-fade-time) ease;
-    /* white-space: nowrap; */
+    white-space: nowrap;
 }
 
 .proj-link>p {
@@ -273,6 +279,11 @@ header {
 .proj-link:nth-child(5) {
     top: calc(5 * var(--proj-link-calc-height));
     transition: background-color var(--button-fade-time) ease, color var(--button-fade-time) ease, left var(--proj-link-move-time) cubic-bezier(0.83, 0, 0.17, 1) calc(4 * var(--proj-link-delay-stagger));
+}
+
+.proj-link:nth-child(6) {
+    top: calc(6 * var(--proj-link-calc-height));
+    transition: background-color var(--button-fade-time) ease, color var(--button-fade-time) ease, left var(--proj-link-move-time) cubic-bezier(0.83, 0, 0.17, 1) calc(5 * var(--proj-link-delay-stagger));
 }
 
 .proj-link:hover {

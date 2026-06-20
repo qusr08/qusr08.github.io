@@ -13,13 +13,14 @@
 
     --proj-box-base-width: 45vw;
     --proj-box-base-height: 50vh;
+    --proj-info-min-width: 75%;
     --padding: 25px;
     --large-padding: 50px;
     --small-padding: 5px;
     --variable-padding: max(5vw, 10px);
     --variable-small-padding: max(0.5vw, 0.5vh, 5px);
 
-    --proj-link-width: 225px;
+    --proj-link-width: 250px;
     --proj-link-calc-height: calc((var(--small-padding) * 4) + var(--text-base-size));
     --proj-link-move-time: 0.5s;
     --proj-link-delay-stagger: 0.05s;
