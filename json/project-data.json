@@ -1,10 +1,130 @@
 {
-    "DOS": {
-        "dates": "Jul 2022 - Aug 2022",
-        "desc": "DOS (two in Spanish) is a single-player puzzle game where the objective is to strategically roll the die to get the two face on top! Use the various tiles that make up each level which can move or rotate the die to achieve the goal.",
+    "Breakthrough": {
+        "hidden": false,
+        "dates": "May 2022 - Present",
+        "desc": "Breakthrough is a Tetris-like arcade game where instead of clearing lines, the player must use bombs that are attached to each Tetris piece to blow up other tiles. The goal is to get a piece under player control all the way to the bottom of the game board, or 'breaking through' the level. The game is endless and each level gets progressively harder to clear.",
         "awards": [
             {
-                "award": "Top 5% GMTK Game Jam 2022"
+                "event": "RIT EDGE 2023",
+                "award": "Game Feel Award"
+            }
+        ],
+        "tags": [
+            "Unity/C#",
+            "Arcade",
+            "2D",
+            "Strategy"
+        ],
+        "links": [
+            {
+                "name": "Play Breakthrough",
+                "logo": "play",
+                "url": "https://qusr08.github.io/Breakthrough-OLD/v1.5.1a/"
+            },
+            {
+                "name": "Itch.io Page",
+                "logo": "itchio",
+                "url": "https://qusr.itch.io/breakthrough"
+            },
+            {
+                "name": "RIT EDGE Interview",
+                "logo": "youtube",
+                "url": "https://www.youtube.com/watch?v=2uN2DdvFM5k"
+            }
+        ],
+        "visuals": [
+            {
+                "youtube": "https://www.youtube.com/embed/4Dv_BMG3q1I"
+            },
+            {
+                "png": "breakthrough-screenshot-1.png"
+            },
+            {
+                "png": "breakthrough-screenshot-2.png"
+            },
+            {
+                "png": "breakthrough-screenshot-3.png"
+            }
+        ],
+        "text": [
+            {
+                "title": "Description",
+                "content": [
+                    "Breakthrough is a gravity block puzzle game inspired by games similar to Tetris. The player's goal is to score as many points as possible by clearing boards using various Minos and Boom Blocks. Each Mino is a shape made up of six blocks which may have a Boom Block attached to it when created. When a Mino is placed onto the board, Boom Blocks are triggered and explode the surrounding area in various patterns. The player's goal is to break through the generated wall on the board and reach the bottom, achieving a 'breakthrough'. The boards will also automatically increase in difficulty the longer the player is in the game."
+                ]
+            },
+            {
+                "title": "Reflection",
+                "content": [
+                    "This game won the Game Feel award at the 2023 Game Showcase and Expo at RIT and also was funded by the Magic Maker Program at RIT over the summer of 2023. I worked on this game with my partner Gabriela Colón-Meléndez, where I was responsible for all of the programming and she led the visual design. We are still actively working on the game, with our end goal for this game being to release it on Steam.",
+                    "I am beyond excited about this project and very proud of how far we have come in the development process. We are motivated to finish Breakthrough to the best of our abilities and want to see the game succeed."
+                ]
+            }
+        ],
+        "audio": [
+            {
+                "name": "Kinetics",
+                "creator": "FSM Team & escp",
+                "file": "fsm-team-escp-kinetics.mp3",
+                "link": "https://www.free-stock-music.com/fsm-team-escp-kinetics.html"
+            },
+            {
+                "name": "Lucid Dreaming",
+                "creator": "FSM Team & escp",
+                "file": "fsm-team-escp-lucid-dreaming.mp3",
+                "link": "https://www.free-stock-music.com/fsm-team-escp-lucid-dreaming.html"
+            },
+            {
+                "name": "Pendulum",
+                "creator": "FSM Team & escp",
+                "file": "fsm-team-escp-pendulum.mp3",
+                "link": "https://www.free-stock-music.com/fsm-team-escp-pendulum.html"
+            },
+            {
+                "name": "Letter",
+                "creator": "Qlowdy",
+                "file": "qlowdy-letter.mp3",
+                "link": "https://www.free-stock-music.com/qlowdy-letter.html"
+            }
+        ],
+        "credits": [
+            {
+                "category": "Game Design",
+                "members": [
+                    "Frank Alfano",
+                    "Gabriela Colón-Meléndez"
+                ]
+            },
+            {
+                "category": "Art",
+                "members": [
+                    "Frank Alfano",
+                    "Gabriela Colón-Meléndez"
+                ],
+                "tools": [
+                    "paint.NET",
+                    "Figma"
+                ]
+            },
+            {
+                "category": "Programming",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "Unity and C#"
+                ]
+            }
+        ]
+    },
+    "DOS": {
+        "hidden": false,
+        "dates": "Jul 2022 - Aug 2022",
+        "desc": "DOS is a single-player puzzle game where the objective is to strategically roll the die to get the two face on top! Use the various tiles that make up each level which can move or rotate the die to achieve the goal.",
+        "awards": [
+            {
+                "award": "Top 5% GMTK Game Jam 2022",
+                "css-override": "gmtk-2022"
             }
         ],
         "tags": [
@@ -15,18 +135,23 @@
         "links": [
             {
                 "name": "GMTK 2022",
+                "logo": "itchio",
+                "css-override": "gmtk-2022",
                 "url": "https://itch.io/jam/gmtk-jam-2022/rate/1623540"
             },
             {
                 "name": "Play DOS",
+                "logo": "play",
                 "url": "https://qusr08.github.io/DOS/"
             },
             {
                 "name": "Github Repo",
+                "logo": "github",
                 "url": "https://github.com/qusr08/DOS"
             },
             {
                 "name": "Itch.io Page",
+                "logo": "itchio",
                 "url": "https://qusr.itch.io/dos"
             }
         ],
@@ -44,14 +169,6 @@
                 "png": "dos-screenshot-4.png"
             }
         ],
-        "audio": [
-            {
-                "name": "Wonderful",
-                "creator": "ispeakwaves",
-                "wav": "Wonderful.wav",
-                "link": "https://freesound.org/people/ispeakwaves/sounds/439877/"
-            }
-        ],
         "text": [
             {
                 "title": "Description",
@@ -67,9 +184,17 @@
                 ]
             }
         ],
+        "audio": [
+            {
+                "name": "Wonderful",
+                "creator": "ispeakwaves",
+                "file": "Wonderful.wav",
+                "link": "https://freesound.org/people/ispeakwaves/sounds/439877/"
+            }
+        ],
         "credits": [
             {
-                "category": "Game Idea",
+                "category": "Game Design",
                 "members": [
                     "Frank Alfano",
                     "Gabriela Colón-Meléndez"
@@ -107,6 +232,7 @@
         ]
     },
     "Prichi": {
+        "hidden": false,
         "dates": "Oct 2021 - Dec 2021",
         "desc": "Prichi is an infinite 'dungeon crawler'-esque game where you play as a queen chess piece and try to eliminate all opposing black chess pieces. Each level is randomly generated and goal is to get as far as possible without blundering your queen!",
         "tags": [
@@ -118,15 +244,239 @@
         "links": [
             {
                 "name": "Play Prichi",
+                "logo": "play",
                 "url": "https://qusr08.github.io/Prichi/"
             },
             {
                 "name": "Github Repo",
+                "logo": "github",
                 "url": "https://github.com/qusr08/Prichi"
+            }
+        ],
+        "visuals": [
+            {
+                "youtube": "https://www.youtube.com/embed/b1RekPUtAC4"
+            },
+            {
+                "png": "prichi-screenshot-2.png"
+            },
+            {
+                "png": "prichi-screenshot-3.png"
+            },
+            {
+                "png": "prichi-screenshot-4.png"
+            },
+            {
+                "png": "prichi-screenshot-5.png"
+            }
+        ],
+        "text": [
+            {
+                "title": "Description",
+                "content": [
+                    "In Prichi, you are playing a roguelike game of chess against the computer. You only control one white queen against a randomly generated army of opposing black pieces. Each black piece moves every 4 turns, indicated by a counter next to it. Some of these pieces also have special abilities that allow them to alter the game board or make them harder to capture. The goal of the game is to capture all of the black pieces on each board and survive as many boards as possible. You only get one life, so you need to make sure your moves are calculated and thought out.",
+                    "This game was created for the class Introduction to Web Technology for Game Developers at the Rochester Institute of Technology. The prompt for this project was simply 'make a game using Javascript', which allows for a lot of creative freedom. I find that my projects have a better final result when prompts are open-ended and allow me more freedom to create something more in line with what I've envisioned and am passionate about. I created this project entirely on my own for the class and received playtesting and/or critiques from my teachers/classmates/friends as I was developing.",
+                    "The random generation of the game boards in Prichi took a long time to get to the point it is now. I programmed the generation in a series of steps to not only make it easy to understand when reading the code, but also so it is easy to explain. To make the general shape of the map, a walker randomly picks a direction to travel to each iteration of a loop, for a certain number of times. The number of times depends on how many rounds the player has survived, so the difficulty ramps up the longer the player survives. This generates a random path on the screen that will be used for the general shape of the map. If the walker navigates itself into a dead end with nowhere to go, then the loop is broken no matter if the correct number of iterations has been reached. This adds much more variation to the board shapes. To smooth out the map, each position that the walker reached has tiles placed in all 8 directions around that position (top-left, top, top-right, etc.). This will remove many of the holes in the map and make it easier for pieces to navigate around the game board. Now that the map is created, the white and black pieces can be placed. The number of black pieces placed on the game board depends on the round number (so the difficulty of the game increases the longer you survive) and the size of the randomly generated board. For each piece, a random position is chosen on the board that is not currently occupied. Then a random number is generated between 1 and 4 for the number of turns left until it moves. This offsets the black pieces at the start of the game so they all don't move at once, staggering them to make the gameplay more interesting. If the player is playing 'insane' mode, then a random ability has a chance to be put on the piece as well. This chance is also dependent on the number of rounds the player has currently survived. Currently, the player only controls one white piece, but the original idea of the game was that the player would control multiple white pieces. Through playtesting I realized that having one piece makes the game more fun and challenging, so I stuck with that. This step still has to randomly place a white piece, similar to how black pieces are placed."
+                ]
+            },
+            {
+                "title": "Reflection",
+                "content": [
+                    "I love how this game turned out and how it plays. The name is a combination of the two Italian words 'prigione' which means dungeon, and 'scacchi' which means chess. I want to keep the gameplay of the game as simple as possible but still make it require some strategy and thought. It might not be the most exciting gameplay because the black pieces move at random, but I think the overall concept is really interesting. My favorite genre of games are puzzle games, and a very close second is roguelike. This game has aspects of both a roguelike and a puzzle game, and I believe with more mechanics added to the gameplay, this game could become something really special. However, I am unsure if I want to continue making the game. If I do continue it, I want to remake it in Unity instead of Javascript because I feel that I will be able to achieve a more polished final product that way."
+                ]
+            }
+        ],
+        "credits": [
+            {
+                "category": "Game Design",
+                "members": [
+                    "Frank Alfano",
+                    "Joseph Ferrugio"
+                ]
+            },
+            {
+                "category": "Art",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "paint.NET",
+                    "Fontstruct"
+                ]
+            },
+            {
+                "category": "Programming",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "PixiJS and Javascript"
+                ]
+            },
+            {
+                "category": "Sound Effects",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "sfxr"
+                ]
+            },
+            {
+                "category": "Playtesting",
+                "members": [
+                    "Gabriela Colón-Meléndez"
+                ]
+            }
+        ]
+    },
+    "Blockchain": {
+        "hidden": false,
+        "dates": "Jun 2021 - Jul 2021",
+        "desc": "Blockchain is a puzzle game that revolves around chaining various blocks together. Each block has different properties that allow them to either stick to other blocks or slide past them. You must create different shapes in order to avoid falling into the abyss below. Navigate your way to the white button in each level to win!",
+        "awards": [
+            {
+                "award": "Top 10% GMTK Game Jam 2021",
+                "css-override": "gmtk-2021"
+            }
+        ],
+        "tags": [
+            "Unity/C#",
+            "Puzzle",
+            "2D"
+        ],
+        "links": [
+            {
+                "name": "GMTK 2021",
+                "logo": "itchio",
+                "css-override": "gmtk-2021",
+                "url": "https://itch.io/jam/gmtk-2021/rate/1077885"
+            },
+            {
+                "name": "Play Blockchain",
+                "logo": "play",
+                "url": "https://qusr08.github.io/Blockchain/"
+            },
+            {
+                "name": "Github Repo",
+                "logo": "github",
+                "url": "https://github.com/qusr08/Blockchain"
+            },
+            {
+                "name": "Itch.io Page",
+                "logo": "itchio",
+                "url": "https://trevoltestudios0.itch.io/blockchain"
+            }
+        ],
+        "visuals": [
+            {
+                "youtube": "https://www.youtube.com/embed/q1sKSGhG-3g"
+            },
+            {
+                "png": "blockchain-screenshot-6.png"
+            },
+            {
+                "png": "blockchain-screenshot-1.png"
+            },
+            {
+                "png": "blockchain-screenshot-2.png"
+            },
+            {
+                "png": "blockchain-screenshot-5.png"
+            }
+        ],
+        "text": [
+            {
+                "title": "Description",
+                "content": [
+                    "Blockchain is a puzzle game that revolves around chaining various blocks together. Each block has different properties that allow them to be able to stick to some other blocks or slide past them. You must create different shapes in order to avoid falling into the abyss below. Navigate your way to the white button in each level to win!",
+                    "This game was created for the 2021 Game Maker's Toolkit 48 Hour Game Jam. The theme for the jam was 'Joined Together', and my partner for this project, Joseph Ferrugio, and I decided to take the theme literally and make a game about joining blocks together. The idea was straightforward and intuitive for players to figure out quickly, which is always very good for game jam games where people play them for a couple of minutes on average. We created all of the assets used in the game between ourselves, all within 48 hours. Since this was the first game jam either of us had attempted, we were shooting for the top 50% of submissions. We ended up placing in the top 10% out of over 6000 submissions, with our game also being top 2% in the fun category."
+                ]
+            },
+            {
+                "title": "Reflection",
+                "content": [
+                    "I am very proud of the final product of this game and am glad I partook in the jam. I find grid-based puzzle games like Blockchain to be very fun to make and develop mechanics for. Joseph Ferrugio and I had other ideas for mechanics to implement that would make the gameplay more interesting, but we ran out of time within the 48 hours to actually figure out how to create them. Currently, I am on the fence about developing this game further into a more polished and professional game. I can see this game being a simple mobile game, but I can also see it being a more complex puzzle experience."
+                ]
+            }
+        ],
+        "audio": [
+            {
+                "name": "Moonchasm",
+                "creator": "Joseph Ferrugio",
+                "file": "Moonchasm.wav"
+            },
+            {
+                "name": "Nebula",
+                "creator": "Joseph Ferrugio",
+                "file": "Nebula.wav"
+            },
+            {
+                "name": "Sky Sailor",
+                "creator": "Joseph Ferrugio",
+                "file": "Sky_Sailor.wav"
+            },
+            {
+                "name": "Starry Seas",
+                "creator": "Joseph Ferrugio",
+                "file": "Starry_Seas.wav"
+            }
+        ],
+        "credits": [
+            {
+                "category": "Game Design",
+                "members": [
+                    "Frank Alfano",
+                    "Joseph Ferrugio"
+                ]
+            },
+            {
+                "category": "Art",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "paint.NET"
+                ]
+            },
+            {
+                "category": "Programming",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "Unity and C#"
+                ]
+            },
+            {
+                "category": "Music",
+                "members": [
+                    "Joseph Ferrugio"
+                ],
+                "tools": [
+                    "Bosca Ceoil"
+                ]
+            },
+            {
+                "category": "Sound Effects",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "sfxr"
+                ]
+            },
+            {
+                "category": "Level Design",
+                "members": [
+                    "Frank Alfano",
+                    "Joseph Ferrugio"
+                ]
             }
         ]
     },
     "Collab": {
+        "hidden": false,
         "dates": "Oct 2019 - Dec 2019",
         "desc": "Collab is a 2-player puzzle platforming game where you need to work together to solve various puzzles. Each player can switch between four unique character abilities to aid their navigation through each level. Have each player reach the goal to beat each level!",
         "tags": [
@@ -138,7 +488,103 @@
         "links": [
             {
                 "name": "Github Repo",
+                "logo": "github",
                 "url": "https://github.com/qusr08/Collab"
+            }
+        ],
+        "visuals": [
+            {
+                "png": "collab-screenshot-1.png"
+            },
+            {
+                "png": "collab-screenshot-3.png"
+            },
+            {
+                "png": "collab-screenshot-4.png"
+            },
+            {
+                "png": "collab-screenshot-5.png"
+            },
+            {
+                "png": "collab-screenshot-6.png"
+            }
+        ],
+        "text": [
+            {
+                "title": "Description",
+                "content": [
+                    "Collab is a 2-player puzzle platforming game where you need to work together to solve various puzzles. Each player can switch their character between four different forms: normal mode, boost mode, shrink mode, and swap mode. Normal mode is the default state of the characters, boost mode allows the player to jump higher, shrink mode allows the player to shrink and fit into smaller gaps, and swap mode allows the players to switch positions. Using these character forms, the players need to navigate around various obstacles like doors, pits, and high ledges. There is a twist, however, that makes the puzzles more challenging. Both players have a combined limit to how many times they can switch forms, so they need to be careful and smart about which forms they switch into. Both players need to reach the end of the level to complete it!",
+                    "This game was created as a personal side project as an opportunity to add a complete game to my collection/portfolio that was created in Unity. My friend Joseph Ferrugio created the song used in the game, but aside from that I created the game entirely on my own. This game really helped me understand Unity and C# and grew my confidence in my game-creating abilities."
+                ]
+            },
+            {
+                "title": "Reflection",
+                "content": [
+                    "I really enjoyed creating this game and still look back on it as one of the best projects I have ever created. I find the puzzle mechanic to be especially unique and fun to mess around with. The movement and animations in the game I also think are very smooth and satisfying, which adds to the charm of the game. The game took me about 2 months to make in full, and I went from very little Unity experience to getting a significant portion of the game development process. At the time I had plans to extend the game and take it further, where I would flesh out the sprites and make the game much longer, maybe even adding in a story. However, now I think it should be left in the past as a piece of my game development history."
+                ]
+            }
+        ],
+        "audio": [
+            {
+                "name": "Cosmos",
+                "creator": "Joseph Ferrugio",
+                "file": "Cosmos.wav"
+            }
+        ],
+        "credits": [
+            {
+                "category": "Game Design",
+                "members": [
+                    "Frank Alfano"
+                ]
+            },
+            {
+                "category": "Art",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "paint.NET"
+                ]
+            },
+            {
+                "category": "Programming",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "Unity and C#"
+                ]
+            },
+            {
+                "category": "Music",
+                "members": [
+                    "Joseph Ferrugio"
+                ],
+                "tools": [
+                    "Bosca Ceoil"
+                ]
+            },
+            {
+                "category": "Sound Effects",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "sfxr"
+                ]
+            },
+            {
+                "category": "Level Design",
+                "members": [
+                    "Frank Alfano"
+                ]
+            },
+            {
+                "category": "Playtesting",
+                "members": [
+                    "Michael Alfano"
+                ]
             }
         ]
     }

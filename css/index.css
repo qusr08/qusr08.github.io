@@ -152,7 +152,12 @@ header {
 .proj-awards {
     display: flex;
     flex-flow: column nowrap;
+    align-items: flex-end;
     gap: var(--small-padding);
+}
+
+.proj-box-container.reversed .proj-awards {
+    align-items: flex-start;
 }
 
 .proj-award {

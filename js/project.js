@@ -56,15 +56,7 @@ function populateGameLinks() {
 
         // Create link icon element
         let gameLinkIconElement = document.createElement("img");
-        let iconType = "";
-        if (linkNameLowerCase.includes("play")) iconType = "play";
-        if (linkNameLowerCase.includes("github")) iconType = "github";
-        if (linkNameLowerCase.includes("itch.io")) iconType = "itchio";
-        if (linkNameLowerCase.includes("2022")) {
-            iconType = "itchio";
-            gameLinkElement.classList.add("gmtk-2022");
-        }
-        gameLinkIconElement.src = `../media/logos/${iconType}-logo.png`;
+        gameLinkIconElement.src = `../media/logos/${linkData.logo}-logo.png`;
         gameLinkElement.appendChild(gameLinkIconElement);
 
         // Create link name element
@@ -73,6 +65,7 @@ function populateGameLinks() {
         gameLinkElement.appendChild(gameLinkNameElement);
 
         // Append the final link element to the links list
+        if (linkData['css-override'] != undefined) gameLinkElement.classList.add(linkData['css-override']);
         GAME_LINKS.appendChild(gameLinkElement);
     });
 }
@@ -115,21 +108,15 @@ function populateGameAudio() {
         let audioTitleElement = document.createElement("h1");
         audioTitleElement.classList.add("section-subelement-title");
         let audioTitle = `${audioData.name} - ${audioData.creator}`;
-        if (audioData.link != undefined) {
-            audioTitleElement.innerHTML = `<a href="${audioData.link}">${audioTitle}</a>`;
-        } else {
-            audioTitleElement.innerText = audioTitle;
-        }
+        audioTitleElement.innerHTML = audioData.link == undefined ? audioTitle : `<a href="${audioData.link}">${audioTitle}</a>`;
         audioElement.appendChild(audioTitleElement);
 
         // Create the audio player element
         let audioPlayerElement = document.createElement("audio");
         audioPlayerElement.setAttribute("controls", "");
         audioPlayerElement.setAttribute("loop", "");
-        if (audioData.wav != undefined) {
-            audioPlayerElement.type = "audio/wav";
-            audioPlayerElement.src = `media/${PROJECT_NAME_LOWER}/audio/${audioData.wav}`;
-        }
+        audioPlayerElement.type = `audio/${audioData.file.split(".").pop()}`;
+        audioPlayerElement.src = `media/${PROJECT_NAME_LOWER}/audio/${audioData.file}`;
         audioElement.appendChild(audioPlayerElement);
 
         audioGridElement.appendChild(audioElement);

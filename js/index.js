@@ -15,10 +15,11 @@ window.onload = () => {
     WRAPPER = document.querySelector("#wrapper");
 
     // Create all project box elements
-    let isProjectReversed = true;
-    for (let project in PROJECT_DATA) {
-        createProjectBox(project, isProjectReversed);
-        isProjectReversed = !isProjectReversed;
+    let reversed = true;
+    for (let projectName in PROJECT_DATA) {
+        if (PROJECT_DATA[projectName].hidden) continue;
+        createProjectBox(projectName, reversed);
+        reversed = !reversed;
     }
 
     NAVBAR = document.querySelector("#navbar");
@@ -45,13 +46,13 @@ window.onscroll = (e) => {
     NAVBAR.classList.toggle("visible", window.scrollY > 0);
 }
 
-function createProjectBox(projectName, isReversed) {
+function createProjectBox(projectName, reversed) {
     let projectNameLowerCase = projectName.toLowerCase();
 
     // Create project box container element
     let projectBoxContainer = document.createElement("div");
     projectBoxContainer.classList.add("proj-box-container", "matter-rect-html");
-    if (isReversed) projectBoxContainer.classList.add("reversed");
+    projectBoxContainer.classList.toggle("reversed", reversed);
 
     // Create project box element
     let projectBox = document.createElement("div");
@@ -93,17 +94,9 @@ function createProjectBox(projectName, isReversed) {
             // Create award element
             let projectAward = document.createElement("p");
             projectAward.classList.add("proj-award");
-
-            if (award.event == undefined) {
-                projectAward.innerHTML = award.award;
-            } else {
-                projectAward.innerHTML = `${award.award} @ ${award.event}`;
-            }
-
-            if (projectAward.innerHTML.includes("GMTK Game Jam 2022")) {
-                projectAward.classList.add("gmtk-2022");
-            }
-
+            projectAward.innerHTML = award.event == undefined ? award.award : `${award.award} @ ${award.event}`;
+            console.log(award['css-override']);
+            if (award['css-override'] != undefined) projectAward.classList.add(award['css-override']);
             projectAwards.appendChild(projectAward);
         });
         projectInfo.appendChild(projectAwards);
@@ -136,6 +129,7 @@ function createProjectBox(projectName, isReversed) {
     viewLink.classList.add("proj-link");
     viewLink.innerHTML = `<p>View Project</p>`;
     viewLink.href = `project.html?name=${projectName}`;
+    viewLink.style.justifyContent = "center";
     projectLinks.appendChild(viewLink);
 
     if (PROJECT_DATA[projectName].links != undefined) {
@@ -149,15 +143,7 @@ function createProjectBox(projectName, isReversed) {
 
             // Create link icon element
             let projectLinkIcon = document.createElement("img");
-            let iconType = "";
-            if (linkNameLowerCase.includes("play")) iconType = "play";
-            if (linkNameLowerCase.includes("github")) iconType = "github";
-            if (linkNameLowerCase.includes("itch.io")) iconType = "itchio";
-            if (linkNameLowerCase.includes("2022")) {
-                iconType = "itchio";
-                projectLink.classList.add("gmtk-2022");
-            }
-            projectLinkIcon.src = `media/logos/${iconType}-logo.png`;
+            projectLinkIcon.src = `media/logos/${link.logo}-logo.png`;
             projectLink.appendChild(projectLinkIcon);
 
             // Create link name element
@@ -166,6 +152,7 @@ function createProjectBox(projectName, isReversed) {
             projectLink.appendChild(projectLinkName);
 
             // Append the final link element to the links list
+            if (link['css-override'] != undefined) projectLink.classList.add(link['css-override']);
             projectLinks.appendChild(projectLink);
         });
     }
