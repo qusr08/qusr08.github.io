@@ -305,3 +305,9 @@ header {
     /* --background-alt-color */
     filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
 }
+
+@media screen and (max-width: 2000px) {
+    :root {
+        --proj-box-base-width: 60vw;
+    }
+}

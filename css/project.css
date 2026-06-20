@@ -24,7 +24,7 @@ header {
     display: grid;
     grid-template-columns: 3fr 2fr;
     padding: 0px var(--variable-padding);
-    gap: var(--large-padding);
+    gap: var(--padding) var(--large-padding);
 }
 
 .game-info {
@@ -130,4 +130,11 @@ audio {
 .game-link:hover>img {
     /* --background-alt-color */
     filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
+}
+
+
+@media screen and (max-width: 1500px) {
+    .game-grid {
+        grid-template-columns: 1fr;
+    }
 }
