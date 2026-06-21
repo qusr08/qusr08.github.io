@@ -1,4 +1,6 @@
 export function populateFooter(footerElement) {
+    if (footerElement == undefined) return;
+
     footerElement.innerHTML = `
         <div class="footer-text box-reg matter-rect-html">
             <p>Last updated on: <span id="github-date">XX/XX/XXXX</span></p>
@@ -9,6 +11,8 @@ export function populateFooter(footerElement) {
 }
 
 export function populateNavbar(navbarElement) {
+    if (navbarElement == undefined) return;
+    
     navbarElement.innerHTML = `
         <a class="navbar-title" href="index.html">Frank Alfano</a>
         <div style="flex-grow: 1;"></div>

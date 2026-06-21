@@ -15,11 +15,13 @@ window.onload = () => {
     WRAPPER = document.querySelector("#wrapper");
 
     // Create all project box elements
-    let reversed = true;
-    for (let projectName in PROJECT_DATA) {
-        if (PROJECT_DATA[projectName].hidden) continue;
-        createProjectBox(projectName, reversed);
-        reversed = !reversed;
+    if (PROJECT_GRID != undefined) {
+        let reversed = true;
+        for (let projectName in PROJECT_DATA) {
+            if (PROJECT_DATA[projectName].hidden) continue;
+            createProjectBox(projectName, reversed);
+            reversed = !reversed;
+        }
     }
 
     NAVBAR = document.querySelector("#navbar");

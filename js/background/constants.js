@@ -4,7 +4,7 @@ export const BASE_SHAPE_SIZE = 50;
 export const BASE_SHAPE_VELOCITY = 0.01;
 export const BASE_SHAPE_VELOCITY_ANGULAR = 0.05;
 
-export const SHAPE_SPAWN_RATE = 400;
+export const SHAPE_SPAWN_RATE = 100;
 export const SHAPE_MAX_COUNT = 200;
 export const PEG_THRESHOLD = 0;
 

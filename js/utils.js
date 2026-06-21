@@ -22,7 +22,8 @@ export function updateFromGithub() {
                     let month = lastUpdated.getUTCMonth();
                     let year = lastUpdated.getUTCFullYear();
 
-                    document.querySelector("#github-date").innerHTML = `${month + 1}/${day}/${year}`;
+                    let githubDateElement = document.querySelector("#github-date");
+                    if (githubDateElement != undefined) githubDateElement.innerHTML = `${month + 1}/${day}/${year}`;
 
                     return;
                 }
