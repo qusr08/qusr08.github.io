@@ -17,6 +17,7 @@ header {
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
+    row-gap: var(--large-padding);
     padding: 0px var(--variable-padding);
 }
 
@@ -33,6 +34,7 @@ header {
     width: fit-content;
     background-color: var(--accent-color);
     padding: var(--large-padding);
+    white-space: nowrap;
 }
 
 .header-subtitle {
@@ -40,11 +42,12 @@ header {
     width: fit-content;
     background-color: var(--background-alt-color);
     padding: var(--padding);
+    white-space: nowrap;
 }
 
 .header-logo {
     height: min-content;
-    width: 30vw;
+    width: max(500px, 30vw);
 }
 
 /* Project Grid */
@@ -306,8 +309,30 @@ header {
     filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(2761%) hue-rotate(176deg) brightness(99%) contrast(94%);
 }
 
+@media screen and (max-width: 2250px) {
+    .header-title {
+        font-size: 6em;
+    }
+}
+
 @media screen and (max-width: 2000px) {
     :root {
         --proj-box-base-width: 60vw;
+    }
+}
+
+@media screen and (max-width: 1750px) {
+    header {
+        flex-flow: column-reverse;
+        justify-content: center;
+    }
+    .header-text {
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .header-title {
+        font-size: 4em;
     }
 }
