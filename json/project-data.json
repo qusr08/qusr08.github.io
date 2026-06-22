@@ -117,6 +117,92 @@
             }
         ]
     },
+    "Smath": {
+        "hidden": false,
+        "dates": "Feb 2025",
+        "desc": "A simple puzzle game aimed to teach elementary-aged children basic arithmetic. Smash numbers together to merge them, or smash them into walls to break them apart. The goal is to manipulate the numbers until you get to the target number in the center of the screen.",
+        "tags": [
+            "Unity/C#",
+            "Puzzle",
+            "Educational"
+        ],
+        "awards": [
+            {
+                "event": "RIT BrickHack 11",
+                "award": "Best Solo Hack"
+            },
+            {
+                "event": "RIT BrickHack 11",
+                "award": "Best Game Hack"
+            }
+        ],
+        "links": [
+            {
+                "name": "Play Smath",
+                "logo": "play",
+                "url": "https://qusr08.github.io/Smath/"
+            },
+            {
+                "name": "Devpost Page",
+                "logo": "devpost",
+                "url": "https://devpost.com/software/smath?_gl=1*ror0hi*_gcl_au*MTg4MTE5MjA3NS4xNzgyMTU3MDc2*_ga*NTY0MTQ4ODcyLjE3ODIxNTcwNzc.*_ga_0YHJK3Y10M*czE3ODIxNTcwNzYkbzEkZzEkdDE3ODIxNTcwODQkajUyJGwwJGgw"
+            },
+            {
+                "name": "Github Repo",
+                "logo": "github",
+                "url": "https://github.com/qusr08/Smath"
+            }
+        ],
+        "visuals": [
+            {
+                "youtube": "https://www.youtube.com/embed/gATpbO-ZjNo"
+            },
+            {
+                "png": "smath-screenshot-1.png"
+            },
+            {
+                "png": "smath-screenshot-2.png"
+            },
+            {
+                "png": "smath-screenshot-3.png"
+            },
+            {
+                "png": "smath-screenshot-4.png"
+            },
+            {
+                "png": "smath-screenshot-5.png"
+            }
+        ],
+        "text": [],
+        "credits": [
+            {
+                "category": "Game Design",
+                "members": [
+                    "Frank Alfano"
+                ]
+            },
+            {
+                "category": "Art",
+                "members": [
+                    "Frank Alfano",
+                    "Gabriela Colón-Meléndez"
+                ],
+                "tools": [
+                    "paint.NET",
+                    "Figma"
+                ]
+            },
+            {
+                "category": "Programming",
+                "members": [
+                    "Frank Alfano"
+                ],
+                "tools": [
+                    "Unity and C#"
+                ]
+            }
+        ]
+    },
     "DOS": {
         "hidden": false,
         "dates": "Jul 2022 - Aug 2022",
